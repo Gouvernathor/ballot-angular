@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    color: #333;
+    font-weight: 300;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+a {
+    color: hsl(240, 80%, 70%);
+}
+
+a:hover {
+    color: hsl(240, 80%, 80%);
+}
