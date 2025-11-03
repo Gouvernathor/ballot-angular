@@ -109,7 +109,6 @@ export class Splash implements OnInit, OnDestroy {
                     newGrid[y][x] = rng.randRange(0, 3) as State);
         }
 
-        // console.log({outgoingGrid, newGrid});
         this.grid.set(newGrid);
     }
 
