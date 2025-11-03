@@ -10,6 +10,10 @@ type ReadonlyGrid = readonly (readonly State[])[];
     imports: [],
     templateUrl: './splash.html',
     styleUrl: './splash.scss',
+    host: {
+        "[style.width.px]": "width",
+        "[style.height.px]": "height",
+    },
 })
 export class Splash implements OnInit, OnDestroy {
     readonly width = 1500;
