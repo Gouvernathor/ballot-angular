@@ -1,0 +1,99 @@
+.words {
+    width: 670px;
+    margin: 0 auto;
+}
+
+p {
+    text-align: justify;
+    line-height: 1.7em;
+    color: #333;
+}
+
+p.caption {
+    line-height: 1.5em;
+    text-align: center;
+}
+
+p img {
+    height: 1em;
+    position: relative;
+    top: 3px;
+}
+
+p img.real {
+    margin: 0 auto;
+    display: block;
+    height: auto;
+}
+
+p .underline {
+    text-decoration: underline;
+}
+
+/*
+iframe{
+	border:none;
+	display: block;
+	margin: 0px auto 25px auto;
+}
+hr{
+	border: none;
+	border-bottom: 5px dashed #ccc;
+	margin: 50px 0;
+}
+li{
+	margin-bottom: 0.4em;
+}
+*/
+
+.ballot_title {
+    font-size: 1.75em;
+    margin-bottom: 0.4em;
+    position: relative;
+    left: 5px;
+}
+
+p.ballot_caption {
+    margin-top: 0;
+    font-size: 0.8em;
+    text-align: center;
+    width: 260px;
+    line-height: 1.2em;
+}
+
+p.caption-test {
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1.4em;
+}
+
+/*
+.sim-intro, .sim-ballot, .sim-test, .sim-sandbox{
+	margin: 0 auto;
+}
+.sim-intro{
+	width: 600px;
+}
+.sim-ballot{
+	width: 670px;
+	margin: 35px auto 50px auto;
+}
+.sim-test{
+	width: 800px;
+	margin: 50px auto 40px auto;
+}
+*/
+
+p.quote {
+    border-radius: 5px;
+    background: #eee;
+    padding: 20px;
+    color: #888;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+p.quote em {
+    color: #000;
+    font-weight: bolder;
+}
