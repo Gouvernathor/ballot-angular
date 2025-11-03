@@ -101,8 +101,8 @@ export class Splash implements OnInit, OnDestroy {
             this
                 .getNeighbors(
                     outgoingGrid,
-                    Math.floor(mouseX / this.SIZE),
-                    Math.floor(mouseY / this.SIZE),
+                    Math.floor(mouseX),
+                    Math.floor(mouseY),
                     undefined)
                 .forEach(([x, y]) =>
                     newGrid[y][x] = rng.randRange(0, 3) as State);
