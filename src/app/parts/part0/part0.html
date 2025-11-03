@@ -19,3 +19,64 @@ THE SPOILER EFFECT
         <a href="https://github.com/Gouvernathor/ballot-angular">Full source code here!</a>
     </p>
 </div>
+
+<div class="words" id="intro">
+    <p>
+        <i>(<b>NOTE: This interactive article was written in 2016!</b>
+        Sorry the specific example is so dated & U.S-specific &mdash;
+        but, the math & ideas behind better voting systems apply broadly, to all democracies in all times.
+        So, good luck with that.
+        Also, please ignore my cringe running gag about Trudeau.)</i>
+    </p>
+    <hr>
+    <p>No, this is not about the 2016 U.S. election. Not <em>just</em> that, anyway.</p>
+    <p>First, I need to explain a weird glitch in our voting system.
+    Let's say there's two candidates, Steven Square <img src="play/img/square.svg"/> and Tracy Triangle <img src="play/img/triangle.svg"/>, on a couple political axes. (for example, &ldquo;left vs. right&rdquo; and &ldquo;globalist vs. nationalist&rdquo;) Let's also say there's a voter <img src="play/img/voter.svg"/> who simply votes for whoever's political position is closest. What would that look like?</p>
+</div>
+
+<div class="sim-intro" id="click-drag-candidates-voter">
+    <p class="caption" style="margin-top:30px">
+        <b><span style="font-size:2.5em;">click &amp; drag</span><br>the candidates and the voter:</b>
+    </p>
+    <!-- <app-model1 [width]="305" [height]="360" /> -->
+</div>
+
+<div class="words">
+    <p>It's a tough choice. Triangle's got some sharp points, but Square understands more sides! Alas, in the end, you can only vote for one.</p>
+    <p>Of course, there's more than just one voter in an election. Let's simulate what an election would look like with 100+ voters.</p>
+</div>
+
+<div class="sim-intro" id="drag-candidates-voters">
+    <p class="caption">
+        <b>drag the candidates &amp; voter<span class="underline">s</span> around.<br>(to move voters, drag the <em>middle</em> of the crowd)<br>watch how that changes the election:</b>
+    </p>
+    <!-- <app-model2 [width]="320" [height]="400" /> -->
+</div>
+
+<div class="words">
+    <p>Now let's consider a different election. Say Tracy Triangle is <em>already</em> beating Steven Square in the polls, and a third candidate, Henry Hexagon <img src="play/img/hexagon.svg"/>, sees this. (Hexagon's supporters like how he tackles problems from more angles) Inspired by her success, Hexagon swoops in and takes a political position close to Triangle's.</p>
+    <p>Now, you'd think giving the voters more of what they want should result in a <em>better</em> choice, or at least, not result in a <em>worse</em> choice, right? Well...</p>
+</div>
+
+<div class="sim-intro" id="triangle-vs-square">
+    <p class="caption">
+        <b>
+        at first, <img src="play/img/triangle.svg"> beats <img src="play/img/square.svg">.<br>
+        drag <img src="play/img/hexagon.svg"> to <i>just under</i> <img src="play/img/triangle.svg">,<br>
+        and see what happens:</b>
+    </p>
+    <!-- <app-model3 [width]="320" [height]="460" /> -->
+</div>
+
+<div class="words">
+    <p>That's right. Steven Square, our <em>least</em> popular candidate, now wins! This is because when you have two good candidates, they "steal" votes from each other, letting a bad third candidate win.</p>
+    <p>This is called <strong>the spoiler effect.</strong> The most famous real-world example of this was in 2000, when Ralph Nader &quot;stole&quot; votes from Al Gore, letting George Bush win. And though the spoiler effect didn't play a big role in 2016, its impact could still be felt.</p>
+    <p>In the Republican primary, one anti-establishment nominee, Trump, ran against <em>sixteen</em> GOP establishment nominees, who all "stole" votes from each other, letting Trump grab the nomination, <em>easily</em>. As for the Democratic primary, fear of splitting the vote prevented Sanders from running as independent. And to cap it all off, there was always the worry that other candidates like Johnson, Stein, and McMullin could spoil the election.</p>
+    <p>But again, this is <em>not</em> about the 2016 U.S. election.</p>
+    <p><strong>This is about designing a democracy that people can <em>trust</em>.</strong></p>
+    <p>Despite so much hoopla around the 2016 election, a full <em>half</em> of Americans did not vote. Even of those who voted for Clinton/Trump, <a href="http://www.nytimes.com/interactive/2016/11/08/us/politics/election-exit-polls.html">20% of them said their candidates were untrustworthy</a>, <em>and voted for them anyway.</em> <a href="https://www.theatlantic.com/international/archive/2016/07/trust-institutions-trump-brexit/489554/">And around the world, people's trust in their governments</a> – or the trust<em>worthiness</em> of their governments – has never been lower. It's more than America at stake. It's <em>every democracy in the world.</em></p>
+    <p>...so yeah, no pressure.</p>
+    <p>Rebuilding trust is a complex problem with no easy solutions. But I think there <em>is</em> an easy first step. It's a step that could get rid of our “lesser of two evils” problem, and give us citizens more choices, <em>better</em> choices. And yet, it won't be as daunting as fixing campaign finance or gerrymandering or lack of proportional representation, no, it'd just require changing <em>a piece of paper</em>, and how we count those pieces of paper.</p>
+    <p>This idea is <em>not</em> the most important issue. It <em>won't</em> solve everything. But as a first step? It'd give us the biggest bang-for-buck.</p>
+    <p><strong>Let's talk about how to build a better ballot.</strong></p>
+</div>
