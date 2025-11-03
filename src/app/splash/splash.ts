@@ -67,7 +67,8 @@ export class Splash implements OnInit, OnDestroy {
     }
 
     private update() {
-        // TODO: if not on screen, bail
+        if (!this.inView) return;
+        // TODO check that the test does work
 
         const outgoingGrid = this.grid();
         const newGrid: Grid = outgoingGrid.map(row => row.slice() as State[]);
@@ -113,10 +114,23 @@ export class Splash implements OnInit, OnDestroy {
     }
 
     private intervalId?: ReturnType<typeof setInterval>;
+    private observer?: IntersectionObserver;
+    private inView = true;
     ngOnInit(): void {
         this.intervalId = setInterval(() => this.update(), 50);
+
+        if (typeof IntersectionObserver !== "undefined") {
+            this.observer = new IntersectionObserver(entries => {
+                // Take the latest entry
+                this.inView = entries.sort((a, b) => b.time - a.time)[0].isIntersecting;
+                console.log({inView: this.inView, entries});
+            });
+            this.observer.observe(this.element().nativeElement);
+        }
     }
     ngOnDestroy(): void {
         clearInterval(this.intervalId);
+
+        this.observer?.disconnect();
     }
 }
