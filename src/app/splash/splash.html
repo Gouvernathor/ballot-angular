@@ -1,1 +1,21 @@
-<p>splash works!</p>
+<!-- <canvas #canvas
+    [width]="width" [height]="height"
+    [style.width.px]="width" [style.height.px]="height"
+    (mousemove)="onMouseMove($event)"
+    (mouseleave)="onMouseLeave()"
+></canvas> -->
+<div #element
+  [style.width.px]="width" [style.height.px]="height"
+  (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()"
+  id="grid">
+    @for (row of grid; let rowIndex = $index; track rowIndex) {
+        @for (state of row; let colIndex = $index; track colIndex) {
+            <img src="splash/vote{{state}}.svg"
+                [style.top.px]="rowIndex * SIZE"
+                [style.left.px]="colIndex * SIZE"
+                [style.width.px]="SIZE"
+                [style.height.px]="SIZE"
+            />
+        }
+    }
+</div>
