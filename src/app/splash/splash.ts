@@ -122,7 +122,6 @@ export class Splash implements OnInit, OnDestroy {
             this.observer = new IntersectionObserver(entries => {
                 // Take the latest entry
                 this.inView = entries.sort((a, b) => b.time - a.time)[0].isIntersecting;
-                console.log({inView: this.inView, entries});
             });
             this.observer.observe(this.element().nativeElement);
         }
