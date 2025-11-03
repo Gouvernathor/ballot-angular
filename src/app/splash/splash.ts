@@ -1,7 +1,9 @@
-import { Component, computed, ElementRef, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
 import RNG, {} from "@gouvernathor/rng";
 
 type State = 0 | 1 | 2;
+type Grid = State[][];
+type ReadonlyGrid = readonly (readonly State[])[];
 
 @Component({
     selector: 'app-splash',
@@ -9,7 +11,7 @@ type State = 0 | 1 | 2;
     templateUrl: './splash.html',
     styleUrl: './splash.scss',
 })
-export class Splash {
+export class Splash implements OnInit, OnDestroy {
     readonly width = 1500;
     readonly height = 400;
     readonly SIZE = 25;
@@ -17,9 +19,8 @@ export class Splash {
     readonly h = this.height / this.SIZE;
 
     readonly element = viewChild.required<ElementRef<HTMLCanvasElement>>("element");
-    // readonly context2d = computed(() => this.canvas().nativeElement.getContext("2d")!);
 
-    readonly grid = this.makeGrid();
+    readonly grid = signal<ReadonlyGrid>(this.makeGrid());
     private makeGrid() {
         const rng = new RNG();
         const grid: State[][] = [];
@@ -48,13 +49,13 @@ export class Splash {
     /**
      * All the neighbors within the grid's bounds, and of the target state.
      */
-    private getNeighbors(initX: number, initY: number, targetState: State|undefined) {
+    private getNeighbors(grid: ReadonlyGrid, initX: number, initY: number, targetState: State|undefined) {
         const neighbors: [number, number][] = [];
         for (let y = initY - 1; y <= initY + 1; y++) {
             if (y >= 0 && y <= this.h - 1) {
                 for (let x = initX - 1; x <= initX + 1; x++) {
                     if (x >= 0 && x <= this.w - 1) {
-                        const state = this.grid[y][x];
+                        const state = grid[y][x];
                         if (targetState === undefined || state === targetState) {
                             neighbors.push([x, y]);
                         }
@@ -68,6 +69,8 @@ export class Splash {
     private update() {
         // TODO: if not on screen, bail
 
+        const outgoingGrid = this.grid();
+        const newGrid: Grid = outgoingGrid.map(row => row.slice() as State[]);
         const rng = new RNG();
 
         const positions: [number, number][] = [];
@@ -79,16 +82,16 @@ export class Splash {
 
         for (const [x, y] of rng.shuffled(positions)) {
             // the cell
-            const state = this.grid[y][x];
+            const state = outgoingGrid[y][x];
 
             // the target state
             const targetState = (state + 1) % 3 as State;
 
             // get a random fitting neighbor
-            const neighbors = this.getNeighbors(x, y, targetState);
+            const neighbors = this.getNeighbors(outgoingGrid, x, y, targetState);
             if (neighbors.length > 0) {
                 const [targetX, targetY] = rng.choice(neighbors);
-                this.grid[targetY][targetX] = targetState;
+                newGrid[targetY][targetX] = targetState;
             }
         }
 
@@ -97,14 +100,22 @@ export class Splash {
             const [mouseX, mouseY] = this.mousePos;
             this
                 .getNeighbors(
+                    outgoingGrid,
                     Math.floor(mouseX / this.SIZE),
                     Math.floor(mouseY / this.SIZE),
                     undefined)
                 .forEach(([x, y]) =>
-                    this.grid[y][x] = rng.randRange(0, 3) as State);
+                    newGrid[y][x] = rng.randRange(0, 3) as State);
         }
 
-        // this.draw();
+        this.grid.set(newGrid);
     }
-    // setInterval(() => this.update(), 50);
+
+    private intervalId?: ReturnType<typeof setInterval>;
+    ngOnInit(): void {
+        this.intervalId = setInterval(() => this.update(), 1000);
+    }
+    ngOnDestroy(): void {
+        clearInterval(this.intervalId);
+    }
 }
