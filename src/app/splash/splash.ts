@@ -91,7 +91,7 @@ export class Splash implements OnInit, OnDestroy {
             const neighbors = this.getNeighbors(outgoingGrid, x, y, targetState);
             if (neighbors.length > 0) {
                 const [targetX, targetY] = rng.choice(neighbors);
-                newGrid[targetY][targetX] = targetState;
+                newGrid[targetY][targetX] = state;
             }
         }
 
@@ -108,6 +108,7 @@ export class Splash implements OnInit, OnDestroy {
                     newGrid[y][x] = rng.randRange(0, 3) as State);
         }
 
+        // console.log({outgoingGrid, newGrid});
         this.grid.set(newGrid);
     }
 
