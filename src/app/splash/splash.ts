@@ -114,7 +114,7 @@ export class Splash implements OnInit, OnDestroy {
 
     private intervalId?: ReturnType<typeof setInterval>;
     ngOnInit(): void {
-        this.intervalId = setInterval(() => this.update(), 1000);
+        this.intervalId = setInterval(() => this.update(), 50);
     }
     ngOnDestroy(): void {
         clearInterval(this.intervalId);
