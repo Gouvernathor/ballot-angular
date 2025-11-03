@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Splash } from "../splash/splash";
+import { Banner } from "../banner/banner";
 import { Part0 } from "../part0/part0";
 import { Part1 } from "../part1/part1";
 import { Part2 } from "../part2/part2";
@@ -9,7 +9,7 @@ import { Part5 } from "../part5/part5";
 
 @Component({
     selector: 'app-ballot',
-    imports: [Splash, Part0, Part1, Part2, Part3, Part4, Part5],
+    imports: [Banner, Part0, Part1, Part2, Part3, Part4, Part5],
     templateUrl: './ballot.html',
     styleUrl: './ballot.scss',
 })
