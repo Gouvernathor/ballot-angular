@@ -27,7 +27,7 @@ with (probably) no width/height set
 the selector should probably be .banner *
 */
 
-.banner .banner_title {
+.banner .banner_title * {
     text-align: center;
     color: #4f4a45ee;
 }
