@@ -38,8 +38,8 @@ export class Splash implements OnInit, OnDestroy {
     onMouseMove(event: MouseEvent) {
         const rect = this.element().nativeElement.getBoundingClientRect();
         this.mousePos = [
-            Math.floor((event.clientX - rect.left) / this.w),
-            Math.floor((event.clientY - rect.top) / this.h),
+            Math.floor((event.pageX - rect.left) / this.SIZE),
+            Math.floor((event.pageY - rect.top) / this.SIZE),
         ];
     }
     onMouseLeave() {
@@ -101,8 +101,8 @@ export class Splash implements OnInit, OnDestroy {
             this
                 .getNeighbors(
                     outgoingGrid,
-                    Math.floor(mouseX),
-                    Math.floor(mouseY),
+                    mouseX,
+                    mouseY,
                     undefined)
                 .forEach(([x, y]) =>
                     newGrid[y][x] = rng.randRange(0, 3) as State);
