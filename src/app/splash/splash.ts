@@ -74,8 +74,7 @@ export class Splash implements OnInit, OnDestroy {
         if (!this.inView) return;
         // TODO check that the test does work
 
-        const outgoingGrid = this.grid();
-        const newGrid: Grid = outgoingGrid.map(row => row.slice() as State[]);
+        const grid: Grid = this.grid().map(row => row.slice() as State[]);
         const rng = new RNG();
 
         const positions: [number, number][] = [];
@@ -87,16 +86,16 @@ export class Splash implements OnInit, OnDestroy {
 
         for (const [x, y] of rng.shuffled(positions)) {
             // the cell
-            const state = outgoingGrid[y][x];
+            const state = grid[y][x];
 
             // the target state
             const targetState = (state + 1) % 3 as State;
 
             // get a random fitting neighbor
-            const neighbors = this.getNeighbors(outgoingGrid, x, y, targetState);
+            const neighbors = this.getNeighbors(grid, x, y, targetState);
             if (neighbors.length > 0) {
                 const [targetX, targetY] = rng.choice(neighbors);
-                newGrid[targetY][targetX] = state;
+                grid[targetY][targetX] = state;
             }
         }
 
@@ -105,15 +104,15 @@ export class Splash implements OnInit, OnDestroy {
             const [mouseX, mouseY] = this.mousePos;
             this
                 .getNeighbors(
-                    outgoingGrid,
+                    grid,
                     mouseX,
                     mouseY,
                     undefined)
                 .forEach(([x, y]) =>
-                    newGrid[y][x] = rng.randRange(0, 3) as State);
+                    grid[y][x] = rng.randRange(0, 3) as State);
         }
 
-        this.grid.set(newGrid);
+        this.grid.set(grid);
     }
 
     private intervalId?: ReturnType<typeof setInterval>;
