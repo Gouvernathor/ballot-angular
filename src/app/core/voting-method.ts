@@ -65,7 +65,7 @@ export interface ApprovalVotingMethod extends VotingMethod<ApprovalBallot> {
 }
 export function makeApprovalVotingMethod({
     approvalRadius = 100,
-}): ApprovalVotingMethod {
+} = {}): ApprovalVotingMethod {
     function approval(
         voterOpinions: Opinions,
         candidates: readonly Candidate[]
@@ -90,7 +90,7 @@ export interface ScoreVotingMethod extends VotingMethod<ScoreBallot> {
 export function makeScoreVotingMethod({
     bigRange = false,
     numScores = 5,
-}): ScoreVotingMethod {
+} = {}): ScoreVotingMethod {
     const step = bigRange ? 74 : 30;
     function scaleScore(dist: number): 1|2|3|4|5 {
         if (dist < step) {
