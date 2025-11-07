@@ -1,0 +1,31 @@
+<!-- draw background cues -->
+@for (voterGroup of voterGroups(); track voterGroup) {
+    @if (isSingleVoter(voterGroup)) {
+        <!-- TODO
+        display the cues element
+        pass it the voting method (for its type, and parameters like the number of scores),
+        the opinions of the single voter, and the sole ballot they cast
+         -->
+    }
+}
+
+<!-- draw candidates -->
+@for (candidate of candidates(); track candidate) {
+    <!-- TODO
+    display the candidate
+    as a draggable
+    at its opinions coordinates
+    with the shape passed to the subcomponent
+    with event listeners for drag stuff that update its opinions
+     -->
+}
+
+<!-- draw voter groups -->
+@for (voterGroup of voterGroups(); track voterGroup) {
+    <!-- TODO
+    display the voter group
+    as a draggable
+    at their reference opinions coordinates
+    pass it the voting method, the voter group, and the ballots cast by the voter group
+     -->
+}
