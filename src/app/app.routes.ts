@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { Ballot } from './ballot/ballot';
+import { Index } from './+index';
 
 export const routes: Routes = [{
     path: '',
-    component: Ballot,
+    component: Index,
 }];
