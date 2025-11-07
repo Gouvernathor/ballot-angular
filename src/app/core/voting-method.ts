@@ -63,9 +63,9 @@ export function makeRankedVotingMethod(): RankedVotingMethod {
 export interface ApprovalVotingMethod extends VotingMethod<ApprovalBallot> {
     kind: "approval";
 }
-export function makeApprovalVotingMethod(
+export function makeApprovalVotingMethod({
     approvalRadius = 100,
-): ApprovalVotingMethod {
+}): ApprovalVotingMethod {
     function approval(
         voterOpinions: Opinions,
         candidates: readonly Candidate[]
@@ -79,6 +79,7 @@ export function makeApprovalVotingMethod(
         }));
     }
     approval.kind = "approval" as const;
+    approval.approvalRadius = approvalRadius;
     return approval;
 }
 
@@ -86,9 +87,10 @@ export function makeApprovalVotingMethod(
 export interface ScoreVotingMethod extends VotingMethod<ScoreBallot> {
     kind: "score";
 }
-export function makeScoreVotingMethod(
+export function makeScoreVotingMethod({
     bigRange = false,
-): ScoreVotingMethod {
+    numScores = 5,
+}): ScoreVotingMethod {
     const step = bigRange ? 74 : 30;
     function scaleScore(dist: number): 1|2|3|4|5 {
         if (dist < step) {
@@ -117,5 +119,6 @@ export function makeScoreVotingMethod(
         }));
     }
     score.kind = "score" as const;
+    score.numScores = numScores;
     return score;
 }
