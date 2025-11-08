@@ -87,6 +87,7 @@ export function makeApprovalVotingMethod({
 
 export interface ScoreVotingMethod extends BaseVotingMethod<ScoreBallot> {
     kind: "score";
+    /** The scores go from 1 to numScores */
     numScores: number;
 }
 export function makeScoreVotingMethod({

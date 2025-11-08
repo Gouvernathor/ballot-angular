@@ -69,11 +69,11 @@ export class Pies {
     }
 
     getScoreShares(ballot: ScoreBallot, { numScores }: { numScores: number }): PieShares {
-        const totalSlices = ballot.size * (numScores - 1);
-        let leftover = totalSlices;
+        const totalSlices = ballot.size * numScores;
+        let leftover = 0;
 
         const mutShares: PieShare[] = Array.from(ballot.entries(), ([candidate, score]) => {
-            leftover -= score;
+            leftover += numScores - score;
             return {
                 candidate,
                 share: score,
