@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">
+    <g stroke="#ccc" stroke-width="4" stroke-linecap="round">
+        <!-- Horizontal Axis -->
+        <line x1="21" y1="300" x2="579" y2="300" />
+        <!-- left arrow -->
+        <line x1="35" y1="284" x2="21" y2="300" />
+        <line x1="35" y1="316" x2="21" y2="300" />
+        <!-- right arrow -->
+        <line x1="565" y1="284" x2="579" y2="300" />
+        <line x1="565" y1="316" x2="579" y2="300" />
+
+        <!-- Vertical Axis -->
+        <line x1="300" y1="21" x2="300" y2="579" />
+        <!-- top arrow -->
+        <line x1="284" y1="35" x2="300" y2="21" />
+        <line x1="316" y1="35" x2="300" y2="21" />
+        <!-- bottom arrow -->
+        <line x1="284" y1="565" x2="300" y2="579" />
+        <line x1="316" y1="565" x2="300" y2="579" />
+    </g>
+</svg>
