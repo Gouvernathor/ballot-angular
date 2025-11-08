@@ -1,3 +1,5 @@
+<ng-content select="#title" />
+
 <!-- draw background cues -->
 @for (voterGroup of voterGroups(); track voterGroup) {
     @if (isSingleVoter(voterGroup)) {
@@ -31,3 +33,4 @@
 }
 
 <!-- TODO transclude a caption -->
+<ng-content select="#caption" />
