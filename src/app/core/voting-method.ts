@@ -62,6 +62,7 @@ export function makeRankedVotingMethod(): RankedVotingMethod {
 
 export interface ApprovalVotingMethod extends VotingMethod<ApprovalBallot> {
     kind: "approval";
+    approvalRadius: number;
 }
 export function makeApprovalVotingMethod({
     approvalRadius = 100,
@@ -86,6 +87,7 @@ export function makeApprovalVotingMethod({
 
 export interface ScoreVotingMethod extends VotingMethod<ScoreBallot> {
     kind: "score";
+    numScores: number;
 }
 export function makeScoreVotingMethod({
     bigRange = false,
