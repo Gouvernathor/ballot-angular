@@ -14,6 +14,7 @@ export class VotingModel {
     readonly votingMethod = input.required<VotingMethod<Ballot>>();
     readonly candidates = input.required<readonly Candidate[]>();
     readonly voterGroups = input.required<ReadonlySet<VoterGroup>>();
+    // TODO also takes a border color as an input, and if providedn sets the border width to 10px
 
     readonly castBallots: Signal<ReadonlyMap<VoterGroup, Signal<readonly Ballot[]>>> = computed(() => {
         const candidates = this.candidates();
