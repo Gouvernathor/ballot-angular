@@ -17,7 +17,7 @@ export class Candidates {
         return COLORS[candidate.shape];
     }
 
-    getImage(candidate: Candidate): string {
+    getModelImage(candidate: Candidate): string {
         return `${candidate.shape}.svg`;
     }
 }

@@ -14,7 +14,7 @@ export type PieShares = readonly PieShare[] & { total?: number };
     providedIn: 'root',
 })
 export class Pies {
-    readonly candidateColorService = inject(Candidates);
+    readonly candidatesDisplayService = inject(Candidates);
 
     getPieShares<B extends Ballot>(
         votingMethod: VotingMethod<B>,
@@ -36,7 +36,7 @@ export class Pies {
     }
 
     getPluralityShares(ballot: PluralityBallot): PieShares {
-        const shares: PieShares = [{ color: this.candidateColorService.getColor(ballot), share: 1 }];
+        const shares: PieShares = [{ color: this.candidatesDisplayService.getColor(ballot), share: 1 }];
         shares.total = 1;
         return shares;
     }
@@ -44,7 +44,7 @@ export class Pies {
     getRankedShares(ballot: RankedBallot): PieShares {
         const n = ballot.length;
         const shares: PieShares = ballot.map((candidate, index) => ({
-            color: this.candidateColorService.getColor(candidate),
+            color: this.candidatesDisplayService.getColor(candidate),
             share: (n - index),
         }));
         shares.total = (n * (n + 1)) / 2;
@@ -60,7 +60,7 @@ export class Pies {
         }
 
         const shares: PieShares = Array.from(ballot, candidate => ({
-            color: this.candidateColorService.getColor(candidate),
+            color: this.candidatesDisplayService.getColor(candidate),
             share: 1,
         }));
         shares.total = n;
@@ -74,7 +74,7 @@ export class Pies {
         const mutShares: PieShare[] = Array.from(ballot.entries(), ([candidate, score]) => {
             leftover += numScores - score;
             return {
-                color: this.candidateColorService.getColor(candidate),
+                color: this.candidatesDisplayService.getColor(candidate),
                 share: score,
             };
         });
