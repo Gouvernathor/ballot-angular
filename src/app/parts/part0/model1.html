@@ -3,8 +3,7 @@
     [candidates]="candidates"
     [voterGroups]="voterGroups"
     [castBallots]="castBallots()"
->
-    <p id="caption">
-        VOTES FOR <b [style.color]="candidatesDisplayService.getColor(winner())">{{ winner().shape.toUpperCase() }}</b>
-    </p>
-</app-voting-model>
+/>
+<p id="caption">
+    VOTES FOR <b [style.color]="candidatesDisplayService.getColor(winner())">{{ winner().shape.toUpperCase() }}</b>
+</p>

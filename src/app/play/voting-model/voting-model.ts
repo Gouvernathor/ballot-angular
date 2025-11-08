@@ -1,4 +1,4 @@
-import { Component, computed, input, Signal } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { Candidate } from "../../core/candidate";
 import { Ballot } from "../../core/ballot";
 import { SingleVoter, VoterGroup } from "../../core/voter-group";

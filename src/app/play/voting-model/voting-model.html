@@ -1,5 +1,3 @@
-<ng-content select="#title" />
-
 <!-- draw background cues -->
 @for (voterGroup of voterGroups(); track voterGroup) {
     @if (isSingleVoter(voterGroup)) {
@@ -31,6 +29,3 @@
     pass it the voting method, the voter group, and the ballots cast by the voter group
      -->
 }
-
-<!-- TODO transclude a caption -->
-<ng-content select="#caption" />
