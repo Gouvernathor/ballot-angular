@@ -11,9 +11,9 @@ export type CastBallotSignalType<B extends Ballot> = Signal<ReadonlyMap<VoterGro
 })
 export class Voting {
     getComputedCastBallots<B extends Ballot>(
-        getCandidates: Signal<readonly Candidate[]>,
-        getVotingMethod: Signal<VotingMethod<B>>,
-        getVoterGroups: Signal<ReadonlySet<VoterGroup>>,
+        getCandidates: () => readonly Candidate[],
+        getVotingMethod: () => VotingMethod<B>,
+        getVoterGroups: () => ReadonlySet<VoterGroup>,
     ): CastBallotSignalType<B> {
         return computed(() => {
             const candidates = getCandidates();
