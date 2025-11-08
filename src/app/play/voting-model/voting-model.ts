@@ -16,15 +16,6 @@ export class VotingModel {
     readonly voterGroups = input.required<ReadonlySet<VoterGroup>>();
     // TODO also takes a border color as an input, and if providedn sets the border width to 10px
 
-    readonly castBallots: Signal<ReadonlyMap<VoterGroup, Signal<readonly Ballot[]>>> = computed(() => {
-        const candidates = this.candidates();
-        const votingMethod = this.votingMethod();
-        return new Map(Array.from(this.voterGroups().values(), voterGroup =>
-            [voterGroup, computed(() => voterGroup
-                .getAllVotersOpinions()
-                .map(opinions => votingMethod(opinions, candidates)))]));
-    });
-
     isSingleVoter(voterGroup: VoterGroup): voterGroup is SingleVoter {
         return voterGroup instanceof SingleVoter;
     }
