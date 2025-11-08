@@ -1,1 +1,5 @@
-// border defaults, background image, among others
+:host {
+    // background-image: url(axis.svg);
+    background-size: 100% 100%;
+    border: 2px solid #ccc;
+}
