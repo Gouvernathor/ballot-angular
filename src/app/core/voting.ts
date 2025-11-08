@@ -4,6 +4,8 @@ import { Ballot } from './ballot';
 import { VotingMethod } from './voting-method';
 import { VoterGroup } from './voter-group';
 
+export type CastBallotSignalType<B extends Ballot> = Signal<ReadonlyMap<VoterGroup, Signal<readonly B[]>>>;
+
 @Injectable({
     providedIn: 'root',
 })
@@ -12,7 +14,7 @@ export class Voting {
         getCandidates: Signal<readonly Candidate[]>,
         getVotingMethod: Signal<VotingMethod<B>>,
         getVoterGroups: Signal<ReadonlySet<VoterGroup>>,
-    ): Signal<ReadonlyMap<VoterGroup, Signal<readonly Ballot[]>>> {
+    ): CastBallotSignalType<B> {
         return computed(() => {
             const candidates = getCandidates();
             const votingMethod = getVotingMethod();
