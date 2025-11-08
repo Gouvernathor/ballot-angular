@@ -1,12 +1,12 @@
 import { ApprovalBallot, Ballot, PluralityBallot, RankedBallot, ScoreBallot } from "./ballot";
 import { Opinions, Candidate } from "./candidate";
 
-export interface VotingMethod<B extends Ballot> {
+interface BaseVotingMethod<B extends Ballot> {
     (voterOpinions: Opinions, candidates: readonly Candidate[]): B;
 }
 
 
-export interface PluralityVotingMethod extends VotingMethod<PluralityBallot> {
+export interface PluralityVotingMethod extends BaseVotingMethod<PluralityBallot> {
     kind: "plurality";
 }
 export function makePluralityVotingMethod(): PluralityVotingMethod {
@@ -33,7 +33,7 @@ export function makePluralityVotingMethod(): PluralityVotingMethod {
 }
 
 
-export interface RankedVotingMethod extends VotingMethod<RankedBallot> {
+export interface RankedVotingMethod extends BaseVotingMethod<RankedBallot> {
     kind: "ranked";
 }
 export function makeRankedVotingMethod(): RankedVotingMethod {
@@ -60,7 +60,7 @@ export function makeRankedVotingMethod(): RankedVotingMethod {
 }
 
 
-export interface ApprovalVotingMethod extends VotingMethod<ApprovalBallot> {
+export interface ApprovalVotingMethod extends BaseVotingMethod<ApprovalBallot> {
     kind: "approval";
     approvalRadius: number;
 }
@@ -85,7 +85,7 @@ export function makeApprovalVotingMethod({
 }
 
 
-export interface ScoreVotingMethod extends VotingMethod<ScoreBallot> {
+export interface ScoreVotingMethod extends BaseVotingMethod<ScoreBallot> {
     kind: "score";
     numScores: number;
 }
@@ -124,3 +124,10 @@ export function makeScoreVotingMethod({
     score.numScores = numScores;
     return score;
 }
+
+export type VotingMethod<B extends Ballot> = BaseVotingMethod<B> & (
+    | PluralityVotingMethod
+    | RankedVotingMethod
+    | ApprovalVotingMethod
+    | ScoreVotingMethod
+);
