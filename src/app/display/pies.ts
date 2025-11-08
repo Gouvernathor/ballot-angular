@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Candidate } from '../core/candidate';
 import { ApprovalBallot, Ballot, PluralityBallot, RankedBallot, ScoreBallot } from '../core/ballot';
-import { ScoreVotingMethod, VotingMethod } from '../core/voting-method';
+import { VotingMethod } from '../core/voting-method';
 
 /** TODO the color should be #bbb */
 export const BLANK = Symbol("blank");
