@@ -28,5 +28,5 @@ export class Model1 {
         () => this.voterGroups,
     );
     readonly winner = computed(() =>
-        Array.from(this.castBallots().values())[0]()[0]);
+        this.castBallots().values()[Symbol.iterator]().next().value!()[0]);
 }
