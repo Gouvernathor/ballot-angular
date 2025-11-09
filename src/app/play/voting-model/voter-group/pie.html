@@ -7,6 +7,12 @@ otherwise, use a <path> for each slice
 @let pieShares = this.pieShares();
 @if (pieShares.length === 1) {
     @let pieShare = pieShares[0];
-    <svg:circle cx="0" cy="0" [attr.r]="size()+'px'" [attr.fill]="pieShare.color"/>
+    <svg:circle cx="0" cy="0" [attr.r]="size()/2+'px'" [attr.fill]="pieShare.color"/>
 } @else {
+    @for (d of this.pathDs(); track d.color) {
+        <svg:path
+            [attr.d]="d.d"
+            [attr.fill]="d.color"
+        />
+    }
 }
