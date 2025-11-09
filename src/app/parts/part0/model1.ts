@@ -10,7 +10,7 @@ import { Candidates } from '../../display/candidates';
     selector: 'app-model1',
     imports: [VotingModel],
     templateUrl: './model1.html',
-    styleUrl: './model1.scss',
+    styleUrls: ["../inserts.scss", './model1.scss'],
 })
 export class Model1 {
     readonly votingService = inject(Voting);
