@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Ballot } from '../../../core/ballot';
+import { VotingMethod } from '../../../core/voting-method';
 
 @Component({
     selector: 'g[appPie]',
@@ -9,5 +10,6 @@ import { Ballot } from '../../../core/ballot';
 })
 export class Pie {
     readonly size = input.required<number>();
+    readonly votingMethod = input.required<VotingMethod<Ballot>>();
     readonly ballot = input.required<Ballot>();
 }
