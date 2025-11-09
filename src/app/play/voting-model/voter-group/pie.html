@@ -1,8 +1,12 @@
-<svg:circle cx="0" cy="0" r="40" fill="blue"/>
-
 <!-- TODO
 the center of the pie must be at coordinates 0 0
 if there's only one color, draw it as a circle
 otherwise, use a <path> for each slice
 (have to, since each has its own color)
- -->
+-->
+@let pieShares = this.pieShares();
+@if (pieShares.length === 1) {
+    @let pieShare = pieShares[0];
+    <svg:circle cx="0" cy="0" [attr.r]="size()+'px'" [attr.fill]="pieShare.color"/>
+} @else {
+}
