@@ -1,15 +1,9 @@
+@use "../inserts.scss";
+
 :host {
     width: 305px;
     height: 360px;
     border: none;
     display: block;
     margin: 0px auto 25px auto;
-}
-
-#caption {
-    margin-top: 10px;
-    text-align: center;
-}
-#caption .small {
-    font-size: .75em;
 }
