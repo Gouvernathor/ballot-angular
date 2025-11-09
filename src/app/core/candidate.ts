@@ -10,7 +10,7 @@ export type CandidateShape =
     | "triangle"
     | "hexagon"
     | "pentagon"
-    | "circle"
+    | "bob"
 ;
 
 export interface Candidate extends HasOpinions {

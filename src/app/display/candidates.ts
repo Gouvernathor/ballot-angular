@@ -6,7 +6,7 @@ const COLORS: { [k in Candidate["shape"]]: string } = {
     triangle: "hsl(45, 80%, 70%)",
     hexagon: "hsl(0, 80%, 70%)",
     pentagon: "hsl(90, 80%, 70%)",
-    circle: "hsl(30, 80%, 70%)",
+    bob: "hsl(30, 80%, 70%)",
 };
 
 @Injectable({
