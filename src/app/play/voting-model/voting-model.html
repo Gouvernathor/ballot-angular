@@ -29,5 +29,15 @@
         at their reference opinions coordinates
         pass it the voting method, the voter group (?), and the ballots cast by the voter group
         -->
+        @if (isSingleVoter(voterGroup)) {
+            @let ballot = castBallots().get(voterGroup)!()[0];
+            <g appSingleVoter
+                [votingMethod]="votingMethod()"
+                [ballot]="ballot"
+            />
+        } @else {
+            <!-- TODO gaussian -->
+            <g appGaussianVoter></g>
+        }
     }
 </svg>
