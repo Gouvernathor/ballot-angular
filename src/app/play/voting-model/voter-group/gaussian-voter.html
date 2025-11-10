@@ -1,1 +1,10 @@
-<p>gaussian-voter works!</p>
+<!-- <svg:g appPie [size]="20" [pieShares]="pieShares()" /> -->
+@for (offsetAndBallot of offsetsAndBallots(); track $index) {
+    @let offset = offsetAndBallot.offset;
+    @let ballot = offsetAndBallot.ballot;
+    <svg:g appPie
+        [style.transform]="`translate(${offset[0]}px, ${offset[1]}px)`"
+        [size]="10"
+        [pieShares]="piesService.getPieShares(votingMethod(), ballot)"
+    />
+}

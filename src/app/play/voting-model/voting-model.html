@@ -24,21 +24,23 @@
     <!-- draw voter groups -->
     @for (voterGroup of voterGroups(); track voterGroup) {
         <!-- TODO
-        display the voter group
         as a draggable
-        at their reference opinions coordinates
-        pass it the voting method, the voter group (?), and the ballots cast by the voter group
         -->
+        @let ballots = castBallots().get(voterGroup)!();
         @if (isSingleVoter(voterGroup)) {
-            @let ballot = castBallots().get(voterGroup)!()[0];
+            @let ballot = ballots[0];
             <g appSingleVoter
                 [style.transform]="`translate(${voterGroup.getReferenceOpinions()[0]}px, ${voterGroup.getReferenceOpinions()[1]}px)`"
                 [votingMethod]="votingMethod()"
                 [ballot]="ballot"
             />
-        } @else {
-            <!-- TODO gaussian -->
-            <g appGaussianVoter></g>
+        } @else if (isGaussianVoters(voterGroup)) {
+            <g appGaussianVoter
+                [style.transform]="`translate(${voterGroup.getReferenceOpinions()[0]}px, ${voterGroup.getReferenceOpinions()[1]}px)`"
+                [votingMethod]="votingMethod()"
+                [ballots]="ballots"
+                [offsets]="voterGroup.offsets"
+            />
         }
     }
 </svg>

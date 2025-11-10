@@ -24,7 +24,7 @@ export interface GaussianVoterOptions {
  * Grab radius: 50
  */
 export class GaussianVoters implements VoterGroup {
-    private readonly offsets: readonly Opinions[];
+    public readonly offsets: readonly Opinions[];
 
     constructor(
         public readonly getReferenceOpinions: WritableSignal<Opinions>,

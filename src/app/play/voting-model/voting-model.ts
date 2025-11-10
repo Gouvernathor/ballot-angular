@@ -1,7 +1,7 @@
 import { Component, input } from "@angular/core";
 import { Candidate } from "../../core/candidate";
 import { Ballot } from "../../core/ballot";
-import { SingleVoter, VoterGroup } from "../../core/voter-group";
+import { GaussianVoters, SingleVoter, VoterGroup } from "../../core/voter-group";
 import { VotingMethod } from "../../core/voting-method";
 import { CastBallotSignalType } from "../../core/voting";
 import { SingleVoter as SingleVoterComponent } from "./voter-group/single-voter";
@@ -22,5 +22,9 @@ export class VotingModel {
 
     isSingleVoter(voterGroup: VoterGroup): voterGroup is SingleVoter {
         return voterGroup instanceof SingleVoter;
+    }
+
+    isGaussianVoters(voterGroup: VoterGroup): voterGroup is GaussianVoters {
+        return voterGroup instanceof GaussianVoters;
     }
 }
