@@ -26,7 +26,7 @@ export class Pie {
             const y1 = radius * Math.sin(startAngle);
             const x2 = radius * Math.cos(endAngle);
             const y2 = radius * Math.sin(endAngle);
-            const largeArcFlag = endAngle - startAngle > Math.PI ? 1 : 0;
+            const largeArcFlag = startAngle - endAngle > Math.PI ? 1 : 0;
             return {
                 d: `M 0 0 L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${x2} ${y2} Z`,
                 color: ps.color
