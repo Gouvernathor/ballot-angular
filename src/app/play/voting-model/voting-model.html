@@ -2,11 +2,17 @@
     <!-- draw background cues -->
     @for (voterGroup of voterGroups(); track voterGroup) {
         @if (isSingleVoter(voterGroup)) {
+            @let ballot = castBallots().get(voterGroup)!()[0];
             <!-- TODO
             display the cues element
             pass it the voting method (for its type, and parameters like the number of scores),
             the opinions of the single voter, and the sole ballot they cast
             -->
+            <g appCues
+                [votingMethod]="votingMethod()"
+                [voterOpinions]="voterGroup.getReferenceOpinions()"
+                [ballot]="ballot"
+            />
         }
     }
 

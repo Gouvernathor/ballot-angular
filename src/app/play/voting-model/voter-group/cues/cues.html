@@ -1,0 +1,53 @@
+@let voterOpinions = this.voterOpinions();
+@let votingMethod = this.votingMethod();
+@switch (votingMethod.kind) {
+    @case ("plurality") {
+        @let ballot = ballotAsPlurality();
+        <svg:line
+            [attr.x1]="voterOpinions[0]"
+            [attr.y1]="voterOpinions[1]"
+            [attr.x2]="ballot.getOpinions()[0]"
+            [attr.y2]="ballot.getOpinions()[1]"
+            stroke-width="4"
+            stroke="#888"
+        />
+    }
+
+    @case ("ranked") {
+        @let ballot = ballotAsRanked();
+        @for (candidate of ballot; track candidate.shape) {
+            <svg:line
+                [attr.x1]="voterOpinions[0]"
+                [attr.y1]="voterOpinions[1]"
+                [attr.x2]="candidate.getOpinions()[0]"
+                [attr.y2]="candidate.getOpinions()[1]"
+                [attr.stroke-width]="((ballot.length-$index)/ballot.length)*4"
+                stroke="#888"
+            />
+        }
+    }
+
+    @case ("approval") {
+        <svg:circle
+            [attr.cx]="voterOpinions[0]"
+            [attr.cy]="voterOpinions[1]"
+            [attr.r]="votingMethod.approvalRadius"
+            fill="none"
+            stroke-width="4"
+            stroke="#888"
+        />
+    }
+
+    @case ("score") {
+        @for (i of range(1, votingMethod.numScores); track $index) {
+            <svg:circle
+                [attr.cx]="voterOpinions[0]"
+                [attr.cy]="voterOpinions[1]"
+                [attr.r]="votingMethod.step * i * 2"
+                fill="none"
+                [attr.stroke-width]="(votingMethod.numScores - i)"
+                stroke="#888"
+            />
+        }
+    }
+}

@@ -7,10 +7,11 @@ import { CastBallotSignalType } from "../../core/voting";
 import { SingleVoter as SingleVoterComponent } from "./voter-group/single-voter";
 import { GaussianVoter as GaussianVoterComponent } from "./voter-group/gaussian-voter";
 import { CandidateComponent } from "./voter-group/candidate";
+import { Cues } from "./voter-group/cues/cues";
 
 @Component({
     selector: "app-voting-model",
-    imports: [CandidateComponent, SingleVoterComponent, GaussianVoterComponent],
+    imports: [Cues, CandidateComponent, SingleVoterComponent, GaussianVoterComponent],
     templateUrl: "./voting-model.html",
     styleUrl: "./voting-model.scss",
 })
