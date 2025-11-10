@@ -18,8 +18,11 @@
         with event listeners for drag stuff that update its opinions
         -->
         <g appCandidate
-            [style.transform]="`translate(${candidate.getOpinions()[0]}px, ${candidate.getOpinions()[1]}px)`"
             [candidate]="candidate"
+
+            cdkDrag
+            [cdkDragFreeDragPosition]="opinionsToPoint(candidate.getOpinions())"
+            (cdkDragMoved)="candidate.getOpinions.set(pointToOpinions($event.pointerPosition))"
         />
     }
 

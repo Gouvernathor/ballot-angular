@@ -1,5 +1,6 @@
-import { Component, inject, input } from "@angular/core";
-import { Candidate } from "../../core/candidate";
+import { Component, input } from "@angular/core";
+import { DragDropModule, Point } from "@angular/cdk/drag-drop";
+import { Candidate, Opinions } from "../../core/candidate";
 import { Ballot } from "../../core/ballot";
 import { GaussianVoters, SingleVoter, VoterGroup } from "../../core/voter-group";
 import { VotingMethod } from "../../core/voting-method";
@@ -11,7 +12,7 @@ import { Cues } from "./voter-group/cues/cues";
 
 @Component({
     selector: "app-voting-model",
-    imports: [Cues, CandidateComponent, SingleVoterComponent, GaussianVoterComponent],
+    imports: [Cues, CandidateComponent, SingleVoterComponent, GaussianVoterComponent, DragDropModule],
     templateUrl: "./voting-model.html",
     styleUrl: "./voting-model.scss",
 })
@@ -28,5 +29,15 @@ export class VotingModel {
 
     isGaussianVoters(voterGroup: VoterGroup): voterGroup is GaussianVoters {
         return voterGroup instanceof GaussianVoters;
+    }
+
+    pointToOpinions(point: Readonly<Point>): Opinions {
+        return [point.x, point.y];
+    }
+    opinionsToPoint(op: Opinions): Readonly<Point> {
+        return {
+            x: op[0],
+            y: op[1],
+        };
     }
 }
