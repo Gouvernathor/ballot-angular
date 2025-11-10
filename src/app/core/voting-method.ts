@@ -89,6 +89,8 @@ export interface ScoreVotingMethod extends BaseVotingMethod<ScoreBallot> {
     kind: "score";
     /** The scores go from 1 to numScores */
     numScores: number;
+    /** The radius increment between score areas */
+    step: number;
 }
 export function makeScoreVotingMethod({
     bigRange = false,
@@ -123,6 +125,7 @@ export function makeScoreVotingMethod({
     }
     score.kind = "score" as const;
     score.numScores = numScores;
+    score.step = step;
     return score;
 }
 
