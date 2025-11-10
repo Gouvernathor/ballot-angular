@@ -1,4 +1,4 @@
-import { Signal } from "@angular/core";
+import { WritableSignal } from "@angular/core";
 
 export type Opinions = readonly [number, number];
 export interface HasOpinions {
@@ -15,5 +15,5 @@ export type CandidateShape =
 
 export interface Candidate extends HasOpinions {
     readonly shape: CandidateShape;
-    readonly getOpinions: Signal<readonly [number, number]>;
+    readonly getOpinions: WritableSignal<readonly [number, number]>;
 }
