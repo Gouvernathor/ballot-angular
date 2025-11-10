@@ -40,4 +40,17 @@ export class VotingModel {
             y: op[1],
         };
     }
+
+    constrainPosition(
+        userPointerPosition: Point,
+        // dragRef: DragRef,
+        // dimensions: DOMRect,
+        // pickupPositionInElement: Point,
+    ) {
+        let {x, y} = userPointerPosition;
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        // TODO also apply max constraints
+        return {x, y};
+    }
 }
