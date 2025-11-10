@@ -32,6 +32,7 @@
         @if (isSingleVoter(voterGroup)) {
             @let ballot = castBallots().get(voterGroup)!()[0];
             <g appSingleVoter
+                [style.transform]="`translate(${voterGroup.getReferenceOpinions()[0]}px, ${voterGroup.getReferenceOpinions()[1]}px)`"
                 [votingMethod]="votingMethod()"
                 [ballot]="ballot"
             />
