@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, inject, input } from "@angular/core";
 import { Candidate } from "../../core/candidate";
 import { Ballot } from "../../core/ballot";
 import { GaussianVoters, SingleVoter, VoterGroup } from "../../core/voter-group";
@@ -6,10 +6,11 @@ import { VotingMethod } from "../../core/voting-method";
 import { CastBallotSignalType } from "../../core/voting";
 import { SingleVoter as SingleVoterComponent } from "./voter-group/single-voter";
 import { GaussianVoter as GaussianVoterComponent } from "./voter-group/gaussian-voter";
+import { CandidateComponent } from "./voter-group/candidate";
 
 @Component({
     selector: "app-voting-model",
-    imports: [SingleVoterComponent, GaussianVoterComponent],
+    imports: [CandidateComponent, SingleVoterComponent, GaussianVoterComponent],
     templateUrl: "./voting-model.html",
     styleUrl: "./voting-model.scss",
 })
