@@ -18,6 +18,10 @@ import { Cues } from "./voter-group/cues/cues";
     host: {
         "[style.width.px]": "size()",
         "[style.height.px]": "size()",
+
+        "[style.border-color]": "border()",
+        "[style.border-width]": "border() && '10px'",
+        // TODO fix that the border offcenters the model
     },
 })
 export class VotingModel {
@@ -27,7 +31,7 @@ export class VotingModel {
     readonly castBallots = input.required<ReturnType<CastBallotSignalType<Ballot>>>();
 
     readonly size = input(300);
-    // TODO also takes a border color as an input, and if provided, sets the border width to 10px
+    readonly border = input<string>();
 
     isSingleVoter(voterGroup: VoterGroup): voterGroup is SingleVoter {
         return voterGroup instanceof SingleVoter;
