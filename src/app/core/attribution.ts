@@ -5,7 +5,7 @@ import { Candidate } from "./candidate";
 @Injectable({
     providedIn: "root",
 })
-export class Attribution {
+export class AttributionService {
     extractSingleWinnerFromAttribution(attribution: ReadonlyCounter<Candidate, number>): Candidate {
         if (attribution.size !== 1) {
             throw new Error("The attribution does not contain exactly one winner");
