@@ -1,0 +1,22 @@
+<span class="small">
+    @if (sidebar()) {
+        <b>most votes win</b><br/>
+    }
+    @for (candidate of candidates(); track $index) {
+        @if (sidebar()) {
+            <img [src]="candidateDisplayService.getIconImage(candidate)" /> got {{tally().get(candidate)}} votes<br/>
+        } @else {
+            {{candidate.shape}}: {{tally().get(candidate)}}
+            @if (verbose()) {
+                <!-- the lines are collapsed to avoid a space before the comma -->
+                votes} @if ($index < candidates().length-1) {,
+            }
+        }
+    }
+    @if (sidebar()) {
+        <br/>
+        <img [src]="candidateDisplayService.getIconImage(winner())" /> has the most votes, so...<br/>
+    }
+</span>
+<br/>
+<b [style.color]="candidateDisplayService.getColor(winner())">{{winner().shape.toUpperCase()}}</b> WINS
