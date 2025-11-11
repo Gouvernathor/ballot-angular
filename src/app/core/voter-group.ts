@@ -30,7 +30,7 @@ export class GaussianVoters implements VoterGroup {
         public readonly getReferenceOpinions: WritableSignal<Opinions>,
         {
             num = 3
-        }: GaussianVoterOptions,
+        }: GaussianVoterOptions = {},
     ) {
         this.offsets = this.generateOffsets(num);
     }
