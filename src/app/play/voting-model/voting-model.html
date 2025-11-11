@@ -13,15 +13,17 @@
 
     <!-- draw candidates -->
     @for (candidate of candidates(); track candidate) {
-        <g appCandidate
-            [candidate]="candidate"
-
-            class="draggaHandle"
+        <g
             cdkDrag
             [cdkDragFreeDragPosition]="opinionsToPoint(candidate.getOpinions())"
             [cdkDragConstrainPosition]="constrainPosition.bind(this)"
             (cdkDragMoved)="candidate.getOpinions.set(pointToOpinions($event.pointerPosition))"
-        />
+        >
+            <g appCandidate
+                [candidate]="candidate"
+            />
+            <circle cdkDragHandle class="draggaHandle" cx="0" cy="0" r="30" opacity="0"/>
+        </g>
     }
 
     <!-- draw voter groups -->
