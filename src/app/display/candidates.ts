@@ -20,4 +20,8 @@ export class Candidates {
     getModelImage(candidate: Candidate): string {
         return `${candidate.shape}.svg`;
     }
+
+    getIconImage(candidate: Candidate): string {
+        return `play/icon/${candidate.shape}.svg`;
+    }
 }
