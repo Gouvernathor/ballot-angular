@@ -15,13 +15,19 @@ import { Cues } from "./voter-group/cues/cues";
     imports: [Cues, CandidateComponent, SingleVoterComponent, GaussianVoterComponent, DragDropModule],
     templateUrl: "./voting-model.html",
     styleUrl: "./voting-model.scss",
+    host: {
+        "[style.width.px]": "size()",
+        "[style.height.px]": "size()",
+    },
 })
 export class VotingModel {
     readonly votingMethod = input.required<VotingMethod<Ballot>>();
     readonly candidates = input.required<readonly Candidate[]>();
     readonly voterGroups = input.required<ReadonlySet<VoterGroup>>();
     readonly castBallots = input.required<ReturnType<CastBallotSignalType<Ballot>>>();
-    // TODO also takes a border color as an input, and if providedn sets the border width to 10px
+
+    readonly size = input(300);
+    // TODO also takes a border color as an input, and if provided, sets the border width to 10px
 
     isSingleVoter(voterGroup: VoterGroup): voterGroup is SingleVoter {
         return voterGroup instanceof SingleVoter;
@@ -43,14 +49,13 @@ export class VotingModel {
 
     constrainPosition(
         userPointerPosition: Point,
-        // dragRef: DragRef,
-        // dimensions: DOMRect,
-        // pickupPositionInElement: Point,
     ) {
         let {x, y} = userPointerPosition;
+        const size = this.size();
         if (x < 0) x = 0;
+        else if (x > size) x = size;
         if (y < 0) y = 0;
-        // TODO also apply max constraints
+        else if (y > size) y = size;
         return {x, y};
     }
 }

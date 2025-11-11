@@ -22,7 +22,7 @@
 
             cdkDrag
             [cdkDragFreeDragPosition]="opinionsToPoint(candidate.getOpinions())"
-            [cdkDragConstrainPosition]="constrainPosition"
+            [cdkDragConstrainPosition]="constrainPosition.bind(this)"
             (cdkDragMoved)="candidate.getOpinions.set(pointToOpinions($event.pointerPosition))"
         />
     }
