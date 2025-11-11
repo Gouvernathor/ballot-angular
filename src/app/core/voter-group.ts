@@ -2,7 +2,7 @@ import { computed, Signal, WritableSignal } from "@angular/core";
 import { Opinions } from "./candidate";
 
 export interface VoterGroup {
-    getReferenceOpinions(): Opinions;
+    readonly getReferenceOpinions: WritableSignal<Opinions>;
     getAllVotersOpinions(): readonly Opinions[];
 }
 
