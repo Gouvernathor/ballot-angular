@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Model1 } from "./model1";
+import { Model2 } from './model2';
 
 @Component({
   selector: 'app-part0',
-  imports: [Model1],
+  imports: [Model1, Model2],
   templateUrl: './part0.html',
   styleUrl: './part0.scss',
 })

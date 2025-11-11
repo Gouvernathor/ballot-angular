@@ -1,0 +1,14 @@
+<app-voting-model
+    [votingMethod]="plurality"
+    [candidates]="candidates"
+    [voterGroups]="voterGroups"
+    [castBallots]="castBallots()"
+    [border]="candidatesDisplayService.getColor(winner())"
+/>
+<app-plurality-result class="model-caption"
+    [candidates]="candidates"
+    [tally]="tally()"
+    [winner]="winner()"
+
+    [verbose]="true"
+/>
