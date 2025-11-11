@@ -17,7 +17,7 @@ export class Model1 {
     readonly candidatesDisplayService = inject(Candidates);
 
     readonly plurality = makePluralityVotingMethod();
-    readonly candidates: Candidate[] = [
+    readonly candidates: readonly Candidate[] = [
         { shape: 'square', getOpinions: signal([50, 125]) },
         { shape: 'triangle', getOpinions: signal([250, 125]) },
     ]
