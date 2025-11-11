@@ -26,24 +26,27 @@
 
     <!-- draw voter groups -->
     @for (voterGroup of voterGroups(); track voterGroup) {
-        <!-- TODO
-        as a draggable
-        -->
-        @let ballots = castBallots().get(voterGroup)!();
-        @if (isSingleVoter(voterGroup)) {
-            @let ballot = ballots[0];
-            <g appSingleVoter
-                [style.transform]="`translate(${voterGroup.getReferenceOpinions()[0]}px, ${voterGroup.getReferenceOpinions()[1]}px)`"
-                [votingMethod]="votingMethod()"
-                [ballot]="ballot"
-            />
-        } @else if (isGaussianVoters(voterGroup)) {
-            <g appGaussianVoter
-                [style.transform]="`translate(${voterGroup.getReferenceOpinions()[0]}px, ${voterGroup.getReferenceOpinions()[1]}px)`"
-                [votingMethod]="votingMethod()"
-                [ballots]="ballots"
-                [offsets]="voterGroup.offsets"
-            />
-        }
+        <g
+            cdkDrag
+            [cdkDragFreeDragPosition]="opinionsToPoint(voterGroup.getReferenceOpinions())"
+            [cdkDragConstrainPosition]="constrainPosition.bind(this)"
+            (cdkDragMoved)="voterGroup.getReferenceOpinions.set(pointToOpinions($event.pointerPosition))"
+        >
+            @let ballots = castBallots().get(voterGroup)!();
+            @if (isSingleVoter(voterGroup)) {
+                @let ballot = ballots[0];
+                <g appSingleVoter
+                    [votingMethod]="votingMethod()"
+                    [ballot]="ballot"
+                />
+            } @else if (isGaussianVoters(voterGroup)) {
+                <g appGaussianVoter
+                    [votingMethod]="votingMethod()"
+                    [ballots]="ballots"
+                    [offsets]="voterGroup.offsets"
+                />
+            }
+            <circle cdkDragHandle class="draggaHandle" cx="0" cy="0" r="30" opacity="0"/>
+        </g>
     }
 </svg>
