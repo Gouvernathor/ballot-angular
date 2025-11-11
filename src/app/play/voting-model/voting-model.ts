@@ -21,7 +21,6 @@ import { Cues } from "./voter-group/cues/cues";
 
         "[style.border-color]": "border()",
         "[style.border-width]": "border() && '10px'",
-        // TODO fix that the border offcenters the model
     },
 })
 export class VotingModel {
