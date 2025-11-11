@@ -1,9 +1,9 @@
 import { Candidate } from "./candidate";
 
-export type PluralityBallot = Candidate;
-export type RankedBallot = readonly Candidate[];
-export type ApprovalBallot = ReadonlySet<Candidate>;
-export type ScoreBallot = ReadonlyMap<Candidate, number>;
+export interface PluralityBallot extends Candidate {}
+export interface RankedBallot extends ReadonlyArray<Candidate> {}
+export interface ApprovalBallot extends ReadonlySet<Candidate> {}
+export interface ScoreBallot extends ReadonlyMap<Candidate, number> {}
 export type Ballot =
     | PluralityBallot
     | RankedBallot
