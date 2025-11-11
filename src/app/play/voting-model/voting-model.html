@@ -16,6 +16,7 @@
         <g appCandidate
             [candidate]="candidate"
 
+            class="draggaHandle"
             cdkDrag
             [cdkDragFreeDragPosition]="opinionsToPoint(candidate.getOpinions())"
             [cdkDragConstrainPosition]="constrainPosition.bind(this)"
