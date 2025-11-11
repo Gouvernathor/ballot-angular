@@ -24,4 +24,14 @@ export class Voting {
                     .map(opinions => votingMethod(opinions, candidates)))]));
         });
     }
+
+    *extractBallots<B extends Ballot>(
+        ballots: CastBallotSignalType<B>,
+    ): Iterable<B> {
+        for (const ballotSignal of ballots().values()) {
+            for (const ballot of ballotSignal()) {
+                yield ballot;
+            }
+        }
+    }
 }
