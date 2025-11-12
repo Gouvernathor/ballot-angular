@@ -8,6 +8,8 @@ import { Splash } from "../splash/splash";
     styleUrl: './banner.scss',
 })
 export class Banner {
+    readonly splash = input(false);
+
     readonly title1 = input<string>();
     readonly title2 = input<string>();
     readonly comment = input<string>();

@@ -1,5 +1,7 @@
 <div class="banner">
-    <app-splash/>
+    @if (splash()) {
+        <app-splash/>
+    }
     <div class="banner_title">
         @if (title1()) {
             <h1>{{title1()}}</h1>
