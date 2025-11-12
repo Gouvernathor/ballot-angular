@@ -1,22 +1,9 @@
 @use "../parts.scss";
 
-.translations {
+app-translations {
     position: absolute;
     width: 120px;
-    font-size: 17px;
     left: calc(50% + 380px);
-}
-
-.translations h1 {
-    font-size: 1em;
-    font-weight: bold;
-    margin: 0;
-}
-
-.translations p {
-    text-align: inherit;
-    line-height: inherit;
-    margin-top: 0;
 }
 
 .sim-intro {
