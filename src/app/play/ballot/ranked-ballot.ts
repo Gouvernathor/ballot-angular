@@ -13,7 +13,7 @@ export class RankedBallotComponent {
 
     src(shape: CandidateShape) {
         const ballot = this.ballot();
-        const index = ballot.findIndex(c => c.shape === shape)+1;
-        return `play/ballot/${index}.webp`;
+        const index = ballot.findIndex(c => c.shape === shape);
+        return `play/ballot/${index+1}.webp`;
     }
 }
