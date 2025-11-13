@@ -6,7 +6,7 @@ import { CandidateShape } from '../../core/candidate';
     selector: 'app-ranked-ballot',
     imports: [],
     templateUrl: './ranked-ballot.html',
-    styleUrl: './ranked-ballot.scss',
+    styleUrls: ["./common-ballots.scss", './ranked-ballot.scss'],
 })
 export class RankedBallotComponent {
     readonly ballot = input.required<RankedBallot>();

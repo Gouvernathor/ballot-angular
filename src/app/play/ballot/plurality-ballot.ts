@@ -5,7 +5,7 @@ import { PluralityBallot } from '../../core/ballot';
     selector: 'app-plurality-ballot',
     imports: [],
     templateUrl: './plurality-ballot.html',
-    styleUrls: ['./plurality-ballot.scss'],
+    styleUrls: ["./common-ballots.scss", './plurality-ballot.scss'],
 })
 export class PluralityBallotComponent {
     readonly ballot = input.required<PluralityBallot>();
