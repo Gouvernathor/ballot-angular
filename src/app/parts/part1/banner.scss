@@ -11,13 +11,6 @@
     align-items: center;
 }
 
-@font-face {
-    font-family: "Futura Handwritten";
-    src:
-        local("Futura Handwritten"),
-        url("/futurahandwritten.ttf") format("truetype");
-}
-
 p {
     font-family: "Futura Handwritten", cursive;
     text-transform: uppercase;
