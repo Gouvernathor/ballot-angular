@@ -15,6 +15,5 @@ export class PluralityBallotComponent {
         const ballot = this.ballot();
         const checked = ballot.shape === shape;
         return checked ? "play/ballot/checked.webp" : "play/ballot/unchecked.webp";
-        // TODO move this to CSS, and use a data attribute in HTML/TS
     }
 }
