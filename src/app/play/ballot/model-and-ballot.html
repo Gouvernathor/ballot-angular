@@ -1,0 +1,19 @@
+<app-voting-model
+    [votingMethod]="votingMethod()"
+    [candidates]="candidates"
+    [voterGroups]="voterGroups"
+    [castBallots]="castBallots()"
+
+    [size]="250"
+/>
+
+
+<!-- display for the specific ballot kind -->
+@switch (kind()) {
+    @case("plurality") {
+        <app-plurality-ballot
+            [ballot]="pluralityBallot()"
+        />
+    }
+    <!-- TODO others -->
+}
