@@ -11,8 +11,15 @@
     align-items: center;
 }
 
+@font-face {
+    font-family: "Futura Handwritten";
+    src:
+        local("Futura Handwritten"),
+        url("../../../../../public/futurahandwritten.ttf") format("truetype");
+}
+
 p {
-    font-family: url("../../../../../public/futurahandwritten.ttf"), "Futura Handwritten", cursive;
+    font-family: "Futura Handwritten", cursive;
     text-transform: uppercase;
     margin: 0;
     font-weight: lighter;
