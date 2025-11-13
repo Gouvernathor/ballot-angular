@@ -12,5 +12,6 @@ export class PluralityBallotComponent {
 
     src(checked: boolean) {
         return checked ? "play/ballot/checked.webp" : "play/ballot/unchecked.webp";
+        // TODO move this to CSS, and use a data attribute in HTML/TS
     }
 }
