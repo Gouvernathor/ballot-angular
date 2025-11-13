@@ -1,16 +1,17 @@
 import { Component, computed, inject, input, Signal, signal } from '@angular/core';
 import { Voting } from '../../core/voting';
-import { makePluralityVotingMethod, makeRankedVotingMethod, VotingMethod } from '../../core/voting-method';
+import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, VotingMethod } from '../../core/voting-method';
 import { Candidate } from '../../core/candidate';
 import { SingleVoter } from '../../core/voter-group';
+import { ApprovalBallot, Ballot, PluralityBallot, RankedBallot } from '../../core/ballot';
 import { VotingModel } from "../voting-model/voting-model";
 import { PluralityBallotComponent } from "./plurality-ballot";
-import { Ballot, PluralityBallot, RankedBallot } from '../../core/ballot';
 import { RankedBallotComponent } from "./ranked-ballot";
+import { ApprovalBallotComponent } from "./approval-ballot";
 
 @Component({
     selector: 'app-model-and-ballot',
-    imports: [VotingModel, PluralityBallotComponent, RankedBallotComponent],
+    imports: [VotingModel, PluralityBallotComponent, RankedBallotComponent, ApprovalBallotComponent],
     templateUrl: './model-and-ballot.html',
     styleUrl: './model-and-ballot.scss',
 })
@@ -25,6 +26,8 @@ export class ModelAndBallot {
                 return makePluralityVotingMethod();
             case "ranked":
                 return makeRankedVotingMethod();
+            case "approval":
+                return makeApprovalVotingMethod();
             default:
                 throw new Error(`Unsupported voting method kind: ${this.kind()}`);
         }
@@ -46,4 +49,5 @@ export class ModelAndBallot {
         this.castBallots().get(this.voterGroup)!()[0]);
     readonly pluralityBallot = this.ballot as Signal<PluralityBallot>;
     readonly rankedBallot = this.ballot as Signal<RankedBallot>;
+    readonly approvalBallot = this.ballot as Signal<ApprovalBallot>;
 }

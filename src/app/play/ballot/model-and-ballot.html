@@ -22,5 +22,11 @@
             [ballot]="rankedBallot()"
         />
     }
+    @case("approval") {
+        <app-approval-ballot
+            class="ballot-displayer"
+            [ballot]="approvalBallot()"
+        />
+    }
     <!-- TODO others -->
 }
