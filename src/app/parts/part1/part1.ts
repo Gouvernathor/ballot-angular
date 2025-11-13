@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BannerPart1 } from "./banner/banner";
+import { BannerPart1 } from "./banner";
 
 @Component({
     selector: 'app-part1',
