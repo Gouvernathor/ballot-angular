@@ -16,5 +16,11 @@
             [ballot]="pluralityBallot()"
         />
     }
+    @case("ranked") {
+        <app-ranked-ballot
+            class="ballot-displayer"
+            [ballot]="rankedBallot()"
+        />
+    }
     <!-- TODO others -->
 }

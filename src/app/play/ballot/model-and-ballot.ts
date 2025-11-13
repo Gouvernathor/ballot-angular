@@ -5,11 +5,12 @@ import { Candidate } from '../../core/candidate';
 import { SingleVoter } from '../../core/voter-group';
 import { VotingModel } from "../voting-model/voting-model";
 import { PluralityBallotComponent } from "./plurality-ballot";
-import { Ballot, PluralityBallot } from '../../core/ballot';
+import { Ballot, PluralityBallot, RankedBallot } from '../../core/ballot';
+import { RankedBallotComponent } from "./ranked-ballot";
 
 @Component({
     selector: 'app-model-and-ballot',
-    imports: [VotingModel, PluralityBallotComponent],
+    imports: [VotingModel, PluralityBallotComponent, RankedBallotComponent],
     templateUrl: './model-and-ballot.html',
     styleUrl: './model-and-ballot.scss',
 })
@@ -44,4 +45,5 @@ export class ModelAndBallot {
     private readonly ballot = computed(() =>
         this.castBallots().get(this.voterGroup)!()[0]);
     readonly pluralityBallot = this.ballot as Signal<PluralityBallot>;
+    readonly rankedBallot = this.ballot as Signal<RankedBallot>;
 }
