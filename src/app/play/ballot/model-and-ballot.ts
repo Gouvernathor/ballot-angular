@@ -1,11 +1,11 @@
 import { Component, computed, inject, input, Signal, signal } from '@angular/core';
 import { Voting } from '../../core/voting';
-import { makePluralityVotingMethod, VotingMethod } from '../../core/voting-method';
+import { makePluralityVotingMethod, makeRankedVotingMethod, VotingMethod } from '../../core/voting-method';
 import { Candidate } from '../../core/candidate';
 import { SingleVoter } from '../../core/voter-group';
 import { VotingModel } from "../voting-model/voting-model";
 import { PluralityBallotComponent } from "./plurality-ballot";
-import { PluralityBallot } from '../../core/ballot';
+import { Ballot, PluralityBallot } from '../../core/ballot';
 
 @Component({
     selector: 'app-model-and-ballot',
@@ -22,6 +22,8 @@ export class ModelAndBallot {
         switch (this.kind()) {
             case "plurality":
                 return makePluralityVotingMethod();
+            case "ranked":
+                return makeRankedVotingMethod();
             default:
                 throw new Error(`Unsupported voting method kind: ${this.kind()}`);
         }
@@ -33,7 +35,7 @@ export class ModelAndBallot {
     ];
     private readonly voterGroup = new SingleVoter(signal([81, 92]));
     readonly voterGroups = new Set([ this.voterGroup ]);
-    readonly castBallots = this.votingService.getComputedCastBallots(
+    readonly castBallots = this.votingService.getComputedCastBallots<Ballot>(
         () => this.candidates,
         this.votingMethod,
         () => this.voterGroups,
@@ -41,5 +43,5 @@ export class ModelAndBallot {
 
     private readonly ballot = computed(() =>
         this.castBallots().get(this.voterGroup)!()[0]);
-    readonly pluralityBallot: Signal<PluralityBallot> = this.ballot;
+    readonly pluralityBallot = this.ballot as Signal<PluralityBallot>;
 }
