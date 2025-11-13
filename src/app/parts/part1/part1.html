@@ -1,1 +1,124 @@
-<p>part1 works!</p>
+<!-- - - - - - - - -
+
+PART I:
+THE ALTERNATIVE BALLOTS
+
+- - - - - - - - - -->
+
+<h2 app-banner-part1></h2>
+<div class="words" id="the-alternative-ballots">
+
+    <p>Now, some of you may have a couple objections!</p>
+
+    <p>
+    First objection. Why would the people in power change the voting system that <em>got</em> them in power? Well, the spoiler effect has cost <em>both</em> Dems &amp; Reps a major election before. Getting rid of that glitch would be a win-win for major <em>and</em> minor parties! Also, voting reform is already picking up steam. Just last month, <a href="http://www.nytimes.com/2016/12/03/us/maine-ranked-choice-voting.html">Maine adopted Instant Runoff</a>, and
+    <s>Justin Trudeau, Canada's Cutie-In-Chief, will be moving his nation towards a better voting system in 2017.</s>
+    <b>(UPDATE: ha ha <a href="https://www.theguardian.com/world/2017/feb/01/justin-trudeau-abandons-voter-reform-canada">nope</a>)</b>
+    </p>
+
+    <p>Second objection. Didn't some guy once prove that <em>all</em> voting systems will be unfair? Not quite. You're thinking of the infamous <a href="https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem">Impossibility Theorem</a> by Kenneth Arrow, the mathematician in the 1950's who founded the whole study of voting systems.</p>
+
+    <p>Two answers to that: 1) some voting systems can still be <em>more</em> fair than others, even if none are perfect. And 2) Kenneth Arrow's proof <em>doesn't</em> apply to all voting systems! That's a misconception. It only applies to voting systems <em>where you rank candidates</em>. Later, we'll see some voting systems where you <em>don't</em> rank candidates – along with other alternatives to our current, glitchy voting system.</p>
+
+    <p>But first, let's take a closer look at the voting system we <em>do</em> have:</p>
+
+</div>
+<div class="sim-ballot" id="fptp">
+
+    <h2 class="ballot_title" style="margin-bottom: 0.2em;">FIRST PAST THE POST (FPTP)</h2>
+    <p class="ballot_caption">same as before. click &amp; drag<br>the candidates and voter</p>
+
+    <!-- <app-ballot1 /> -->
+</div>
+<div class="words">
+
+    <p><strong>How To Count:</strong> Simply add up the votes. Whoever gets the most votes, wins.</p>
+
+    <p>Sounds logical enough. But as you saw earlier, it can lead to a weird glitch, where having two <em>good</em> candidates can make the election go to a third <em>bad</em> candidate. This is why some people vote &quot;strategically&quot;, voting not for their actual honest favorite, but voting for the lesser of two evils. And strategic voting is fine – but! – ask yourself this: <b>how can we expect our elected officials to be honest, when our voting system <em>itself</em> doesn't let us be honest?</b></p>
+
+    <p>So, to fix the spoiler effect, other voting systems have been suggested. Such as...</p>
+</div>
+<div class="sim-ballot" id="rcv">
+
+    <h2 class="ballot_title" style="margin-bottom: 0.15em;">RANKED VOTING</h2>
+    <p class="ballot_caption">again, click &amp; drag</p>
+
+    <!-- <app-ballot2 /> -->
+
+</div>
+<div class="words">
+
+    <p><strong>How To Count:</strong> There's actually <em>several</em> different ways to count these kinds of ballots. Here, I'll just show you the top three:</p>
+
+    <p>
+    <strong>Instant Runoff Voting (IRV):</strong>
+    This one is <em>the</em> most popular alternative to First Past The Post (FPTP).
+    Australia and Ireland use it in national elections.
+    San Francisco, Minneapolis, and Portland, Maine use it in local elections.
+    And <s>Justin Trudeau, Prime Man-ister of Canada,
+    is leaning towards Instant Runoff, too.</s> <b>(UPDATE: nevermind)</b>
+    </p>
+
+    <p>
+    (Note: Instant Runoff Voting is also called “Ranked Choice Voting”,
+    even though there's other ways to count ranked ballots.
+    IRV is also often just called “Alternative Vote”,
+    even though there's a flippin' dozen other voting methods.
+    Such selfish naming! Sheesh!)
+    </p>
+
+    <p>IRV is a bit more complicated than FPTP, but here's how it works:</p>
+
+    <ol>
+    <li>Count up the #1 choices.</li>
+    <li>If someone has more than 50%, they win! END.</li>
+    <li>If not, eliminate the last-place loser.</li>
+    <li>Run a new &quot;round&quot; of the election, minus that loser.</li>
+    <li>Repeat until someone has 50% or more.</li>
+    </ol>
+
+    <p>If that seems like too much, there <em>is</em> a much simpler method of counting ranked ballots...</p>
+
+    <p><strong>Borda Count:</strong> Simply add up the rank numbers. Like in golf, whoever has the <em>lowest</em> score, wins. Borda count is used in Slovenia and a bunch of tiny islands in Micronesia.</p>
+
+    <p>But if you want an even nerdier way of voting, you could try...</p>
+
+    <p><strong>Condorcet Method:</strong> Run a simulated &quot;election&quot; between every pair of candidates, using the info on voters' ballots. IF there's a candidate who beats all other candidates in one-on-one &quot;elections&quot;, that candidate wins the <em>real</em> election. However, that's a very big &quot;IF&quot;. (as we'll see later...) The upside is, when this method <em>does</em> pick a winner, it's always the “theoretically best” candidate! Currently, this method is not being used by any governments, and is only being used by neeerrrrrds.</p>
+
+    <p>So, those are the voting systems <em>where you rank candidates</em> – the ones that Kenneth Arrow proved would <em>always</em> be unfair in some big way! But what of voting systems where you <em>don't</em> rank candidates? They're less well-known, but now, at least <em>you'll</em> know 'em:</p>
+
+</div>
+<div class="sim-ballot" id="approval">
+
+    <h2 class="ballot_title" style="margin-bottom: 0.15em;">APPROVAL VOTING</h2>
+    <p class="ballot_caption">yup, stiiiiill click &amp; drag</p>
+
+    <!-- <app-ballot3 /> -->
+
+</div>
+<div class="words">
+
+    <p><strong>How To Count:</strong> Simply add up the approvals. Whoever gets the most approvals, wins.</p>
+
+    <p><em>Wait, picking more than one candidate? Doesn't that violate the one-vote-per-person rule?</em> I hear you ask. Well, your vote was never a single check mark, your vote was always <em>the whole ballot</em>. And on this ballot, you get to honestly express <em>all</em> the candidates you approve of, not just your favorite or strategic second-favorite.</p>
+
+    <p>But if you want a <em>more</em> expressive voting system, why not try...</p>
+
+</div>
+<div class="sim-ballot" id="score">
+
+    <h2 class="ballot_title" style="margin-bottom: 0.15em;">SCORE VOTING</h2>
+    <p class="ballot_caption">you guessed it</p>
+
+    <!-- <app-ballot4 /> -->
+
+</div>
+<div class="words">
+
+    <p><strong>How To Count:</strong> Simply add up the ratings. Whoever has the highest average score, wins. Kind of like Amazon reviews, but with democracy. (Note: this is <em>not</em> a ranking system, because two candidates can have the <em>same</em> score.)</p>
+
+    <p>So there's our top 6 voting systems: the one we use, and five popular alternatives. But how can we tell if these alternatives are actually better? What glitches might <em>they</em> have? And which voting system – if any – can we say is &quot;the best&quot;?</p>
+
+    <p>Like before, let's simulate 'em.</p>
+
+</div>
