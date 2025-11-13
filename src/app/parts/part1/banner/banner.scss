@@ -12,7 +12,7 @@
 }
 
 p {
-    font-family: "./futurahandwritten.ttf", "Futura Handwritten", cursive;
+    font-family: url("../../../../../public/futurahandwritten.ttf"), "Futura Handwritten", cursive;
     text-transform: uppercase;
     margin: 0;
     font-weight: lighter;
@@ -31,4 +31,10 @@ p .squared {
     display: inline flex;
     justify-content: center;
     min-width: 1.3em; // goal : make it square
+
+    // sketchy look
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
 }
