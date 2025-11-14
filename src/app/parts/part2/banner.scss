@@ -2,6 +2,16 @@
 
 .u {
     font-style: normal;
-    text-decoration: underline double;
-    text-underline-offset: 10px;
+
+    display: inline-block;
+    position: relative;
+}
+.u::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    left: 15px;
+    right: 20px;
+    border-bottom: 10px double;
 }
