@@ -28,9 +28,13 @@ p.bottom {
 
 p .squared {
     border: 4px solid;
+
+    // goal : make it square
     display: inline flex;
     justify-content: center;
-    min-width: 1.3em; // goal : make it square
+    align-items: center;
+    max-height: 1.1em;
+    min-width: 1.1em;
 
     // sketchy look
     border-top-left-radius: 255px 15px;
