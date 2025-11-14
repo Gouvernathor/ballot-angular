@@ -27,18 +27,12 @@ p.bottom {
 }
 
 p .squared {
-    border: 4px solid;
+    background-image: url(/play/ballot/unchecked.webp);
+    background-size: 100% 100%;
 
-    // goal : make it square
     display: inline flex;
+    width: 60px;
+    height: 60px;
     justify-content: center;
     align-items: center;
-    max-height: 1.1em;
-    min-width: 1.1em;
-
-    // sketchy look
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 225px 15px;
-    border-bottom-left-radius: 15px 255px;
 }
