@@ -28,5 +28,10 @@
             [ballot]="approvalBallot()"
         />
     }
-    <!-- TODO others -->
+    @case("score") {
+        <app-score-ballot
+            class="ballot-displayer"
+            [ballot]="scoreBallot()"
+        />
+    }
 }
