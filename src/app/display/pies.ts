@@ -68,17 +68,19 @@ export class Pies {
     }
 
     getScoreShares(ballot: ScoreBallot, { numScores }: { numScores: number }): PieShares {
-        const totalSlices = ballot.size * (numScores - 1);
-        let leftover = 0;
+        const numScoresAdj = numScores - 1;
+        const totalSlices = ballot.size * numScoresAdj;
+        let leftover = totalSlices;
 
-        const mutShares: PieShare[] = Array.from(ballot.entries(), ([candidate, score]) => {
-            leftover += numScores - score;
-            score -= 1;
-            return {
-                color: this.candidatesDisplayService.getColor(candidate),
-                share: score,
-            };
-        });
+        const mutShares: PieShare[] = Array.from(ballot.entries(), ([candidate, score]) => [candidate, score-1] as const)
+            .filter(([, scoreAdj]) => scoreAdj > 0)
+            .map(([candidate, scoreAdj]) => {
+                leftover -= scoreAdj;
+                return {
+                    color: this.candidatesDisplayService.getColor(candidate),
+                    share: scoreAdj,
+                };
+            });
         mutShares.push({
             color: BLANK_COLOR,
             share: leftover,
