@@ -1,0 +1,27 @@
+/*
+:host {
+    display: flex;
+    justify-content: space-between;
+}*/
+
+.left,
+.center,
+.right {
+    float: left;
+    height: 320px;
+}
+.left {
+    width: 220px;
+}
+.center {
+    width: 320px;
+    margin-inline: 20px;
+}
+.right {
+    width: 220px;
+    overflow-y: auto;
+}
+
+// #caption and "#right img" goes to the election-results components
+// #ohno goes to the condorcet election-results component
+// .button-group probably goes to the left panel component
