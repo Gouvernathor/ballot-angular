@@ -1,0 +1,10 @@
+<span class="small">
+    <b>most approvals wins</b><br/>
+    @for (candidate of candidates(); track candidate.shape) {
+        <img [src]="candidatesDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} approvals<br/>
+    }
+    <br/>
+    <img [src]="candidatesDisplayService.getIconImage(results().winner)" /> is most approved, so...<br/>
+</span>
+<br/>
+<b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS

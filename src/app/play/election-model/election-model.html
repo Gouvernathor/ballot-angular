@@ -43,6 +43,12 @@
                 [results]="condorcetResultInformation()"
             />
         }
+        @case ("Approval") {
+            <app-approval-result
+                [candidates]="candidates()"
+                [results]="approvalResultInformation()"
+            />
+        }
     }
 </div>
 
