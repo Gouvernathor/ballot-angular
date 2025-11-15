@@ -37,6 +37,12 @@
                 [results]="bordaResultInformation()"
             />
         }
+        @case ("Condorcet") {
+            <app-condorcet-result
+                [candidates]="candidates()"
+                [results]="condorcetResultInformation()"
+            />
+        }
     }
 </div>
 

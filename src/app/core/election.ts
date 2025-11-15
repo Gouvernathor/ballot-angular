@@ -36,8 +36,8 @@ export interface CondorcetResultInformation {
     tally: Order<Candidate>;
     pairwiseDuels: readonly {
         candidates: [Candidate, Candidate];
-        votesForFirst: number;
-        votesForSecond: number;
+        winnerVotes: number;
+        loserVotes: number;
         winner: Candidate;
     }[];
     duelWinsPerCandidate: Simple<Candidate>;
@@ -198,12 +198,14 @@ export class ElectionService {
                         votesForB++;
                     }
                 }
-                let duelWinner = votesForA > votesForB ? candidateA : candidateB;
+                const [duelWinner, winnerVotes, loserVotes] = votesForA > votesForB ?
+                    [candidateA, votesForA, votesForB] :
+                    [candidateB, votesForB, votesForA];
 
                 pairwiseDuels.push({
                     candidates: [candidateA, candidateB],
-                    votesForFirst: votesForA,
-                    votesForSecond: votesForB,
+                    winnerVotes,
+                    loserVotes,
                     winner: duelWinner,
                 });
                 duelWinsPerCandidate.increment(duelWinner, 1);
