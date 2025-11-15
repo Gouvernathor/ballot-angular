@@ -1,7 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { Candidate } from '../../core/candidate';
 import { Candidates } from '../../display/candidates';
-import { Simple } from 'ecclesia/election/ballots';
 import { FPTPResultInformation } from '../../core/election';
 
 @Component({
