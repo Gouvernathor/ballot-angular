@@ -2,7 +2,7 @@
     <b>highest average score wins</b><br/>
     @for (candidate of candidates(); track candidate.shape) {
         <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s score:
-        {{results().processedTally.get(candidate) / results().numScores | number:'0.2-2'}}
+        {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
         out of {{results().numScores | number:'1.2-2'}}<br/>
     }
     <br/>
