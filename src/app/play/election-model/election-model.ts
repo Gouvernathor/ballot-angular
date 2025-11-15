@@ -3,7 +3,6 @@ import { ElectionMethodId, ElectionService } from '../../core/election';
 import { Voting } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
 import { Candidates } from '../../display/candidates';
-import { TallyService } from '../../core/tally';
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -20,7 +19,6 @@ export enum ElectionModelFeatures {
 })
 export class ElectionModel {
     private readonly votingService = inject(Voting);
-    private readonly tallyService = inject(TallyService);
     private readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(Candidates);
 
@@ -60,34 +58,19 @@ export class ElectionModel {
         this.voterGroups,
     );
 
-    // TALLY FOR EACH VOTING METHOD
-    private readonly pluralityTally = computed(() =>
-        this.tallyService.tallyPluralityToSimple(
-            this.votingService.extractBallots(this.castPluralityBallots)));
-    private readonly rankedTally = computed(() =>
-        this.tallyService.tallyRankedToOrder(
-            this.votingService.extractBallots(this.castRankedBallots)));
-    private readonly approvalTally = computed(() =>
-        this.tallyService.tallyApprovalToSimple(
-            this.votingService.extractBallots(this.castApprovalBallots)));
-    private readonly scoreTally = computed(() =>
-        this.tallyService.tallyScoreToScores(
-            this.votingService.extractBallots(this.castScoreBallots),
-            { maxScore: this.votingMethods.score.numScores }));
-
     // ELECTION RESULT INFORMATION FOR EACH ELECTION METHOD
     private readonly fptpResultInformation = computed(() =>
-        this.electionService.generateFPTPResultInformation());
+        this.electionService.generateFPTPResultInformation(this.castPluralityBallots));
     private readonly irvResultInformation = computed(() =>
-        this.electionService.generateIRVResultInformation());
+        this.electionService.generateIRVResultInformation(this.castRankedBallots));
     private readonly bordaResultInformation = computed(() =>
-        this.electionService.generateBordaResultInformation());
+        this.electionService.generateBordaResultInformation(this.castRankedBallots));
     private readonly condorcetResultInformation = computed(() =>
-        this.electionService.generateCondorcetResultInformation());
+        this.electionService.generateCondorcetResultInformation(this.castRankedBallots));
     private readonly approvalResultInformation = computed(() =>
-        this.electionService.generateApprovalResultInformation());
+        this.electionService.generateApprovalResultInformation(this.castApprovalBallots));
     private readonly scoreResultInformation = computed(() =>
-        this.electionService.generateScoreResultInformation());
+        this.electionService.generateScoreResultInformation(this.castScoreBallots, this.votingMethods.score.numScores));
 
     // ACTUAL WINNER
     private readonly winnerColor = computed(() => {

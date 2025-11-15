@@ -1,8 +1,11 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Attribution as EcclesiaAttribution } from 'ecclesia/election/attribution';
 import { Ballots, Order, Scores, Simple } from 'ecclesia/election/ballots';
 import { Candidate } from './candidate';
 import { GaussianVoters } from './voter-group';
+import { TallyService } from './tally';
+import { CastBallotSignalType, Voting } from './voting';
+import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
 
 export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
 
@@ -58,6 +61,9 @@ export interface ScoreResultInformation {
     providedIn: 'root',
 })
 export class ElectionService {
+    private readonly votingService = inject(Voting);
+    private readonly tallyService = inject(TallyService);
+
     makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): Candidate[] {
         const startAngle =
             numCandidates === 3 ?
@@ -111,27 +117,46 @@ export class ElectionService {
     }
 
     generateFPTPResultInformation(
+        castBallots: CastBallotSignalType<PluralityBallot>,
     ): FPTPResultInformation {
+        const tally = this.tallyService.tallyPluralityToSimple(this.votingService.extractBallots(castBallots));
         return null!;
     }
     generateIRVResultInformation(
+        castBallots: CastBallotSignalType<RankedBallot>,
     ): IRVResultInformation {
+        const tally = this.tallyService.tallyRankedToOrder(
+            this.votingService.extractBallots(castBallots));
         return null!;
     }
     generateBordaResultInformation(
+        castBallots: CastBallotSignalType<RankedBallot>,
     ): BordaResultInformation {
+        const tally = this.tallyService.tallyRankedToOrder(
+            this.votingService.extractBallots(castBallots));
         return null!;
     }
     generateCondorcetResultInformation(
+        castBallots: CastBallotSignalType<RankedBallot>,
     ): CondorcetResultInformation {
+        const tally = this.tallyService.tallyRankedToOrder(
+            this.votingService.extractBallots(castBallots));
         return null!;
     }
     generateApprovalResultInformation(
+        castBallots: CastBallotSignalType<ApprovalBallot>,
     ): ApprovalResultInformation {
+        const tally = this.tallyService.tallyApprovalToSimple(
+            this.votingService.extractBallots(castBallots));
         return null!;
     }
     generateScoreResultInformation(
+        castBallots: CastBallotSignalType<ScoreBallot>,
+        numScores: number,
     ): ScoreResultInformation {
+        const tally = this.tallyService.tallyScoreToScores(
+            this.votingService.extractBallots(castBallots),
+            { maxScore: numScores })
         return null!;
     }
 }
