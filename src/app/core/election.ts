@@ -1,11 +1,12 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Attribution as EcclesiaAttribution } from 'ecclesia/election/attribution';
+import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
 import { Ballots, Order, Scores, Simple } from 'ecclesia/election/ballots';
 import { Candidate } from './candidate';
 import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
 import { CastBallotSignalType, Voting } from './voting';
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
+import { NumberCounter } from '@gouvernathor/python/collections';
 
 export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
 
@@ -15,7 +16,7 @@ export interface FPTPResultInformation {
 }
 export interface IRVResultInformation {
     tally: Order<Candidate>;
-    steps: {
+    steps: readonly {
         /** Takes into account the vote reports from previously eliminated candidates */
         firstChoicesForRemainingCandidates: Simple<Candidate>;
         /** Either the eliminated candidate, if this is not the last round, or the winner if this is the last round */
@@ -33,7 +34,7 @@ export interface BordaResultInformation {
 }
 export interface CondorcetResultInformation {
     tally: Order<Candidate>;
-    pairwiseDuels: {
+    pairwiseDuels: readonly {
         candidates: [Candidate, Candidate];
         votesForFirst: number;
         votesForSecond: number;
@@ -116,18 +117,48 @@ export class ElectionService {
         };
     }
 
+    private readonly pluralityAttrib = this.ecclesiaAttributionToSingleSeatAttribution(
+        ecclesiaPlurality<Candidate>({ nSeats: 1 }));
     generateFPTPResultInformation(
         castBallots: CastBallotSignalType<PluralityBallot>,
     ): FPTPResultInformation {
-        const tally = this.tallyService.tallyPluralityToSimple(this.votingService.extractBallots(castBallots));
-        return null!;
+        const tally = this.tallyService.tallyPluralityToSimple(
+            this.votingService.extractBallots(castBallots));
+        const winner = this.pluralityAttrib(tally);
+        return { tally, winner };
     }
     generateIRVResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
     ): IRVResultInformation {
         const tally = this.tallyService.tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
-        return null!;
+        const eliminated = new Set<Candidate>();
+        const steps: IRVResultInformation["steps"][0][] = [];
+        while (true) {
+            const firstChoices = NumberCounter.fromKeys(tally
+                .map(ballot => ballot.find(choice => !eliminated.has(choice)))
+                .filter(c => c !== undefined));
+            const remainingVotes = firstChoices.total;
+
+            // Get the candidates with the most and least votes
+            const sorted = Array.from(firstChoices.entries())
+                .sort((a, b) => a[1] - b[1]);
+            if (sorted.at(-1)![1] >= remainingVotes / 2) {
+                const winner = sorted.at(-1)![0];
+                steps.push({
+                    firstChoicesForRemainingCandidates: firstChoices,
+                    selectedCandidate: winner,
+                });
+                return { tally, steps, winner };
+            }
+
+            const toEliminate = sorted[0][0];
+            steps.push({
+                firstChoicesForRemainingCandidates: firstChoices,
+                selectedCandidate: toEliminate,
+            });
+            eliminated.add(toEliminate);
+        }
     }
     generateBordaResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
