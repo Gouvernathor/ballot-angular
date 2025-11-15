@@ -4,7 +4,7 @@ import { FPTPResult } from "../../play/election-result/fptp-result";
 import { makePluralityVotingMethod } from "../../core/voting-method";
 import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
-import { Voting } from "../../core/voting";
+import { VotingService } from "../../core/voting";
 import { CandidatesDisplayService } from "../../display/candidates";
 import { ElectionService } from "../../core/election";
 
@@ -15,7 +15,7 @@ import { ElectionService } from "../../core/election";
     styleUrls: ["../inserts.scss", "./model3.scss"],
 })
 export class Model3 {
-    private readonly votingService = inject(Voting);
+    private readonly votingService = inject(VotingService);
     readonly candidatesDisplayService = inject(CandidatesDisplayService);
     private readonly electionService = inject(ElectionService);
 

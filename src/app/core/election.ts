@@ -5,7 +5,7 @@ import { Ballots, Order, Simple } from 'ecclesia/election/ballots';
 import { Candidate } from './candidate';
 import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
-import { CastBallotSignalType, Voting } from './voting';
+import { CastBallotSignalType, VotingService } from './voting';
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
 
 export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
@@ -61,7 +61,7 @@ export interface ScoreResultInformation {
     providedIn: 'root',
 })
 export class ElectionService {
-    private readonly votingService = inject(Voting);
+    private readonly votingService = inject(VotingService);
     private readonly tallyService = inject(TallyService);
 
     makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): Candidate[] {

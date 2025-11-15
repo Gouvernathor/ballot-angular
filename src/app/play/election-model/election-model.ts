@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, linkedSignal } from '@angular/core';
 import { ElectionMethodId, ElectionService } from '../../core/election';
-import { Voting } from '../../core/voting';
+import { VotingService } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
 import { CandidatesDisplayService } from '../../display/candidates';
 import { VotingModel } from "../voting-model/voting-model";
@@ -19,7 +19,7 @@ export enum ElectionModelFeatures {
     styleUrl: './election-model.scss',
 })
 export class ElectionModel {
-    private readonly votingService = inject(Voting);
+    private readonly votingService = inject(VotingService);
     private readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
 

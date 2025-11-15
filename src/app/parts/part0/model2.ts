@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { VotingModel } from "../../play/voting-model/voting-model";
-import { Voting } from "../../core/voting";
+import { VotingService } from "../../core/voting";
 import { makePluralityVotingMethod } from "../../core/voting-method";
 import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
@@ -15,7 +15,7 @@ import { ElectionService } from "../../core/election";
     styleUrls: ["../inserts.scss", "./model2.scss"],
 })
 export class Model2 {
-    private readonly votingService = inject(Voting);
+    private readonly votingService = inject(VotingService);
     readonly candidatesDisplayService = inject(CandidatesDisplayService);
     private readonly electionService = inject(ElectionService);
 

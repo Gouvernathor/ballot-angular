@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, Signal, signal } from '@angular/core';
-import { Voting } from '../../core/voting';
+import { VotingService } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod, VotingMethod } from '../../core/voting-method';
 import { Candidate } from '../../core/candidate';
 import { SingleVoter } from '../../core/voter-group';
@@ -17,7 +17,7 @@ import { ScoreBallotComponent } from "./score-ballot";
     styleUrl: './model-and-ballot.scss',
 })
 export class ModelAndBallot {
-    readonly votingService = inject(Voting);
+    readonly votingService = inject(VotingService);
 
     readonly kind = input.required<VotingMethod<any>["kind"]>();
 

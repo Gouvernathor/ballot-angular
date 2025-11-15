@@ -9,7 +9,7 @@ export type CastBallotSignalType<B extends Ballot> = Signal<ReadonlyMap<VoterGro
 @Injectable({
     providedIn: 'root',
 })
-export class Voting {
+export class VotingService {
     getComputedCastBallots<B extends Ballot>(
         getCandidates: () => readonly Candidate[],
         getVotingMethod: () => VotingMethod<B>,

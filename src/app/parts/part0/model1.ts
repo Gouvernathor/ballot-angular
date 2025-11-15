@@ -3,7 +3,7 @@ import { makePluralityVotingMethod } from '../../core/voting-method';
 import { SingleVoter } from '../../core/voter-group';
 import { VotingModel } from "../../play/voting-model/voting-model";
 import { Candidate } from '../../core/candidate';
-import { Voting } from '../../core/voting';
+import { VotingService } from '../../core/voting';
 import { CandidatesDisplayService } from '../../display/candidates';
 
 @Component({
@@ -13,7 +13,7 @@ import { CandidatesDisplayService } from '../../display/candidates';
     styleUrls: ["../inserts.scss", './model1.scss'],
 })
 export class Model1 {
-    readonly votingService = inject(Voting);
+    readonly votingService = inject(VotingService);
     readonly candidatesDisplayService = inject(CandidatesDisplayService);
 
     readonly plurality = makePluralityVotingMethod();
