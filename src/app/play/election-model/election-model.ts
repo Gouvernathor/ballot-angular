@@ -5,6 +5,7 @@ import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMe
 import { CandidatesDisplayService } from '../../display/candidates';
 import { VotingModel } from "../voting-model/voting-model";
 import { FPTPResult } from '../election-result/fptp-result';
+import { IrvResult } from "../election-result/irv-result";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -15,7 +16,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [VotingModel, FPTPResult],
+    imports: [VotingModel, FPTPResult, IrvResult],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })

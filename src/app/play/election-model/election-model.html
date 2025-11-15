@@ -21,6 +21,14 @@
             <app-fptp-result
                 [candidates]="candidates()"
                 [results]="fptpResultInformation()"
+
+                [sidebar]="true"
+            />
+        }
+        @case ("IRV") {
+            <app-irv-result
+                [candidates]="candidates()"
+                [results]="irvResultInformation()"
             />
         }
     }

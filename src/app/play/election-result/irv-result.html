@@ -1,0 +1,25 @@
+
+<span class="small">
+    @for (step of results().steps; track $index) {
+        @let roundNum = $index + 1;
+        <b>round {{roundNum}}:</b><br/>
+        who's voters' #1 choice?<br/>
+
+        @for (candidate of candidates(); track candidate.shape) {
+            @if (step.firstChoicesForRemainingCandidates.has(candidate)) {
+                <img [src]="candidatesDisplayService.getIconImage(candidate)" />:{{step.firstChoicesForRemainingCandidates.get(candidate)}}\
+                @if ($index < candidates().length-1) {,&ngsp;}
+            }
+        }
+        <br/>
+
+        @if ($index === candidates().length-1) {
+            <img [src]="candidatesDisplayService.getIconImage(step.selectedCandidate)" /> has more than 50%<br/>
+        } @else {
+            nobody's more than 50%. eliminate lose, <img [src]="candidatesDisplayService.getIconImage(step.selectedCandidate)" />.
+            next round!<br/><br/>
+        }
+    }
+</span>
+<br/>
+<b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS
