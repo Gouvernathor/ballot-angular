@@ -177,10 +177,41 @@ export class ElectionService {
     }
     generateCondorcetResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
+        candidates: Candidate[],
     ): CondorcetResultInformation {
         const tally = this.tallyService.tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
-        return null!;
+        const pairwiseDuels: CondorcetResultInformation["pairwiseDuels"][0][] = [];
+        const duelWinsPerCandidate = NumberCounter.fromEntries<Candidate>();
+        for (let i = 0; i < candidates.length; i++) {
+            for (let j = i + 1; j < candidates.length; j++) {
+                const candidateA = candidates[i];
+                const candidateB = candidates[j];
+
+                let votesForA = 0;
+                let votesForB = 0;
+                for (const ballot of tally) {
+                    const winner = ballot.find(c => c === candidateA || c === candidateB);
+                    if (winner === candidateA) {
+                        votesForA++;
+                    } else if (winner === candidateB) {
+                        votesForB++;
+                    }
+                }
+                let duelWinner = votesForA > votesForB ? candidateA : candidateB;
+
+                pairwiseDuels.push({
+                    candidates: [candidateA, candidateB],
+                    votesForFirst: votesForA,
+                    votesForSecond: votesForB,
+                    winner: duelWinner,
+                });
+                duelWinsPerCandidate.increment(duelWinner, 1);
+            }
+        }
+        const [condoWinnerCandidate] = candidates.filter(c =>
+            duelWinsPerCandidate.get(c) === candidates.length - 1);
+        return { tally, pairwiseDuels, duelWinsPerCandidate, winner: condoWinnerCandidate ?? null };
     }
     generateApprovalResultInformation(
         castBallots: CastBallotSignalType<ApprovalBallot>,

@@ -66,7 +66,7 @@ export class ElectionModel {
     private readonly bordaResultInformation = computed(() =>
         this.electionService.generateBordaResultInformation(this.castRankedBallots));
     private readonly condorcetResultInformation = computed(() =>
-        this.electionService.generateCondorcetResultInformation(this.castRankedBallots));
+        this.electionService.generateCondorcetResultInformation(this.castRankedBallots, this.candidates()));
     private readonly approvalResultInformation = computed(() =>
         this.electionService.generateApprovalResultInformation(this.castApprovalBallots));
     private readonly scoreResultInformation = computed(() =>
