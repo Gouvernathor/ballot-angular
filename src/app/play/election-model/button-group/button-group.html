@@ -3,7 +3,7 @@
 @for (option of options(); track option.name) {
     <button
         (click)="choice.emit(option.value)"
-        [attr.on]="option.value === currentValue() ? '' : null"
+        [class.on]="option.value === currentValue()"
     >
         {{ option.name }}
     </button>
