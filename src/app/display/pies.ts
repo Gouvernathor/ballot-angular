@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ApprovalBallot, Ballot, PluralityBallot, RankedBallot, ScoreBallot } from '../core/ballot';
 import { VotingMethod } from '../core/voting-method';
-import { Candidates } from './candidates';
+import { CandidatesDisplayService } from './candidates';
 
 export const BLANK_COLOR = "#bbb";
 export interface PieShare {
@@ -14,7 +14,7 @@ export type PieShares = readonly PieShare[] & { total?: number };
     providedIn: 'root',
 })
 export class Pies {
-    readonly candidatesDisplayService = inject(Candidates);
+    readonly candidatesDisplayService = inject(CandidatesDisplayService);
 
     getPieShares<B extends Ballot>(
         votingMethod: VotingMethod<B>,

@@ -12,7 +12,7 @@ const COLORS: { [k in Candidate["shape"]]: string } = {
 @Injectable({
     providedIn: 'root',
 })
-export class Candidates {
+export class CandidatesDisplayService {
     getColor(candidate: Candidate): string {
         return COLORS[candidate.shape];
     }

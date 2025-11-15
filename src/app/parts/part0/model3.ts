@@ -5,7 +5,7 @@ import { makePluralityVotingMethod } from "../../core/voting-method";
 import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
 import { Voting } from "../../core/voting";
-import { Candidates } from "../../display/candidates";
+import { CandidatesDisplayService } from "../../display/candidates";
 import { ElectionService } from "../../core/election";
 
 @Component({
@@ -16,7 +16,7 @@ import { ElectionService } from "../../core/election";
 })
 export class Model3 {
     private readonly votingService = inject(Voting);
-    readonly candidatesDisplayService = inject(Candidates);
+    readonly candidatesDisplayService = inject(CandidatesDisplayService);
     private readonly electionService = inject(ElectionService);
 
     readonly plurality = makePluralityVotingMethod();

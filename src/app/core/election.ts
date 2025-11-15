@@ -1,4 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
+import { NumberCounter } from '@gouvernathor/python/collections';
 import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
 import { Ballots, Order, Simple } from 'ecclesia/election/ballots';
 import { Candidate } from './candidate';
@@ -6,7 +7,6 @@ import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
 import { CastBallotSignalType, Voting } from './voting';
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
-import { NumberCounter } from '@gouvernathor/python/collections';
 
 export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
 

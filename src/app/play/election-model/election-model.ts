@@ -2,7 +2,7 @@ import { Component, computed, inject, input, linkedSignal } from '@angular/core'
 import { ElectionMethodId, ElectionService } from '../../core/election';
 import { Voting } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
-import { Candidates } from '../../display/candidates';
+import { CandidatesDisplayService } from '../../display/candidates';
 import { VotingModel } from "../voting-model/voting-model";
 
 export enum ElectionModelFeatures {
@@ -21,7 +21,7 @@ export enum ElectionModelFeatures {
 export class ElectionModel {
     private readonly votingService = inject(Voting);
     private readonly electionService = inject(ElectionService);
-    private readonly candidateDisplayService = inject(Candidates);
+    private readonly candidateDisplayService = inject(CandidatesDisplayService);
 
     readonly features = input(ElectionModelFeatures.Basic);
     readonly defaultElectionMethod = input<ElectionMethodId>("FPTP");

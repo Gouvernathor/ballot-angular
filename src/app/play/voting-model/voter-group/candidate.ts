@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { Candidate } from '../../../core/candidate';
-import { Candidates } from '../../../display/candidates';
+import { CandidatesDisplayService } from '../../../display/candidates';
 
 @Component({
     selector: 'g[appCandidate]',
@@ -9,7 +9,7 @@ import { Candidates } from '../../../display/candidates';
     styleUrl: './candidate.scss',
 })
 export class CandidateComponent {
-    readonly candidatesService = inject(Candidates);
+    readonly candidatesService = inject(CandidatesDisplayService);
 
     readonly candidate = input.required<Candidate>();
 }
