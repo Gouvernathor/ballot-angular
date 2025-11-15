@@ -12,7 +12,6 @@ export enum ElectionModelFeatures {
 // election methods : FPTP, IRV, Borda, Condorcet, Approval, Score
 
 export function makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): Candidate[] {
-    const shapes: CandidateShape[] = ["square", "triangle", "hexagon", "pentagon", "bob"];
     const startAngle =
         numCandidates === 3 ?
             Math.PI / 6 :
@@ -21,16 +20,15 @@ export function makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): Candidate[]
         numCandidates === 5 ?
             Math.PI / 3.3 :
             0;
-    const candidates: Candidate[] = [];
     const radius = 100;
-    for (let i = 0; i < numCandidates; i++) {
-        const shape = shapes[i];
-        const angle = startAngle + (i * 2 * Math.PI / numCandidates);
-        const x = 150 + radius * Math.cos(angle);
-        const y = 150 + radius * Math.sin(angle);
-        candidates.push({ shape, getOpinions: signal([x, y]) });
-    }
-    return candidates;
+    return (["square", "triangle", "hexagon", "pentagon", "bob"] as const)
+        .slice(0, numCandidates)
+        .map((shape, i) => {
+            const angle = startAngle + (i * 2 * Math.PI / numCandidates);
+            const x = 150 + radius * Math.cos(angle);
+            const y = 150 + radius * Math.sin(angle);
+            return { shape, getOpinions: signal([x, y]) };
+        });
 }
 
 export function makeDefaultVoterGroups(numVoterGroups: 1|2|3 = 1): ReadonlySet<GaussianVoters> {
