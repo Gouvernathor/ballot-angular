@@ -113,7 +113,7 @@ export class ElectionModel {
             case "Condorcet":
                 const condoWinner = this.condorcetResultInformation().winner;
                 if (condoWinner === null) {
-                    return "#000"; // TODO put that default value in the candidate display service
+                    return this.candidateDisplayService.getCondorcetFailureColor();
                 }
                 return this.candidateDisplayService.getColor(condoWinner);
             case "Approval":
