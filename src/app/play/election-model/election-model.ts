@@ -15,7 +15,7 @@ export enum ElectionModelFeatures {
     Basic = 1,
     Voters,
     VotersAndCandidates,
-    VotersAndCandidatesAndSave,
+    // VotersAndCandidatesAndSave,
 }
 
 @Component({
@@ -30,6 +30,7 @@ export class ElectionModel {
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
 
     readonly features = input(ElectionModelFeatures.Basic);
+    readonly ElectionModelFeatures = ElectionModelFeatures; // Expose enum to template
     readonly defaultElectionMethod = input<ElectionMethodId>("FPTP");
     readonly candidates = input(this.electionService.makeDefaultCandidates());
     readonly voterGroups = input(this.electionService.makeDefaultVoterGroups());

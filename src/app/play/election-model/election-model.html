@@ -2,6 +2,16 @@
 
 <div class="left">
     <!-- buttons, options and stuff -->
+
+    <!-- TODO button group for the election method -->
+
+    @if (features() >= ElectionModelFeatures.Voters) {
+        <!-- TODO button group for the number of voter groups -->
+
+    }
+    @if (features() >= ElectionModelFeatures.VotersAndCandidates) {
+        <!-- TODO button group for the number of candidates -->
+    }
 </div>
 
 <app-voting-model class="center"
