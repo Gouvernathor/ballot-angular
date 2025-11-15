@@ -49,6 +49,12 @@
                 [results]="approvalResultInformation()"
             />
         }
+        @case ("Score") {
+            <app-score-result
+                [candidates]="candidates()"
+                [results]="scoreResultInformation()"
+            />
+        }
     }
 </div>
 

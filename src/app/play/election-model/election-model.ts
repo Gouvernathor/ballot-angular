@@ -9,6 +9,7 @@ import { IrvResult } from "../election-result/irv-result";
 import { BordaResult } from "../election-result/borda-result";
 import { CondorcetResult } from "../election-result/condorcet-result";
 import { ApprovalResult } from "../election-result/approval-result";
+import { ScoreResult } from "../election-result/score-result";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -19,7 +20,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [VotingModel, FPTPResult, IrvResult, BordaResult, CondorcetResult, ApprovalResult],
+    imports: [VotingModel, FPTPResult, IrvResult, BordaResult, CondorcetResult, ApprovalResult, ScoreResult],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })
