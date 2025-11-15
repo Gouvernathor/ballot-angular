@@ -1,0 +1,10 @@
+<div class="button-group-label">{{ question() }}</div>
+
+@for (option of options(); track option.name) {
+    <button
+        (click)="choice.emit(option.value)"
+        [attr.on]="option.value === currentValue() ? '' : null"
+    >
+        {{ option.name }}
+    </button>
+}

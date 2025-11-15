@@ -3,7 +3,12 @@
 <div class="left">
     <!-- buttons, options and stuff -->
 
-    <!-- TODO button group for the election method -->
+    <app-button-group
+        question="what voting system?"
+        [currentValue]="electionMethod()"
+        [options]="electionMethodOptions"
+        (choice)="electionMethod.set($event)"
+    />
 
     @if (features() >= ElectionModelFeatures.Voters) {
         <!-- TODO button group for the number of voter groups -->

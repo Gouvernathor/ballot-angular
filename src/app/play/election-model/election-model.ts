@@ -10,6 +10,7 @@ import { BordaResult } from "../election-result/borda-result";
 import { CondorcetResult } from "../election-result/condorcet-result";
 import { ApprovalResult } from "../election-result/approval-result";
 import { ScoreResult } from "../election-result/score-result";
+import { ButtonGroup } from "./button-group/button-group";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -20,7 +21,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [VotingModel, FPTPResult, IrvResult, BordaResult, CondorcetResult, ApprovalResult, ScoreResult],
+    imports: [VotingModel, FPTPResult, IrvResult, BordaResult, CondorcetResult, ApprovalResult, ScoreResult, ButtonGroup],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })
@@ -35,6 +36,14 @@ export class ElectionModel {
     readonly candidates = input(this.electionService.makeDefaultCandidates());
     readonly voterGroups = input(this.electionService.makeDefaultVoterGroups());
 
+    readonly electionMethodOptions = ([
+        "FPTP",
+        "IRV",
+        "Borda",
+        "Condorcet",
+        "Approval",
+        "Score",
+    ] as const).map(s => ({ name: s, value: s }));
     readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
 
     private readonly votingMethods = {
