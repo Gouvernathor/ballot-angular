@@ -3,12 +3,11 @@
     [candidates]="candidates"
     [voterGroups]="voterGroups"
     [castBallots]="castBallots()"
-    [border]="candidatesDisplayService.getColor(winner())"
+    [border]="candidatesDisplayService.getColor(results().winner)"
 />
 <app-plurality-result class="model-caption"
     [candidates]="candidates"
-    [tally]="tally()"
-    [winner]="winner()"
+    [results]="results()"
 
     [verbose]="true"
 />

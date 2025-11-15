@@ -1,5 +1,4 @@
 import { Component, computed, inject, signal } from "@angular/core";
-import { plurality } from "ecclesia/election/attribution";
 import { VotingModel } from "../../play/voting-model/voting-model";
 import { Voting } from "../../core/voting";
 import { TallyService } from "../../core/tally";
@@ -8,7 +7,7 @@ import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
 import { PluralityResult } from "../../play/election-result/plurality-result";
 import { Candidates } from "../../display/candidates";
-import { AttributionService } from "../../core/attribution";
+import { ElectionService } from "../../core/election";
 
 @Component({
     selector: "app-model2",
@@ -20,7 +19,7 @@ export class Model2 {
     private readonly votingService = inject(Voting);
     private readonly tallyService = inject(TallyService);
     readonly candidatesDisplayService = inject(Candidates);
-    private readonly attributionService = inject(AttributionService);
+    private readonly electionService = inject(ElectionService);
 
     readonly plurality = makePluralityVotingMethod();
     readonly candidates: readonly Candidate[] = [
@@ -35,9 +34,6 @@ export class Model2 {
         () => this.plurality,
         () => this.voterGroups,
     );
-    readonly tally = computed(() =>
-        this.tallyService.tallyPluralityToSimple(this.votingService.extractBallots(this.castBallots)));
-    private readonly attribution = plurality<Candidate>({ nSeats: 1 });
-    readonly winner = computed(() =>
-        this.attributionService.extractSingleWinnerFromAttribution(this.attribution(this.tally())));
+    readonly results = computed(() =>
+        this.electionService.generateFPTPResultInformation(this.castBallots));
 }
