@@ -4,9 +4,14 @@
     <!-- buttons, options and stuff -->
 </div>
 
-<div class="center">
-    <!-- tha voting model -->
-</div>
+<app-voting-model class="center"
+    [votingMethod]="votingMethod()"
+    [candidates]="candidates()"
+    [voterGroups]="voterGroups()"
+    [castBallots]="castBallots()"
+
+    [border]="winnerColor()"
+/>
 
 <div class="right">
     <!-- the election results -->

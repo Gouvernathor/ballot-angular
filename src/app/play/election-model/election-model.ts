@@ -3,6 +3,7 @@ import { ElectionMethodId, ElectionService } from '../../core/election';
 import { Voting } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
 import { Candidates } from '../../display/candidates';
+import { VotingModel } from "../voting-model/voting-model";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -13,7 +14,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [],
+    imports: [VotingModel],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })
@@ -35,6 +36,20 @@ export class ElectionModel {
         approval: makeApprovalVotingMethod(),
         score: makeScoreVotingMethod(),
     };
+    readonly votingMethod = computed(() => {
+        switch (this.electionMethod()) {
+            case "FPTP":
+                return this.votingMethods.plurality;
+            case "IRV":
+            case "Borda":
+            case "Condorcet":
+                return this.votingMethods.ranked;
+            case "Approval":
+                return this.votingMethods.approval;
+            case "Score":
+                return this.votingMethods.score;
+        }
+    });
 
     // BALLOTS FOR EACH VOTING METHOD
     private readonly castPluralityBallots = this.votingService.getComputedCastBallots(
@@ -57,6 +72,20 @@ export class ElectionModel {
         () => this.votingMethods.score,
         this.voterGroups,
     );
+    readonly castBallots = computed(() => {
+        switch (this.electionMethod()) {
+            case "FPTP":
+                return this.castPluralityBallots();
+            case "IRV":
+            case "Borda":
+            case "Condorcet":
+                return this.castRankedBallots();
+            case "Approval":
+                return this.castApprovalBallots();
+            case "Score":
+                return this.castScoreBallots();
+        }
+    });
 
     // ELECTION RESULT INFORMATION FOR EACH ELECTION METHOD
     private readonly fptpResultInformation = computed(() =>
@@ -73,7 +102,7 @@ export class ElectionModel {
         this.electionService.generateScoreResultInformation(this.castScoreBallots, this.votingMethods.score.numScores));
 
     // ACTUAL WINNER
-    private readonly winnerColor = computed(() => {
+    readonly winnerColor = computed(() => {
         switch (this.electionMethod()) {
             case "FPTP":
                 return this.candidateDisplayService.getColor(this.fptpResultInformation().winner);
