@@ -179,7 +179,8 @@ export class ElectionService {
     ): ApprovalResultInformation {
         const tally = this.tallyService.tallyApprovalToSimple(
             this.votingService.extractBallots(castBallots));
-        return null!;
+        const winner = this.pluralityAttrib(tally);
+        return { tally, winner };
     }
     generateScoreResultInformation(
         castBallots: CastBallotSignalType<ScoreBallot>,
