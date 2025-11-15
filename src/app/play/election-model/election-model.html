@@ -16,6 +16,14 @@
 <div class="right">
     <!-- the election results -->
     <!-- TODO maybe make this a collapsable accordion and remove the button group in .left ? -->
+    @switch (electionMethod()) {
+        @case ("FPTP") {
+            <app-fptp-result
+                [candidates]="candidates()"
+                [results]="fptpResultInformation()"
+            />
+        }
+    }
 </div>
 
 <!-- reset button -->

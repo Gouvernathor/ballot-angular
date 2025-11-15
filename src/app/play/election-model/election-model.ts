@@ -4,6 +4,7 @@ import { VotingService } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
 import { CandidatesDisplayService } from '../../display/candidates';
 import { VotingModel } from "../voting-model/voting-model";
+import { FPTPResult } from '../election-result/fptp-result';
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -14,7 +15,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [VotingModel],
+    imports: [VotingModel, FPTPResult],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })
@@ -28,7 +29,7 @@ export class ElectionModel {
     readonly candidates = input(this.electionService.makeDefaultCandidates());
     readonly voterGroups = input(this.electionService.makeDefaultVoterGroups());
 
-    private readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
+    readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
 
     private readonly votingMethods = {
         plurality: makePluralityVotingMethod(),
@@ -88,17 +89,17 @@ export class ElectionModel {
     });
 
     // ELECTION RESULT INFORMATION FOR EACH ELECTION METHOD
-    private readonly fptpResultInformation = computed(() =>
+    readonly fptpResultInformation = computed(() =>
         this.electionService.generateFPTPResultInformation(this.castPluralityBallots));
-    private readonly irvResultInformation = computed(() =>
+    readonly irvResultInformation = computed(() =>
         this.electionService.generateIRVResultInformation(this.castRankedBallots));
-    private readonly bordaResultInformation = computed(() =>
+    readonly bordaResultInformation = computed(() =>
         this.electionService.generateBordaResultInformation(this.castRankedBallots));
-    private readonly condorcetResultInformation = computed(() =>
+    readonly condorcetResultInformation = computed(() =>
         this.electionService.generateCondorcetResultInformation(this.castRankedBallots, this.candidates()));
-    private readonly approvalResultInformation = computed(() =>
+    readonly approvalResultInformation = computed(() =>
         this.electionService.generateApprovalResultInformation(this.castApprovalBallots));
-    private readonly scoreResultInformation = computed(() =>
+    readonly scoreResultInformation = computed(() =>
         this.electionService.generateScoreResultInformation(this.castScoreBallots, this.votingMethods.score.numScores));
 
     // ACTUAL WINNER
