@@ -1,0 +1,10 @@
+<span class="small">
+    <b>lower score is better</b><br/>
+    @for (candidate of candidates(); track candidate.shape) {
+        <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s total score: {{results().processedTally.get(candidate)}}<br/>
+    }
+    <br/>
+    <img [src]="candidatesDisplayService.getIconImage(results().winner)" /> has the <i>lowest</i> score, so&hellip;<br/>
+</span>
+<br/>
+<b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS

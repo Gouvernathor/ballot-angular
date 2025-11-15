@@ -6,6 +6,7 @@ import { CandidatesDisplayService } from '../../display/candidates';
 import { VotingModel } from "../voting-model/voting-model";
 import { FPTPResult } from '../election-result/fptp-result';
 import { IrvResult } from "../election-result/irv-result";
+import { BordaResult } from "../election-result/borda-result";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -16,7 +17,7 @@ export enum ElectionModelFeatures {
 
 @Component({
     selector: 'app-election-model',
-    imports: [VotingModel, FPTPResult, IrvResult],
+    imports: [VotingModel, FPTPResult, IrvResult, BordaResult],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
 })

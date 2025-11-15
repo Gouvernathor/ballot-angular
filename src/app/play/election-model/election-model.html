@@ -31,6 +31,12 @@
                 [results]="irvResultInformation()"
             />
         }
+        @case ("Borda") {
+            <app-borda-result
+                [candidates]="candidates()"
+                [results]="bordaResultInformation()"
+            />
+        }
     }
 </div>
 
