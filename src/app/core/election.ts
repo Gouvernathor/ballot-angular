@@ -6,11 +6,11 @@ import { GaussianVoters } from './voter-group';
 
 export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
 
-interface PluralityResultInformation { // should be called FPTP ?
+export interface FPTPResultInformation {
     tally: Simple<Candidate>;
     winner: Candidate;
 }
-interface IRVResultInformation {
+export interface IRVResultInformation {
     tally: Order<Candidate>;
     steps: {
         /** Takes into account the vote reports from previously eliminated candidates */
@@ -21,14 +21,14 @@ interface IRVResultInformation {
     /** Information already present as steps[-1].selectedCandidate */
     winner: Candidate;
 }
-interface BordaResultInformation {
+export interface BordaResultInformation {
     tally: Order<Candidate>;
     /** The number of points for each candidate from each ballot, is its 0-based index */
     processedTally: Simple<Candidate>;
     /** The candidate with the lowest number of points */
     winner: Candidate;
 }
-interface CondorcetResultInformation {
+export interface CondorcetResultInformation {
     tally: Order<Candidate>;
     pairwiseDuels: {
         candidates: [Candidate, Candidate];
@@ -39,11 +39,11 @@ interface CondorcetResultInformation {
     duelWinsPerCandidate: Simple<Candidate>;
     winner: Candidate|null;
 }
-interface ApprovalResultInformation {
+export interface ApprovalResultInformation {
     tally: Simple<Candidate>;
     winner: Candidate;
 }
-interface ScoreResultInformation {
+export interface ScoreResultInformation {
     tally: Scores<Candidate>;
     /** The number of points for each candidate from each ballot, is its 1-based score */
     processedTally: Simple<Candidate>;
@@ -108,5 +108,30 @@ export class ElectionService {
             }
             return result.keys().next().value!;
         };
+    }
+
+    generateFPTPResultInformation(
+    ): FPTPResultInformation {
+        return null!;
+    }
+    generateIRVResultInformation(
+    ): IRVResultInformation {
+        return null!;
+    }
+    generateBordaResultInformation(
+    ): BordaResultInformation {
+        return null!;
+    }
+    generateCondorcetResultInformation(
+    ): CondorcetResultInformation {
+        return null!;
+    }
+    generateApprovalResultInformation(
+    ): ApprovalResultInformation {
+        return null!;
+    }
+    generateScoreResultInformation(
+    ): ScoreResultInformation {
+        return null!;
     }
 }
