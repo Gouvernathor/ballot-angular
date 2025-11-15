@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
-import { Ballots, Order, Scores, Simple } from 'ecclesia/election/ballots';
+import { Ballots, Order, Simple } from 'ecclesia/election/ballots';
 import { Candidate } from './candidate';
 import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
@@ -48,7 +48,6 @@ export interface ApprovalResultInformation {
     winner: Candidate;
 }
 export interface ScoreResultInformation {
-    tally: Scores<Candidate>;
     /** The number of points for each candidate from each ballot, is its 1-based score */
     processedTally: Simple<Candidate>;
     /** Number by which to divide a processedTally value to get the average score */
@@ -165,7 +164,16 @@ export class ElectionService {
     ): BordaResultInformation {
         const tally = this.tallyService.tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
-        return null!;
+        const processedTally = NumberCounter.fromEntries<Candidate>();
+        for (const ballot of tally) {
+            ballot.forEach((candidate, index) => {
+                processedTally.increment(candidate, index);
+            });
+        }
+        const winner = Array.from(processedTally.entries())
+            .reduce((minEntry, entry) =>
+                entry[1] < minEntry[1] ? entry : minEntry)[0];
+        return { tally, processedTally, winner };
     }
     generateCondorcetResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
@@ -186,9 +194,17 @@ export class ElectionService {
         castBallots: CastBallotSignalType<ScoreBallot>,
         numScores: number,
     ): ScoreResultInformation {
-        const tally = this.tallyService.tallyScoreToScores(
-            this.votingService.extractBallots(castBallots),
-            { maxScore: numScores })
-        return null!;
+        const allBallots = Array.from(this.votingService.extractBallots(castBallots));
+        const processedTally = NumberCounter.fromEntries<Candidate>();
+        for (const ballot of allBallots) {
+            for (const [candidate, score] of ballot.entries()) {
+                processedTally.increment(candidate, score);
+            }
+        }
+        const totalVoters = allBallots.length;
+        const winner = Array.from(processedTally.entries())
+            .reduce((maxEntry, entry) =>
+                entry[1] > maxEntry[1] ? entry : maxEntry)[0];
+        return { processedTally, totalVoters, numScores, winner };
     }
 }
