@@ -7,8 +7,7 @@
 
         @for (candidate of candidates(); track candidate.shape) {
             @if (step.firstChoicesForRemainingCandidates.has(candidate)) {
-                <img [src]="candidatesDisplayService.getIconImage(candidate)" />:{{step.firstChoicesForRemainingCandidates.get(candidate)}}\
-                @if ($index < candidates().length-1) {,&ngsp;}
+                <img [src]="candidatesDisplayService.getIconImage(candidate)" />:{{step.firstChoicesForRemainingCandidates.get(candidate)}}@if ($index < candidates().length-1) {,&ngsp;}
             }
         }
         <br/>
