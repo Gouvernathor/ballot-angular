@@ -12,10 +12,10 @@
         }
         <br/>
 
-        @if ($index === candidates().length-1) {
+        @if ($index === results().steps.length-1) {
             <img [src]="candidatesDisplayService.getIconImage(step.selectedCandidate)" /> has more than 50%<br/>
         } @else {
-            nobody's more than 50%. eliminate lose, <img [src]="candidatesDisplayService.getIconImage(step.selectedCandidate)" />.
+            nobody's more than 50%. eliminate loser, <img [src]="candidatesDisplayService.getIconImage(step.selectedCandidate)" />.
             next round!<br/><br/>
         }
     }
