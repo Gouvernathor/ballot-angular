@@ -4,12 +4,12 @@ import { Candidates } from '../../display/candidates';
 import { FPTPResultInformation } from '../../core/election';
 
 @Component({
-    selector: 'app-plurality-result',
+    selector: 'app-fptp-result',
     imports: [],
-    templateUrl: './plurality-result.html',
-    styleUrls: ["./election-results.scss", './plurality-result.scss'],
+    templateUrl: './fptp-result.html',
+    styleUrls: ["./election-results.scss", './fptp-result.scss'],
 })
-export class PluralityResult {
+export class FPTPResult {
     readonly candidateDisplayService = inject(Candidates);
 
     readonly candidates = input.required<readonly Candidate[]>();

@@ -1,24 +1,22 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { VotingModel } from "../../play/voting-model/voting-model";
-import { PluralityResult } from "../../play/election-result/plurality-result";
+import { FPTPResult } from "../../play/election-result/fptp-result";
 import { makePluralityVotingMethod } from "../../core/voting-method";
 import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
 import { Voting } from "../../core/voting";
 import { Candidates } from "../../display/candidates";
-import { TallyService } from "../../core/tally";
 import { ElectionService } from "../../core/election";
 
 @Component({
     selector: "app-model3",
-    imports: [VotingModel, PluralityResult],
+    imports: [VotingModel, FPTPResult],
     templateUrl: "./model3.html",
     styleUrls: ["../inserts.scss", "./model3.scss"],
 })
 export class Model3 {
     private readonly votingService = inject(Voting);
     readonly candidatesDisplayService = inject(Candidates);
-    private readonly tallyService = inject(TallyService);
     private readonly electionService = inject(ElectionService);
 
     readonly plurality = makePluralityVotingMethod();
