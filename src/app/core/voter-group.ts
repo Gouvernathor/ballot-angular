@@ -49,7 +49,7 @@ export class GaussianVoters implements VoterGroup {
             // THIS IS SPLICE NOT SLICE
             spacings.splice(3);
         } else if (num === 2) {
-            spacings.splice(2);
+            spacings.splice(4);
         }
         // if 3 : 8 rings
 
