@@ -10,15 +10,16 @@
 
 @keyframes hshake {
     0% { --h-val: 0; }
-    // 25% { --h-val: -3px; }
-    // 75% { --h-val: 3px; }
-    50% { --h-val: 6px; }
+    25% { --h-val: -3px; }
+    75% { --h-val: 3px; }
+    // 50% { --h-val: 6px; }
     100% { --h-val: 0; }
 }
 
 @keyframes vshake {
     0% { --v-val: 0; }
-    25% { --v-val: -3px; }
-    75% { --v-val: 3px; }
+    // 25% { --v-val: -3px; }
+    // 75% { --v-val: 3px; }
+    50% { --v-val: 6px; }
     100% { --v-val: 0; }
 }
