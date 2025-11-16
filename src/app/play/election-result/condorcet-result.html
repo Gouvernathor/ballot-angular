@@ -1,24 +1,30 @@
 <span class="small">
-    <b>who wins each one-on-one?</b><br/>
-    @for (duel of results().pairwiseDuels; track duel.candidates[0].shape+duel.candidates[1].shape) {
-        <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> vs
-        <img [src]="candidatesDisplayService.getIconImage(duel.candidates[1])" />:
-        <img [src]="candidatesDisplayService.getIconImage(duel.winner)" /> wins
-        by {{duel.winnerVotes}} to {{duel.loserVotes}}<br/>
-    }
-    <br/>
+    <p>
+        <b>who wins each one-on-one?</b>
 
+        @for (duel of results().pairwiseDuels; track duel.candidates[0].shape+duel.candidates[1].shape) {
+            <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> vs
+            <img [src]="candidatesDisplayService.getIconImage(duel.candidates[1])" />:
+            <img [src]="candidatesDisplayService.getIconImage(duel.winner)" /> wins
+            by {{duel.winnerVotes}} to {{duel.loserVotes}}<br/>
+        }
+    </p>
+
+    <p>
     @if (results().winner === null) {
-        NOBODY beats everyone else in one-on-one races.<br/>
+        NOBODY beats everyone else in one-on-one races.
     } @else {
         <img [src]="candidatesDisplayService.getIconImage(results().winner!)" />
         beats all other candidates in one-on-one races.<br/>
     }
+    </p>
 </span>
-<br/>
+
+<p>
 @if (results().winner === null) {
-    THERE'S NO WINNER.<br/>
+    THERE'S NO WINNER.
     <b class="ohno">OH NO.</b>
 } @else {
     <b [style.color]="candidatesDisplayService.getColor(results().winner!)">{{results().winner!.shape.toUpperCase()}}</b> WINS
 }
+</p>
