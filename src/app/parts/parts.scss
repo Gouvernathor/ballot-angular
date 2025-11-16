@@ -3,10 +3,12 @@
     margin: 0 auto;
 }
 
-p {
+p,
+blockquote {
     text-align: justify;
     line-height: 1.7em;
     color: #333;
+    margin-inline: 0;
 }
 
 p.caption {
@@ -85,8 +87,7 @@ p.caption-test {
 }
 */
 
-blockquote,
-p.quote {
+blockquote {
     border-radius: 5px;
     background: #eee;
     padding: 20px;
@@ -95,9 +96,7 @@ p.quote {
     text-align: center;
 }
 
-blockquote em,
-p.quote em {
+blockquote em {
     color: #000;
     font-weight: bolder;
 }
-// TODO kick the p.quote out when copying
