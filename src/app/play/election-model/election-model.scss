@@ -1,13 +1,16 @@
-/*
 :host {
     display: flex;
-    justify-content: space-between;
-}*/
+    flex-direction: column;
+    // justify-content: space-between;
+    row-gap: 1em;
+}
 
 .left,
 .center,
 .right {
-    float: left;
+    float: inline-start;
+    // display: inline-block;
+    // vertical-align: top;
     height: 320px;
 }
 .left {

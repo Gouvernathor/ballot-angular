@@ -2,86 +2,88 @@
     <!-- description_container (only for the sandbox, maybe to be put in the routed component) -->
 }
 
-<div class="left">
-    <!-- buttons, options and stuff -->
+<div class="threeparts-container">
+    <div class="left">
+        <!-- buttons, options and stuff -->
 
-    <app-button-group
-        question="what voting system?"
-        [currentValue]="electionMethod()"
-        [options]="electionMethodOptions"
-        (choice)="electionMethod.set($event)"
-        buttonMinWidth="40%"
+        <app-button-group
+            question="what voting system?"
+            [currentValue]="electionMethod()"
+            [options]="electionMethodOptions"
+            (choice)="electionMethod.set($event)"
+            buttonMinWidth="40%"
+        />
+
+        @if (features() >= ElectionModelFeatures.Voters) {
+            <app-button-group
+                question="how many groups of voters?"
+                [currentValue]="voterGroupCount()"
+                [options]="voterGroupNumberOptions"
+                (choice)="voterGroups.set(electionService.makeVoterGroups($event))"
+            />
+
+        }
+        @if (features() >= ElectionModelFeatures.VotersAndCandidates) {
+            <app-button-group
+                question="how many candidates?"
+                [currentValue]="candidateCount()"
+                [options]="candidateNumberOptions"
+                (choice)="candidates.set(electionService.makeCandidates($event))"
+            />
+        }
+    </div>
+
+    <app-voting-model class="center"
+        [votingMethod]="votingMethod()"
+        [candidates]="candidates()"
+        [voterGroups]="voterGroups()"
+        [castBallots]="castBallots()"
+
+        [border]="winnerColor()"
     />
 
-    @if (features() >= ElectionModelFeatures.Voters) {
-        <app-button-group
-            question="how many groups of voters?"
-            [currentValue]="voterGroupCount()"
-            [options]="voterGroupNumberOptions"
-            (choice)="voterGroups.set(electionService.makeVoterGroups($event))"
-        />
-
-    }
-    @if (features() >= ElectionModelFeatures.VotersAndCandidates) {
-        <app-button-group
-            question="how many candidates?"
-            [currentValue]="candidateCount()"
-            [options]="candidateNumberOptions"
-            (choice)="candidates.set(electionService.makeCandidates($event))"
-        />
-    }
-</div>
-
-<app-voting-model class="center"
-    [votingMethod]="votingMethod()"
-    [candidates]="candidates()"
-    [voterGroups]="voterGroups()"
-    [castBallots]="castBallots()"
-
-    [border]="winnerColor()"
-/>
-
-<div class="right">
-    <!-- the election results -->
-    <!-- TODO maybe make this a collapsable accordion and remove the button group in .left ? -->
-    @switch (electionMethod()) {
-        @case ("FPTP") {
-            <app-fptp-result
-                [candidates]="candidates()"
-                [results]="fptpResultInformation()"
-            />
+    <div class="right">
+        <!-- the election results -->
+        <!-- TODO maybe make this a collapsable accordion and remove the button group in .left ? -->
+        @switch (electionMethod()) {
+            @case ("FPTP") {
+                <app-fptp-result
+                    [candidates]="candidates()"
+                    [results]="fptpResultInformation()"
+                />
+            }
+            @case ("IRV") {
+                <app-irv-result
+                    [candidates]="candidates()"
+                    [results]="irvResultInformation()"
+                />
+            }
+            @case ("Borda") {
+                <app-borda-result
+                    [candidates]="candidates()"
+                    [results]="bordaResultInformation()"
+                />
+            }
+            @case ("Condorcet") {
+                <app-condorcet-result
+                    [candidates]="candidates()"
+                    [results]="condorcetResultInformation()"
+                />
+            }
+            @case ("Approval") {
+                <app-approval-result
+                    [candidates]="candidates()"
+                    [results]="approvalResultInformation()"
+                />
+            }
+            @case ("Score") {
+                <app-score-result
+                    [candidates]="candidates()"
+                    [results]="scoreResultInformation()"
+                />
+            }
         }
-        @case ("IRV") {
-            <app-irv-result
-                [candidates]="candidates()"
-                [results]="irvResultInformation()"
-            />
-        }
-        @case ("Borda") {
-            <app-borda-result
-                [candidates]="candidates()"
-                [results]="bordaResultInformation()"
-            />
-        }
-        @case ("Condorcet") {
-            <app-condorcet-result
-                [candidates]="candidates()"
-                [results]="condorcetResultInformation()"
-            />
-        }
-        @case ("Approval") {
-            <app-approval-result
-                [candidates]="candidates()"
-                [results]="approvalResultInformation()"
-            />
-        }
-        @case ("Score") {
-            <app-score-result
-                [candidates]="candidates()"
-                [results]="scoreResultInformation()"
-            />
-        }
-    }
+    </div>
 </div>
 
 <!-- reset button -->
