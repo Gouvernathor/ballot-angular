@@ -12,7 +12,12 @@
     />
 
     @if (features() >= ElectionModelFeatures.Voters) {
-        <!-- TODO button group for the number of voter groups -->
+        <app-button-group
+            question="how many groups of voters?"
+            [currentValue]="voterGroupCount()"
+            [options]="voterGroupNumberOptions"
+            (choice)="voterGroups.set(electionService.makeDefaultVoterGroups($event))"
+        />
 
     }
     @if (features() >= ElectionModelFeatures.VotersAndCandidates) {

@@ -10,7 +10,7 @@ import { BordaResult } from "../election-result/borda-result";
 import { CondorcetResult } from "../election-result/condorcet-result";
 import { ApprovalResult } from "../election-result/approval-result";
 import { ScoreResult } from "../election-result/score-result";
-import { ButtonGroup } from "./button-group/button-group";
+import { ButtonGroup, ButtonOption } from "./button-group/button-group";
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -27,16 +27,16 @@ export enum ElectionModelFeatures {
 })
 export class ElectionModel {
     private readonly votingService = inject(VotingService);
-    private readonly electionService = inject(ElectionService);
+    readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
 
     readonly features = input(ElectionModelFeatures.Basic);
     readonly ElectionModelFeatures = ElectionModelFeatures; // Expose enum to template
     readonly defaultElectionMethod = input<ElectionMethodId>("FPTP");
-    readonly candidates = input(this.electionService.makeDefaultCandidates());
-    readonly voterGroups = input(this.electionService.makeDefaultVoterGroups());
+    readonly defaultCandidates = input(this.electionService.makeDefaultCandidates());
+    readonly defaultVoterGroups = input(this.electionService.makeDefaultVoterGroups());
 
-    readonly electionMethodOptions = ([
+    readonly electionMethodOptions: readonly ButtonOption<ElectionMethodId>[] = ([
         "FPTP",
         "IRV",
         "Borda",
@@ -45,6 +45,14 @@ export class ElectionModel {
         "Score",
     ] as const).map(s => ({ name: s, value: s }));
     readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
+    readonly candidates = linkedSignal(() => this.defaultCandidates());
+    readonly voterGroupNumberOptions: readonly ButtonOption<1|2|3>[] = [
+        { name: 'one', value: 1 },
+        { name: 'two', value: 2 },
+        { name: 'three', value: 3 },
+    ];
+    readonly voterGroups = linkedSignal(() => this.defaultVoterGroups());
+    readonly voterGroupCount = computed(() => this.voterGroups().size as 1|2|3);
 
     private readonly votingMethods = {
         plurality: makePluralityVotingMethod(),
