@@ -5,6 +5,7 @@
         <button
             (click)="choice.emit(option.value)"
             [class.on]="option.value === currentValue()"
+            [style.minWidth]="buttonMinWidth()"
         >
             {{ option.name }}
         </button>

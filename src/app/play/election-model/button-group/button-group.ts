@@ -11,4 +11,5 @@ export class ButtonGroup<T> {
     readonly options = input.required<{ name: string; value: T }[]>();
     readonly currentValue = input.required<T>();
     readonly choice = output<T>();
+    readonly buttonMinWidth = input<string>();
 }

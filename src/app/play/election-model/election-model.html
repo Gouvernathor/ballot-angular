@@ -8,6 +8,7 @@
         [currentValue]="electionMethod()"
         [options]="electionMethodOptions"
         (choice)="electionMethod.set($event)"
+        buttonMinWidth="40%"
     />
 
     @if (features() >= ElectionModelFeatures.Voters) {
