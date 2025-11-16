@@ -1,13 +1,18 @@
 <span class="small">
-    <b>highest average score wins</b><br/>
-    @for (candidate of candidates(); track candidate.shape) {
-        <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s score:
-        {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
-        out of {{results().numScores | number:'1.2-2'}}<br/>
-    }
-    <br/>
-    <img [src]="candidatesDisplayService.getIconImage(results().winner)" />
-    has the highest score, so...<br/>
+    <p>
+        <b>highest average score wins</b><br/>
+
+        @for (candidate of candidates(); track candidate.shape) {
+            <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s score:
+            {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
+            out of {{results().numScores | number:'1.2-2'}}<br/>
+        }
+    </p>
+
+    <p>
+        <img [src]="candidatesDisplayService.getIconImage(results().winner)" />
+        has the highest score, so...
+    </p>
 </span>
-<br/>
-<b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS
+
+<p><b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>

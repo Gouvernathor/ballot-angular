@@ -1,6 +1,6 @@
 <span class="small">
     <p>
-        <b>who wins each one-on-one?</b>
+        <b>who wins each one-on-one?</b><br/>
 
         @for (duel of results().pairwiseDuels; track duel.candidates[0].shape+duel.candidates[1].shape) {
             <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> vs
@@ -15,7 +15,7 @@
         NOBODY beats everyone else in one-on-one races.
     } @else {
         <img [src]="candidatesDisplayService.getIconImage(results().winner!)" />
-        beats all other candidates in one-on-one races.<br/>
+        beats all other candidates in one-on-one races.
     }
     </p>
 </span>
