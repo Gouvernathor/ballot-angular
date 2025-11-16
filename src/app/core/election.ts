@@ -73,13 +73,14 @@ export class ElectionService {
             numCandidates === 5 ?
                 Math.PI / 3.3 :
                 0;
+        // TODO the startAngle is wrong (off by 180° ?)
         const radius = 100;
         return (["square", "triangle", "hexagon", "pentagon", "bob"] as const)
             .slice(0, numCandidates)
             .map((shape, i) => {
                 const angle = startAngle + (i * 2 * Math.PI / numCandidates);
-                const x = 150 + radius * Math.cos(angle);
-                const y = 150 + radius * Math.sin(angle);
+                const x = 150 - radius * Math.cos(angle);
+                const y = 150 - radius * Math.sin(angle);
                 return { shape, getOpinions: signal([x, y]) };
             });
     }
