@@ -18,7 +18,7 @@
             question="how many groups of voters?"
             [currentValue]="voterGroupCount()"
             [options]="voterGroupNumberOptions"
-            (choice)="voterGroups.set(electionService.makeDefaultVoterGroups($event))"
+            (choice)="voterGroups.set(electionService.makeVoterGroups($event))"
         />
 
     }
@@ -27,7 +27,7 @@
             question="how many candidates?"
             [currentValue]="candidateCount()"
             [options]="candidateNumberOptions"
-            (choice)="candidates.set(electionService.makeDefaultCandidates($event))"
+            (choice)="candidates.set(electionService.makeCandidates($event))"
         />
     }
 </div>
@@ -85,6 +85,7 @@
 </div>
 
 <!-- reset button -->
+<button class="reset">reset</button>
 
 @if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
     <!-- save button -->

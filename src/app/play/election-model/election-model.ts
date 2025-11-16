@@ -1,4 +1,5 @@
 import { Component, computed, inject, input, linkedSignal } from '@angular/core';
+import { Opinions } from '../../core/candidate';
 import { ElectionMethodId, ElectionService } from '../../core/election';
 import { VotingService } from '../../core/voting';
 import { makeApprovalVotingMethod, makePluralityVotingMethod, makeRankedVotingMethod, makeScoreVotingMethod } from '../../core/voting-method';
@@ -33,8 +34,8 @@ export class ElectionModel {
     readonly features = input(ElectionModelFeatures.Basic);
     readonly ElectionModelFeatures = ElectionModelFeatures; // Expose enum to template
     readonly defaultElectionMethod = input<ElectionMethodId>("FPTP");
-    readonly defaultCandidates = input(this.electionService.makeDefaultCandidates());
-    readonly defaultVoterGroups = input(this.electionService.makeDefaultVoterGroups());
+    readonly defaultCandidates = input<(2|3|4|5)|readonly Opinions[]|undefined>();
+    readonly defaultVoterGroups = input<(1|2|3)|readonly Opinions[]|undefined>();
 
     readonly electionMethodOptions: readonly ButtonOption<ElectionMethodId>[] = ([
         "FPTP",
@@ -51,14 +52,14 @@ export class ElectionModel {
         { name: 'four', value: 4 },
         { name: 'five', value: 5 },
     ];
-    readonly candidates = linkedSignal(() => this.defaultCandidates());
+    readonly candidates = linkedSignal(() => this.electionService.makeCandidates(this.defaultCandidates()));
     readonly candidateCount = computed(() => this.candidates().length as 2|3|4|5);
     readonly voterGroupNumberOptions: readonly ButtonOption<1|2|3>[] = [
         { name: 'one', value: 1 },
         { name: 'two', value: 2 },
         { name: 'three', value: 3 },
     ];
-    readonly voterGroups = linkedSignal(() => this.defaultVoterGroups());
+    readonly voterGroups = linkedSignal(() => this.electionService.makeVoterGroups(this.defaultVoterGroups()));
     readonly voterGroupCount = computed(() => this.voterGroups().size as 1|2|3);
 
     private readonly votingMethods = {

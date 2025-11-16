@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { NumberCounter } from '@gouvernathor/python/collections';
 import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
 import { Ballots, Order, Simple } from 'ecclesia/election/ballots';
-import { Candidate } from './candidate';
+import { Candidate, Opinions } from './candidate';
 import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
 import { CastBallotSignalType, VotingService } from './voting';
@@ -64,7 +64,23 @@ export class ElectionService {
     private readonly votingService = inject(VotingService);
     private readonly tallyService = inject(TallyService);
 
-    makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): readonly Candidate[] {
+    makeCandidates(
+        input: (2|3|4|5)|Iterable<Opinions>|undefined,
+    ): readonly Candidate[] {
+        if (input === undefined) {
+            return this.makeCandidates(3);
+        }
+        if (typeof input === "number") {
+            return this.makeCandidates(this.makeDefaultCandidateOpinions(
+                Math.min(Math.max(2, Math.floor(input)), 5) as 2|3|4|5));
+        }
+        return Array.from(input, ([x, y], i) => ({
+            shape: this.candidateShapes[i],
+            getOpinions: signal([x, y]),
+        }));
+    }
+    private candidateShapes = ["square", "triangle", "hexagon", "pentagon", "bob"] as const;
+    private *makeDefaultCandidateOpinions(numCandidates: 2|3|4|5): Iterable<Opinions> {
         const startAngle =
             numCandidates === 3 ?
                 Math.PI / 6 :
@@ -74,33 +90,37 @@ export class ElectionService {
                 Math.PI / 3.3 :
                 0;
         const radius = 100;
-        return (["square", "triangle", "hexagon", "pentagon", "bob"] as const)
-            .slice(0, numCandidates)
-            .map((shape, i) => {
-                const angle = startAngle + (i * 2 * Math.PI / numCandidates);
-                const x = 150 - radius * Math.cos(angle);
-                const y = 150 - radius * Math.sin(angle);
-                return { shape, getOpinions: signal([x, y]) };
-            });
+        for (let i = 0; i < numCandidates; i++) {
+            const angle = startAngle + (i * 2 * Math.PI / numCandidates);
+            const x = 150 - radius * Math.cos(angle);
+            const y = 150 - radius * Math.sin(angle);
+            yield [x, y];
+        }
     }
 
-    makeDefaultVoterGroups(numVoterGroups: 1|2|3 = 1): ReadonlySet<GaussianVoters> {
+    makeVoterGroups(
+        input: (1|2|3)|Iterable<Opinions>|undefined,
+    ): ReadonlySet<GaussianVoters> {
+        if (input === undefined) {
+            return this.makeVoterGroups(1);
+        }
+        if (typeof input === "number") {
+            return this.makeVoterGroups(this.makeDefaultVoterGroupOpinions(
+                Math.min(Math.max(1, Math.floor(input)), 3) as 1|2|3));
+        }
+        const opinions = Array.isArray(input) ? input as Opinions[] : Array.from(input);
+        const num = (4 - opinions.length) as 1|2|3;
+        return new Set(opinions.map(([x, y]) =>
+            new GaussianVoters(signal([x, y]), { num })));
+    }
+    private makeDefaultVoterGroupOpinions(numVoterGroups: 1|2|3): readonly Opinions[] {
         switch (numVoterGroups) {
             case 1:
-                return new Set([
-                    new GaussianVoters(signal([150, 150]), { num: 3 }),
-                ]);
+                return [[150, 150]];
             case 2:
-                return new Set([
-                    new GaussianVoters(signal([150, 100]), { num: 2 }),
-                    new GaussianVoters(signal([150, 200]), { num: 2 }),
-                ]);
+                return [[150, 100], [150, 200]];
             case 3:
-                return new Set([
-                    new GaussianVoters(signal([150, 115]), { num: 1 }),
-                    new GaussianVoters(signal([115, 180]), { num: 1 }),
-                    new GaussianVoters(signal([185, 180]), { num: 1 }),
-                ]);
+                return [[150, 115], [115, 180], [185, 180]];
         }
     }
 
