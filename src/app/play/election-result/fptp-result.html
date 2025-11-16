@@ -3,7 +3,7 @@
         @if (sidebar()) {
             <b>most votes win</b><br/>
         }
-        @for (candidate of candidates(); track $index) {
+        @for (candidate of candidates(); track candidate.shape) {
             @if (sidebar()) {
                 <img [src]="candidateDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} votes<br/>
             } @else {

@@ -1,0 +1,11 @@
+<p class="small">
+    @for (candidate of candidates(); track candidate.shape) {
+        {{candidate.shape}}: {{results().tally.get(candidate)}}
+        @if (verbose()) {
+            <!-- the lines are collapsed to avoid a space before the comma -->
+            votes} @if ($index < candidates().length-1) {,
+        }
+    }
+</p>
+
+<p><b [style.color]="candidateDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>

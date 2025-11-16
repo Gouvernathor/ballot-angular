@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { VotingModel } from "../../play/voting-model/voting-model";
-import { FPTPResult } from "../../play/election-result/fptp-result";
+import { ResultsComponentPart0 } from "./results";
 import { makePluralityVotingMethod } from "../../core/voting-method";
 import { Candidate } from "../../core/candidate";
 import { GaussianVoters } from "../../core/voter-group";
@@ -10,7 +10,7 @@ import { ElectionService } from "../../core/election";
 
 @Component({
     selector: "app-model3",
-    imports: [VotingModel, FPTPResult],
+    imports: [VotingModel, ResultsComponentPart0],
     templateUrl: "./model3.html",
     styleUrls: ["../inserts.scss", "./model3.scss"],
 })
