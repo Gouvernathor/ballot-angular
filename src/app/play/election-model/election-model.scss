@@ -1,8 +1,11 @@
+@use "../bottom-buttons.scss";
+
 :host {
     display: flex;
     flex-direction: column;
     // justify-content: space-between;
     row-gap: 1em;
+    align-items: center;
 }
 
 .left,

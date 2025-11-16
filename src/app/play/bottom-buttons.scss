@@ -1,0 +1,30 @@
+button.reset,
+button.save {
+    cursor: pointer;
+    background: #aaa;
+    color: white;
+    font-size: 25px;
+    font-family: inherit;
+    width: fit-content;
+    height: fit-content;
+    letter-spacing: 2px;
+    padding: 2px 15px;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 2px solid #888;
+    transition: all 0.1s;
+}
+button.reset:hover,
+button.save:hover {
+    margin-top: -2px;
+    margin-bottom: 2px;
+    background: #bbb;
+    border-bottom-color: #999;
+}
+button.reset:active,
+button.save:active {
+    margin-top: 2px;
+    margin-bottom: -2px;
+    background: #999;
+    border-bottom-color: #777;
+}
