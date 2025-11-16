@@ -7,10 +7,14 @@
     align-items: center;
 }
 
+.threeparts-container {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+}
 .left,
 .center,
 .right {
-    float: inline-start;
     height: 320px;
 }
 .left {
@@ -18,7 +22,6 @@
 }
 .center {
     width: 320px;
-    margin-inline: 20px;
 }
 .right {
     width: 220px;
