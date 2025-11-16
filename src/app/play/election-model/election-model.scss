@@ -3,7 +3,6 @@
 :host {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     row-gap: 1em;
     align-items: center;
 }
@@ -12,8 +11,6 @@
 .center,
 .right {
     float: inline-start;
-    // display: inline-block;
-    // vertical-align: top;
     height: 320px;
 }
 .left {
