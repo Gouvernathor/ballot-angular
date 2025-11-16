@@ -91,12 +91,30 @@ blockquote {
     border-radius: 5px;
     background: #eee;
     padding: 20px;
-    color: #888;
     font-size: 1.2em;
     text-align: center;
-}
 
-blockquote em {
+    quotes: "“" "”";
+
+    font-style: italic;
     color: #000;
     font-weight: bolder;
+}
+blockquote::before {
+    content: open-quote;
+}
+blockquote::after {
+    content: close-quote;
+}
+
+blockquote .notquote {
+    font-style: normal;
+    color: #888;
+    font-weight: lighter;
+}
+blockquote .notquote::before {
+    content: "[";
+}
+blockquote .notquote::after {
+    content: "]";
 }
