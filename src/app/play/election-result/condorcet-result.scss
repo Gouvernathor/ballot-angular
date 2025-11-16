@@ -1,9 +1,9 @@
 .ohno {
     font-size: 2em;
     display: inline-block;
-    // position: relative;
     animation: vshake 13ms infinite, hshake 11ms infinite;
     transform: translate(var(--h-val), var(--v-val));
+    // position: relative;
     // left: var(--h-val);
     // bottom: var(--v-val);
 }
