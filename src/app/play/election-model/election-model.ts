@@ -62,6 +62,12 @@ export class ElectionModel {
     readonly voterGroups = linkedSignal(() => this.electionService.makeVoterGroups(this.defaultVoterGroups()));
     readonly voterGroupCount = computed(() => this.voterGroups().size as 1|2|3);
 
+    reset() {
+        this.electionMethod.set(this.defaultElectionMethod());
+        this.candidates.set(this.electionService.makeCandidates(this.defaultCandidates()));
+        this.voterGroups.set(this.electionService.makeVoterGroups(this.defaultVoterGroups()));
+    }
+
     private readonly votingMethods = {
         plurality: makePluralityVotingMethod(),
         ranked: makeRankedVotingMethod(),

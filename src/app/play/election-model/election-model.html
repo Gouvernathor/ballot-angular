@@ -85,7 +85,7 @@
 </div>
 
 <!-- reset button -->
-<button class="reset">reset</button>
+<button class="reset" (click)="reset()">reset</button>
 
 @if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
     <!-- save button -->
