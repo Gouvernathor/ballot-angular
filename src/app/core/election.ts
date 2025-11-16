@@ -73,7 +73,6 @@ export class ElectionService {
             numCandidates === 5 ?
                 Math.PI / 3.3 :
                 0;
-        // TODO the startAngle is wrong (off by 180° ?)
         const radius = 100;
         return (["square", "triangle", "hexagon", "pentagon", "bob"] as const)
             .slice(0, numCandidates)
