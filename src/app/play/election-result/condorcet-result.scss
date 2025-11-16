@@ -1,0 +1,24 @@
+.ohno {
+    font-size: 2em;
+    display: inline-block;
+    // position: relative;
+    animation: vshake 13ms infinite, hshake 11ms infinite;
+    transform: translate(var(--h-val), var(--v-val));
+    // left: var(--h-val);
+    // bottom: var(--v-val);
+}
+
+@keyframes hshake {
+    0% { --h-val: 0; }
+    // 25% { --h-val: -3px; }
+    // 75% { --h-val: 3px; }
+    50% { --h-val: 6px; }
+    100% { --h-val: 0; }
+}
+
+@keyframes vshake {
+    0% { --v-val: 0; }
+    25% { --v-val: -3px; }
+    75% { --v-val: 3px; }
+    100% { --v-val: 0; }
+}
