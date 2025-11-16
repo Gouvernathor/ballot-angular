@@ -14,7 +14,4 @@ export class FPTPResult {
 
     readonly candidates = input.required<readonly Candidate[]>();
     readonly results = input.required<FPTPResultInformation>();
-
-    readonly sidebar = input(false);
-    readonly verbose = input(false);
 }
