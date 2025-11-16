@@ -32,13 +32,6 @@ p .underline {
     text-decoration: underline;
 }
 
-/*
-iframe{
-    border:none;
-    display: block;
-    margin: 0px auto 25px auto;
-}
-*/
 
 hr {
     border: none;
@@ -46,11 +39,9 @@ hr {
     margin: 50px 0;
 }
 
-/*
 li{
-    margin-bottom: 0.4em;
+    line-height: 1.5em;
 }
-*/
 
 .ballot_title {
     font-size: 1.75em;
@@ -73,19 +64,6 @@ p.caption-test {
     line-height: 1.4em;
 }
 
-/*
-.sim-ballot, .sim-test, .sim-sandbox{
-    margin: 0 auto;
-}
-.sim-ballot{
-    width: 670px;
-    margin: 35px auto 50px auto;
-}
-.sim-test{
-    width: 800px;
-    margin: 50px auto 40px auto;
-}
-*/
 
 blockquote {
     border-radius: 5px;
