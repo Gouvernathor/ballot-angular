@@ -16,7 +16,7 @@ export enum ElectionModelFeatures {
     Basic = 1,
     Voters,
     VotersAndCandidates,
-    // VotersAndCandidatesAndSave,
+    VotersAndCandidatesAndSave,
 }
 
 @Component({

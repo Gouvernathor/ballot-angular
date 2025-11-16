@@ -1,4 +1,6 @@
-<!-- description_container (only for the sandbox, maybe to be put in the routed component) -->
+@if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
+    <!-- description_container (only for the sandbox, maybe to be put in the routed component) -->
+}
 
 <div class="left">
     <!-- buttons, options and stuff -->
@@ -84,6 +86,8 @@
 
 <!-- reset button -->
 
-<!-- save button -->
+@if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
+    <!-- save button -->
 
-<!-- link readonly input -->
+    <!-- link readonly input -->
+}
