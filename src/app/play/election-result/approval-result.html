@@ -1,10 +1,12 @@
 <span class="small">
-    <b>most approvals wins</b><br/>
-    @for (candidate of candidates(); track candidate.shape) {
-        <img [src]="candidatesDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} approvals<br/>
-    }
-    <br/>
-    <img [src]="candidatesDisplayService.getIconImage(results().winner)" /> is most approved, so...<br/>
+    <p>
+        <b>most approvals wins</b><br/>
+        @for (candidate of candidates(); track candidate.shape) {
+            <img [src]="candidatesDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} approvals<br/>
+        }
+    </p>
+
+    <p><img [src]="candidatesDisplayService.getIconImage(results().winner)" /> is most approved, so...</p>
 </span>
-<br/>
-<b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS
+
+<p><b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>
