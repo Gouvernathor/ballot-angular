@@ -45,7 +45,14 @@ export class ElectionModel {
         "Score",
     ] as const).map(s => ({ name: s, value: s }));
     readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
+    readonly candidateNumberOptions: readonly ButtonOption<2|3|4|5>[] = [
+        { name: 'two', value: 2 },
+        { name: 'three', value: 3 },
+        { name: 'four', value: 4 },
+        { name: 'five', value: 5 },
+    ];
     readonly candidates = linkedSignal(() => this.defaultCandidates());
+    readonly candidateCount = computed(() => this.candidates().length as 2|3|4|5);
     readonly voterGroupNumberOptions: readonly ButtonOption<1|2|3>[] = [
         { name: 'one', value: 1 },
         { name: 'two', value: 2 },

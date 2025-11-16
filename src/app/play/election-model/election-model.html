@@ -21,7 +21,12 @@
 
     }
     @if (features() >= ElectionModelFeatures.VotersAndCandidates) {
-        <!-- TODO button group for the number of candidates -->
+        <app-button-group
+            question="how many candidates?"
+            [currentValue]="candidateCount()"
+            [options]="candidateNumberOptions"
+            (choice)="candidates.set(electionService.makeDefaultCandidates($event))"
+        />
     }
 </div>
 
