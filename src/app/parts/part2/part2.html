@@ -41,7 +41,12 @@ HOW DO THE ALTERNATIVES HOLD UP?
     drag the voters <img src="voters.svg"> <em>slowly</em> up towards <img src="triangle.svg">:
     </p>
 
-    <!-- <iframe src="play/election2.html" width="800" height="380" scrolling="no"></iframe> -->
+    <app-election-model id="election2"
+        [features]="1"
+        defaultElectionMethod="IRV"
+        [defaultCandidates]="[[41, 271], [257, 27], [159, 65]]"
+        [defaultVoterGroups]="[[257, 240]]"
+    />
 
 </div>
 <div class="words">
@@ -74,7 +79,12 @@ HOW DO THE ALTERNATIVES HOLD UP?
     drag <img src="hexagon.svg"> to <em>just slightly left</em> of <img src="square.svg">:
     </p>
 
-    <!-- <iframe src="play/election3.html" width="800" height="380" scrolling="no"></iframe> -->
+    <app-election-model id="election3"
+        [features]="1"
+        defaultElectionMethod="Borda"
+        [defaultCandidates]="[[173, 150], [275, 150], [23, 150]]"
+        [defaultVoterGroups]="[[232, 150]]"
+    />
 
 </div>
 <div class="words">
@@ -102,7 +112,12 @@ HOW DO THE ALTERNATIVES HOLD UP?
     move the voters <img src="voters.svg"> in such a way that NOBODY wins:
     </p>
 
-    <!-- <iframe src="play/election4.html" width="800" height="380" scrolling="no"></iframe> -->
+    <app-election-model id="election4"
+        [features]="2"
+        defaultElectionMethod="Condorcet"
+        [defaultCandidates]="3"
+        [defaultVoterGroups]="3"
+    />
 
 </div>
 <div class="words">
@@ -187,7 +202,12 @@ HOW DO THE ALTERNATIVES HOLD UP?
     and Johnson <img src="triangle.svg"> wins Borda??
     </span>
     </p>
-    <!-- <iframe src="play/election5.html" width="800" height="380" scrolling="no"></iframe> -->
+    <app-election-model id="election5"
+        [features]="2"
+        defaultElectionMethod="Borda"
+        [defaultCandidates]="[[40, 115+10],[177, 185+10], [224, 118+10]]"
+        [defaultVoterGroups]="[[75, 120+10], [225, 120+10]]"
+    />
 </div>
 <div class="words">
 
