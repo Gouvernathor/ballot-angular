@@ -64,7 +64,7 @@ export class ElectionService {
     private readonly votingService = inject(VotingService);
     private readonly tallyService = inject(TallyService);
 
-    makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): Candidate[] {
+    makeDefaultCandidates(numCandidates: 1|2|3|4|5 = 3): readonly Candidate[] {
         const startAngle =
             numCandidates === 3 ?
                 Math.PI / 6 :
@@ -177,7 +177,7 @@ export class ElectionService {
     }
     generateCondorcetResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
-        candidates: Candidate[],
+        candidates: readonly Candidate[],
     ): CondorcetResultInformation {
         const tally = this.tallyService.tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));

@@ -19,7 +19,11 @@ HOW DO THE ALTERNATIVES HOLD UP?
     </span>
     </p>
 
-    <!-- <iframe src="play/election1.html" width="800" height="380" scrolling="no"></iframe> -->
+    <app-election-model id="election1"
+        defaultElectionMethod="FPTP"
+        [defaultCandidates]="election1DefaultCandidates"
+        [defaultVoterGroups]="election1DefaultVoterGroups"
+    />
 </div>
 <div class="words">
 
