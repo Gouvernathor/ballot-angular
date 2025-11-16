@@ -1,13 +1,17 @@
 :host {
-    // overflow: hidden;
     margin-bottom: 10px;
-    // TODO make it flex and enable setting a number of lines
+}
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+
+    column-gap: 4px;
+    row-gap: 5px;
 }
 
 .button-group-label {
     font-weight: bold;
     font-size: 19px;
-    margin-bottom: 5px;
     line-height: 1.1em;
 }
 
@@ -19,11 +23,11 @@ button {
     font-size: 18px;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 5px;
-    padding: 2px 0;
+    padding: 2px;
+    border: none;
+    line-height: 30px;
 
-    // position: relative;
-    // top: 0;
+    flex: 1;
 
     transition: all 0.1s;
 }
