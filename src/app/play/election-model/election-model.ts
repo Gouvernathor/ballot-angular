@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, signal, viewChild } from '@angular/core';
 import { Opinions } from '../../core/candidate';
 import { ElectionMethodId, ElectionService } from '../../core/election';
 import { VotingService } from '../../core/voting';
@@ -73,13 +73,14 @@ export class ElectionModel {
         this.candidates.set(this.electionService.makeCandidates(this.defaultCandidates()));
         this.voterGroups.set(this.electionService.makeVoterGroups(this.defaultVoterGroups()));
     }
+    readonly descriptionElement = viewChild.required<HTMLTextAreaElement>("description");
     readonly saveUrl = signal("");
     save() {
         this.saveUrl.set(this.saveService.getUrl({
             electionMethod: this.electionMethod(),
             candidates: this.candidates().map(c => c.getOpinions()),
             voters: Array.from(this.voterGroups().values(), vg => vg.getReferenceOpinions()),
-            description: this.description(),
+            description: this.descriptionElement().value,
         }));
     }
 
