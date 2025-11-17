@@ -27,3 +27,28 @@
     width: 220px;
     overflow-y: auto;
 }
+
+:host.sandbox {
+    button.reset,
+    button.save {
+        background: white;
+        color: #888;
+        border: 1px solid #888;
+    }
+
+    button.reset:hover,
+    button.save:hover {
+        margin-block: 0;
+        background: white;
+        color: #bbb;
+        border-color: #bbb;
+        border-block-end-color: #888;
+    }
+
+    button.reset:active,
+    button.save:active {
+        margin-block: 0;
+        background: white;
+        border-block-end-color: #888;
+    }
+}
