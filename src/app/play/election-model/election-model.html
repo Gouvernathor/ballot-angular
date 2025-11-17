@@ -1,7 +1,5 @@
 @if (features() >= ElectionModelFeatures.FullSandbox) {
-    <div class="description_container">
-        <textarea class="description_text" [value]="description()"></textarea>
-    </div>
+    <textarea class="description" [value]="description()"></textarea>
 }
 
 <div class="threeparts-container">
@@ -88,13 +86,15 @@
     </div>
 </div>
 
-<button class="reset" (click)="reset()">reset</button>
+<div class="buttons-bottom">
+    <button class="reset" (click)="reset()">reset</button>
 
-@if (features() >= ElectionModelFeatures.FullSandbox) {
-    <button class="save" (click)="save()">save:</button>
+    @if (features() >= ElectionModelFeatures.FullSandbox) {
+        <button class="save" (click)="save()">save:</button>
 
-    <input class="savelink"
-        placeholder="[when you save your model, a link you can copy will show up here]"
-        readonly
-    />
-}
+        <input class="savelink"
+            placeholder="[when you save your model, a link you can copy will show up here]"
+            readonly
+        />
+    }
+</div>

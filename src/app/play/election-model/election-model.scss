@@ -3,7 +3,7 @@
 :host {
     display: flex;
     flex-direction: column;
-    row-gap: 1em;
+    row-gap: 16px;
     align-items: center;
 }
 
@@ -50,5 +50,33 @@
         margin-block: 0;
         background: white;
         border-block-end-color: #888;
+    }
+
+    textarea.description {
+        width: 778px;
+        height: 97px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    textarea,
+    input {
+        display: block;
+        border: 1px solid #bbb;
+        resize: none;
+        font-family: Arial, sans-serif;
+    }
+
+    .buttons-bottom {
+        display: flex;
+        column-gap: 10px;
+        inline-size: 100%;
+    }
+
+    .savelink {
+        flex: 1;
+        padding: 8px;
+
+        user-select: all;
     }
 }
