@@ -15,5 +15,5 @@ export type CandidateShape =
 
 export interface Candidate extends HasOpinions {
     readonly shape: CandidateShape;
-    readonly getOpinions: WritableSignal<readonly [number, number]>;
+    readonly getOpinions: WritableSignal<Opinions>;
 }

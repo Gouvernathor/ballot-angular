@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { Opinions } from '../../core/candidate';
 import { ElectionMethodId, ElectionService } from '../../core/election';
 import { VotingService } from '../../core/voting';
@@ -12,6 +12,7 @@ import { CondorcetResult } from "../election-result/condorcet-result";
 import { ApprovalResult } from "../election-result/approval-result";
 import { ScoreResult } from "../election-result/score-result";
 import { ButtonGroup, ButtonOption } from "./button-group/button-group";
+import { SaveService } from '../../save/save';
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -33,6 +34,7 @@ export class ElectionModel {
     private readonly votingService = inject(VotingService);
     readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
+    private readonly saveService = inject(SaveService);
 
     readonly description = input("");
     readonly features = input(ElectionModelFeatures.Basic);
@@ -71,8 +73,14 @@ export class ElectionModel {
         this.candidates.set(this.electionService.makeCandidates(this.defaultCandidates()));
         this.voterGroups.set(this.electionService.makeVoterGroups(this.defaultVoterGroups()));
     }
+    readonly saveUrl = signal("");
     save() {
-        // TODO
+        this.saveUrl.set(this.saveService.getUrl({
+            electionMethod: this.electionMethod(),
+            candidates: this.candidates().map(c => c.getOpinions()),
+            voters: Array.from(this.voterGroups().values(), vg => vg.getReferenceOpinions()),
+            description: this.description(),
+        }));
     }
 
     private readonly votingMethods = {
