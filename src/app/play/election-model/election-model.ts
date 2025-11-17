@@ -17,7 +17,7 @@ export enum ElectionModelFeatures {
     Basic = 1,
     Voters,
     VotersAndCandidates,
-    VotersAndCandidatesAndSave,
+    FullSandbox,
 }
 
 @Component({
@@ -25,6 +25,9 @@ export enum ElectionModelFeatures {
     imports: [VotingModel, FPTPResult, IrvResult, BordaResult, CondorcetResult, ApprovalResult, ScoreResult, ButtonGroup],
     templateUrl: './election-model.html',
     styleUrl: './election-model.scss',
+    host: {
+        "[class.sandbox]": "features() >= ElectionModelFeatures.FullSandbox",
+    }
 })
 export class ElectionModel {
     private readonly votingService = inject(VotingService);

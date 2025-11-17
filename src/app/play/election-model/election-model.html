@@ -1,4 +1,4 @@
-@if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
+@if (features() >= ElectionModelFeatures.FullSandbox) {
     <!-- description_container (only for the sandbox, maybe to be put in the routed component) -->
 }
 
@@ -89,7 +89,7 @@
 <!-- reset button -->
 <button class="reset" (click)="reset()">reset</button>
 
-@if (features() >= ElectionModelFeatures.VotersAndCandidatesAndSave) {
+@if (features() >= ElectionModelFeatures.FullSandbox) {
     <!-- save button -->
 
     <!-- link readonly input -->
