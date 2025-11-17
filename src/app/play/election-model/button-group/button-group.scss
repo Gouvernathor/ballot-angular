@@ -1,4 +1,5 @@
 :host {
+    display: block;
     margin-bottom: 10px;
 }
 .button-group {
@@ -11,8 +12,9 @@
 
 .button-group-label {
     font-weight: bold;
-    font-size: 19px;
+    font-size: 1.2rem;
     line-height: 1.1em;
+    margin-block-end: 5px;
 }
 
 button {
@@ -20,7 +22,7 @@ button {
     cursor: pointer;
     background: #bbb;
     color: #555;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 300;
     text-align: center;
     padding: 2px;
