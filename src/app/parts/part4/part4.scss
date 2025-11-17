@@ -1,1 +1,15 @@
 @use "../parts.scss";
+
+#sandbox {
+    background: #efe9d5;
+    margin-block-start: 50px;
+    border-block-end: 5px solid rgb(0, 0, 0, .2);
+    padding-block: 30px;
+    padding-inline: 0;
+}
+
+.sim-sandbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
