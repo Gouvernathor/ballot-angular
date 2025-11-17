@@ -1,5 +1,7 @@
 @if (features() >= ElectionModelFeatures.FullSandbox) {
-    <!-- description_container (only for the sandbox, maybe to be put in the routed component) -->
+    <div class="description_container">
+        <textarea class="description_text" [value]="description()"></textarea>
+    </div>
 }
 
 <div class="threeparts-container">
@@ -86,11 +88,13 @@
     </div>
 </div>
 
-<!-- reset button -->
 <button class="reset" (click)="reset()">reset</button>
 
 @if (features() >= ElectionModelFeatures.FullSandbox) {
-    <!-- save button -->
+    <button class="save" (click)="save()">save:</button>
 
-    <!-- link readonly input -->
+    <input class="savelink"
+        placeholder="[when you save your model, a link you can copy will show up here]"
+        readonly
+    />
 }

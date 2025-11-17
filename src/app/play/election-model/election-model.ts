@@ -34,6 +34,7 @@ export class ElectionModel {
     readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
 
+    readonly description = input("");
     readonly features = input(ElectionModelFeatures.Basic);
     readonly ElectionModelFeatures = ElectionModelFeatures; // Expose enum to template
     readonly defaultElectionMethod = input<ElectionMethodId>("FPTP");
@@ -69,6 +70,9 @@ export class ElectionModel {
         this.electionMethod.set(this.defaultElectionMethod());
         this.candidates.set(this.electionService.makeCandidates(this.defaultCandidates()));
         this.voterGroups.set(this.electionService.makeVoterGroups(this.defaultVoterGroups()));
+    }
+    save() {
+        // TODO
     }
 
     private readonly votingMethods = {
