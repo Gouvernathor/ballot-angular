@@ -1,10 +1,8 @@
 import { ActivatedRouteSnapshot, ResolveFn } from "@angular/router";
-import { ElectionModelFeatures } from "../play/election-model/election-model";
 import { Opinions } from "../core/candidate";
 
 interface SandboxResolver {
     description: ResolveFn<string|undefined>;
-    features: ResolveFn<ElectionModelFeatures.FullSandbox>;
     defaultElectionMethod: ResolveFn<string|undefined>;
     defaultCandidates: ResolveFn<readonly Opinions[]|undefined>;
     defaultVoterGroups: ResolveFn<readonly Opinions[]|undefined>;
@@ -28,7 +26,6 @@ export const sandboxResolvers: SandboxResolver = {
         const qpm = route.queryParamMap;
         return qpm.get("d") ?? qpm.get("description") ?? undefined;
     },
-    features: () => ElectionModelFeatures.FullSandbox,
     defaultElectionMethod: (route) => {
         const qpm = route.queryParamMap;
         return qpm.get("s") ?? qpm.get("electionMethod") ?? undefined;

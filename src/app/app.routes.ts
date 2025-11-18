@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Index } from './+index';
-import { ElectionModel } from './play/election-model/election-model';
+import { Sandbox } from './+sandbox/sandbox';
 import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
 
 export const routes: Routes = [{
@@ -8,6 +8,6 @@ export const routes: Routes = [{
     component: Index,
 }, {
     path: 'sandbox',
-    component: ElectionModel,
+    component: Sandbox,
     resolve: sandboxResolvers,
 }];

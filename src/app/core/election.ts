@@ -8,7 +8,18 @@ import { TallyService } from './tally';
 import { CastBallotSignalType, VotingService } from './voting';
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
 
-export type ElectionMethodId = "FPTP" | "IRV" | "Borda" | "Condorcet" | "Approval" | "Score";
+const ELECTION_METHOD_IDS = [
+    "FPTP",
+    "IRV",
+    "Borda",
+    "Condorcet",
+    "Approval",
+    "Score",
+] as const;
+export type ElectionMethodId = typeof ELECTION_METHOD_IDS[number];
+export function isElectionMethodId(value: string|undefined): value is ElectionMethodId {
+    return (ELECTION_METHOD_IDS as readonly string[]).includes(value ?? "");
+}
 
 export interface FPTPResultInformation {
     tally: Simple<Candidate>;
