@@ -1,1 +1,88 @@
 @use "../parts.scss";
+
+:host {
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    background: #222;
+    padding-block: 30px;
+    padding-inline: 0;
+    display: flow-root;
+}
+
+p {
+    color: #999;
+}
+
+h1,
+h2,
+p b,
+p strong {
+    color: #fff;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+a {
+    font-weight: bold;
+    color: #cc2727;
+}
+a:hover {
+    color: #dd3838;
+}
+
+.credits {
+    max-width: 960px;
+    margin-block-start: 25px;
+    margin-block-end: 50px;
+    margin-inline: auto;
+    text-align: justify;
+}
+
+#uncopyright {
+    // width: 100%;
+    // min-height: 180px;
+    margin-block-end: 40px;
+}
+
+#appendix_container {
+    // width: 100%;
+    display: flow-root;
+    padding-block-start: 2px;
+}
+.appendix_title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+#further_reading {
+    // min-width: 600px;
+    // float: left;
+    color: #888;
+}
+.further_book {
+    font-size: 1.125rem;
+    display: flow-root;
+
+    img {
+        width: 100px;
+        // float: left;
+        margin-inline-end: 20px;
+    }
+}
+
+// #supporters
+
+ul.share-buttons {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-block-start: 5px;
+    margin-block-end: 50px;
+
+    li {
+        display: inline;
+    }
+}
