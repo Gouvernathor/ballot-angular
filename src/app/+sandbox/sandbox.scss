@@ -1,0 +1,22 @@
+:host {
+    line-height: 1.5em;
+}
+
+app-election-model {
+    max-width: 802px;
+
+    margin-block: 20px;
+    margin-inline: auto;
+}
+
+#content {
+    background: #ddd;
+    display: flow-root;
+}
+
+#content .words {
+    width: 600px;
+    margin-block: 30px;
+    margin-inline: auto;
+    text-align: justify;
+}
