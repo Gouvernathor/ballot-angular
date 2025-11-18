@@ -21,8 +21,8 @@
                 [options]="voterGroupNumberOptions"
                 (choice)="voterGroups.set(electionService.makeVoterGroups($event))"
             />
-
         }
+
         @if (features() >= ElectionModelFeatures.VotersAndCandidates) {
             <app-button-group
                 question="how many candidates?"
