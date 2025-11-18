@@ -1,8 +1,7 @@
 <p class="small">
     @for (candidate of candidates(); track candidate.shape) {
-        {{candidate.shape}}: {{results().tally.get(candidate)}}
-        @if (verbose()) {
-            <!-- the lines are collapsed to avoid a space before the comma -->
+        <!-- the lines are collapsed (twice) to avoid a space before the comma -->
+        {{candidate.shape}}: {{results().tally.get(candidate)}}@if (verbose()) {
             votes} @if ($index < candidates().length-1) {,
         }
     }
