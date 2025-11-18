@@ -32,7 +32,7 @@ export class SaveService {
     readonly window = inject(DOCUMENT).defaultView!;
 
     getUrl(payload: SavePayload): string {
-        const tree = this.router.createUrlTree(["sandbox"], { queryParams: payload });
+        const tree = this.router.createUrlTree(["sandbox"], { queryParams: this.shorten(payload) });
         return new URL(
             this.locationStrategy.prepareExternalUrl(this.router.serializeUrl(tree)),
             this.window.location.href,
