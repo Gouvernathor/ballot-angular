@@ -41,7 +41,7 @@ a:hover {
     text-align: justify;
 }
 
-#uncopyright {
+.uncopyright {
     // width: 100%;
     // min-height: 180px;
     margin-block-end: 40px;
@@ -49,6 +49,8 @@ a:hover {
     .pubdom {
         font-size: 5.7rem;
         color: #fff;
+        margin: 0;
+        text-align: center;
 
         line-height: 1em;
     }
