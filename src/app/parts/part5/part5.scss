@@ -42,17 +42,32 @@ a:hover {
 }
 
 .uncopyright {
-    // width: 100%;
-    // min-height: 180px;
     margin-block-end: 40px;
 
-    .pubdom {
-        font-size: 5.7rem;
-        color: #fff;
-        margin: 0;
-        text-align: center;
+    display: flex;
+    justify-content: space-between;
 
-        line-height: 1em;
+    img {
+        height: 100%;
+    }
+
+    .uncopyright-text {
+        width: fit-content;
+        width: 78%;
+        font-size: 1.25rem;
+
+        p {
+            margin: 0;
+            line-height: unset;
+        }
+        .pubdom {
+            font-size: 5.7rem;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+
+            line-height: 1em;
+        }
     }
 }
 
