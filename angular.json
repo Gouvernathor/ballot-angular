@@ -4,6 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "ballot": {
+      "i18n": {
+        "sourceLocale": "en-CA"
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
