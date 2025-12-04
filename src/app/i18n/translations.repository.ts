@@ -15,19 +15,15 @@ type TranslationsStore = {
     [key in SupportedLanguage]: TranslationStore;
 }
 
-async function getLanguageStore(lang: SupportedLanguage) {
-    return await (import(`../assets/tl/${lang}.json`) as Promise<TranslationStore>);
+function getLanguageStore(lang: SupportedLanguage) {
+    return import(`../assets/tl/${lang}.json`) as Promise<TranslationStore>;
 }
 function* makeMainStoreEntries() {
     for (const lang of supportedLanguages) {
-        yield (async () => [lang, await getLanguageStore(lang)] as const)();
+        yield getLanguageStore(lang).then(store => [lang, store] as const);
     }
 }
-async function makeMainStore() {
-    const a = await Promise.all(makeMainStoreEntries());
-    return Object.fromEntries(a) as TranslationsStore;
-}
-const mainStore: TranslationsStore = await makeMainStore();
+const mainStore = Object.fromEntries(await Promise.all(makeMainStoreEntries())) as TranslationsStore;
 
 @Injectable({
     providedIn: 'root',
