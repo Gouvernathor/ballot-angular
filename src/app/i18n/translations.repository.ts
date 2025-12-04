@@ -16,7 +16,7 @@ export type TranslationsStore = {
 }
 
 function getLanguageStore(lang: SupportedLanguage) {
-    return import(`../assets/tl/${lang}.json`) as Promise<TranslationStore>;
+    return import(`../assets/tl/${lang}.json`).then(module => module.default) as Promise<TranslationStore>;
 }
 function* makeMainStoreEntries() {
     for (const lang of supportedLanguages) {
