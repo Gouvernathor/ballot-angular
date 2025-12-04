@@ -6,12 +6,12 @@ const supportedLanguages = [
     "ar",
     "ru",
 ] as const;
-type SupportedLanguage = (typeof supportedLanguages)[number];
+export type SupportedLanguage = (typeof supportedLanguages)[number];
 
-type TranslationStore = {
+export type TranslationStore = {
     readonly [key in string]?: string | TranslationStore;
 }
-type TranslationsStore = {
+export type TranslationsStore = {
     readonly [key in SupportedLanguage]: TranslationStore;
 }
 
@@ -30,4 +30,5 @@ const mainStore = Object.fromEntries(await Promise.all(makeMainStoreEntries())) 
 })
 export class TranslationsRepository {
     readonly supportedLanguages = supportedLanguages;
+    readonly mainStore = mainStore;
 }
