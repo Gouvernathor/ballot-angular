@@ -1,7 +1,7 @@
 import { computed, DOCUMENT, inject, Injectable, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { TranslationsRepository } from './translations.repository';
+import { SupportedLanguage, TranslationsRepository } from './translations.repository';
 
 @Injectable({
     providedIn: 'root',
@@ -12,25 +12,26 @@ export class LanguageService {
     private readonly translationsRepository = inject(TranslationsRepository);
 
     private readonly routeData = toSignal(this.route.data);
-    private readonly routeLanguage = computed(() => this.routeData()?.["lang"] as string | undefined);
+    private readonly routeLanguage = computed(() => this.routeData()?.["lang"] as SupportedLanguage | undefined);
 
-    private readonly bareLanguages = this.translationsRepository.supportedLanguages.map(lang => lang.split("-")[0]);
-
-    private browserChosenLanguage(): string | undefined {
+    private browserChosenLanguage(): SupportedLanguage | undefined {
         const nav = this.window?.navigator;
 
         if (nav?.languages?.length) {
             for (const lang of nav.languages) {
                 const bare = lang.split("-")[0];
-                const matched = this.translationsRepository.supportedLanguages.find(supported => supported === lang)
-                    ?? this.bareLanguages.find(supported => supported === bare);
+                const matched = this.translationsRepository.supportedLanguages.find(supported =>
+                    supported === lang || supported.split("-")[0] === bare);
                 if (matched) {
                     return matched;
                 }
             }
         }
 
-        return nav?.language;
+        const language = nav?.language;
+        const bare = language?.split("-")[0];
+        return this.translationsRepository.supportedLanguages.find(supported =>
+            supported === language || supported.split("-")[0] === bare);
     }
     private readonly browserLanguage = signal(this.browserChosenLanguage());
     constructor() {
