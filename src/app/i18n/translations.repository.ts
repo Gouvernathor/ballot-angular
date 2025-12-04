@@ -9,10 +9,10 @@ const supportedLanguages = [
 type SupportedLanguage = (typeof supportedLanguages)[number];
 
 type TranslationStore = {
-    [key in string]?: string | TranslationStore;
+    readonly [key in string]?: string | TranslationStore;
 }
 type TranslationsStore = {
-    [key in SupportedLanguage]: TranslationStore;
+    readonly [key in SupportedLanguage]: TranslationStore;
 }
 
 function getLanguageStore(lang: SupportedLanguage) {
