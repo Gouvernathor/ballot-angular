@@ -10,13 +10,13 @@ export class TranslateService {
     private readonly languageService = inject(LanguageService);
 
     doesKeyExist(key: string, lang: SupportedLanguage = this.languageService.currentLanguage()): boolean {
-        const store = this.translationsRepository.mainStore[lang];
+        const store = this.translationsRepository.getLanguageStore(lang);
         const val = store[key];
         return typeof val === "string";
     }
 
     private getTranslation(key: string, lang: SupportedLanguage): string | undefined {
-        let store = this.translationsRepository.mainStore[lang];
+        let store = this.translationsRepository.getLanguageStore(lang);
         while (key) {
             const value = store[key];
             if (typeof value === "string") {

@@ -30,5 +30,7 @@ const mainStore = Object.fromEntries(await Promise.all(makeMainStoreEntries())) 
 })
 export class TranslationsRepository {
     readonly supportedLanguages = supportedLanguages;
-    readonly mainStore = mainStore;
+    getLanguageStore(lang: SupportedLanguage) {
+        return mainStore[lang];
+    }
 }
