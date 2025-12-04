@@ -14,7 +14,7 @@ export class ReplaceInnerHTMLByKey {
     */
 
     private readonly renderer = inject(Renderer2);
-    private readonly elementRef = inject(ElementRef<HTMLElement>);
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     private readonly translateService = inject(TranslateService);
 
     readonly key = input.required<string>();
@@ -23,15 +23,8 @@ export class ReplaceInnerHTMLByKey {
 
     constructor() {
         effect(() => {
-            const element = this.elementRef.nativeElement;
-
-            const translation = this.translateService.getTranslation(this.key());
-
-            if (translation === undefined) {
-                element.innerHTML = this.originalInnerHTML;
-            } else {
-                element.innerHTML = translation;
-            }
+            const translation = this.translateService.getTranslation(this.key()) ?? this.originalInnerHTML;
+            this.renderer.setProperty(this.elementRef.nativeElement, 'innerHTML', translation);
         });
     }
 }
