@@ -9,12 +9,6 @@ export class TranslateService {
     private readonly translationsRepository = inject(TranslationsRepository);
     private readonly languageService = inject(LanguageService);
 
-    doesKeyExist(key: string, lang: SupportedLanguage = this.languageService.currentLanguage()): boolean {
-        const store = this.translationsRepository.getLanguageStore(lang);
-        const val = store[key];
-        return typeof val === "string";
-    }
-
     /**
      * This should only be called directly from a signal/computed context
      * for optimization reasons.
