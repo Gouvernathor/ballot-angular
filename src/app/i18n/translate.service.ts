@@ -21,16 +21,19 @@ export class TranslateService {
      */
     getTranslation(key: string, lang: SupportedLanguage = this.languageService.currentLanguage()): string | undefined {
         let store = this.translationsRepository.getLanguageStore(lang);
-        while (key) {
+        while (store && key) {
             const value = store[key];
             if (typeof value === "string") {
                 return value;
             } else if (typeof value === "object" && value !== null) {
-                key = key.split(".", 2)[1];
-                store = value as any;
-            } else {
+                // exact match, does not point to a key
                 return undefined;
             }
+
+            // no match, try nested key
+            const parts = key.split(".", 2);
+            store = store[parts[0]] as any;
+            key = parts[1];
         }
         return undefined;
     }
