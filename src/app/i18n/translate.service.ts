@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, Signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SupportedLanguage, TranslationsRepository } from './translations.repository';
 import { LanguageService } from './language.service';
 
@@ -15,7 +15,11 @@ export class TranslateService {
         return typeof val === "string";
     }
 
-    private getTranslation(key: string, lang: SupportedLanguage): string | undefined {
+    /**
+     * This should only be called directly from a signal/computed context
+     * for optimization reasons.
+     */
+    getTranslation(key: string, lang: SupportedLanguage = this.languageService.currentLanguage()): string | undefined {
         let store = this.translationsRepository.getLanguageStore(lang);
         while (key) {
             const value = store[key];
@@ -29,9 +33,5 @@ export class TranslateService {
             }
         }
         return undefined;
-    }
-
-    getTranslationSignal(key: string, lang?: SupportedLanguage): Signal<string|undefined> {
-        return computed(() => this.getTranslation(key, lang ?? this.languageService.currentLanguage()));
     }
 }
