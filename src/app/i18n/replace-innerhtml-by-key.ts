@@ -17,7 +17,7 @@ export class ReplaceInnerHTMLByKey {
     private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     private readonly translateService = inject(TranslateService);
 
-    readonly key = input.required<string>();
+    readonly key = input.required<string>({ alias: 'appReplaceInnerHTMLByKey' });
 
     private readonly originalInnerHTML = this.elementRef.nativeElement.innerHTML;
 
