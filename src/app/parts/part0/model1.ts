@@ -29,4 +29,6 @@ export class Model1 {
     );
     readonly winner = computed(() =>
         this.castBallots().values()[Symbol.iterator]().next().value!()[0]);
+    readonly winnerColor = computed(() =>
+        this.candidatesDisplayService.getColor(this.winner()));
 }
