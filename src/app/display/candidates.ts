@@ -10,28 +10,31 @@ const COLORS: { readonly [k in CandidateShape]: string } = {
     bob: "hsl(30, 80%, 70%)",
 };
 
-const EN_CA_FULL_NAMES: { readonly [k in CandidateShape]: string } = {
-    square: "Steven Square",
-    triangle: "Tracy Triangle",
-    hexagon: "Henry Hexagon",
-    pentagon: "Percival Pentagon",
-    bob: "Bob",
-};
+const SHORT_NAMES: { readonly [l in SupportedLanguage]?: { readonly [k in CandidateShape]: string } } = {
+    "fr-FR": {
+        square: "Carré",
+        triangle: "Triangle",
+        hexagon: "Hexagone",
+        pentagon: "Pentagone",
+        bob: "Bob",
+    },
+}
 
-const FR_FR_NAMES: { readonly [k in CandidateShape]: string } = {
-    square: "Carré",
-    triangle: "Triangle",
-    hexagon: "Hexagone",
-    pentagon: "Pentagone",
-    bob: "Bob",
-};
-
-const FR_FR_FULL_NAMES: { readonly [k in CandidateShape]: string } = {
-    square: "Céline Carré",
-    triangle: "Thomas Triangle",
-    hexagon: "Henri Hexagone",
-    pentagon: "Pascal Pentagone",
-    bob: "Bob",
+const FULL_NAMES: { readonly [l in SupportedLanguage]?: { readonly [k in CandidateShape]: string } } = {
+    "en-CA": {
+        square: "Steven Square",
+        triangle: "Tracy Triangle",
+        hexagon: "Henry Hexagon",
+        pentagon: "Percival Pentagon",
+        bob: "Bob",
+    },
+    "fr-FR": {
+        square: "Céline Carré",
+        triangle: "Thomas Triangle",
+        hexagon: "Henri Hexagone",
+        pentagon: "Pascal Pentagone",
+        bob: "Bob",
+    },
 };
 
 @Injectable({
@@ -55,24 +58,25 @@ export class CandidatesDisplayService {
     }
 
     getLocalizedName(candidate: Candidate, lang: SupportedLanguage): string {
-        switch (lang) {
-            case "en-CA":
-                return candidate.shape;
-            case "fr-FR":
-                return FR_FR_NAMES[candidate.shape];
-            default:
-                return `${candidate.shape} (no tl for ${lang})`;
+        if (lang === "en-CA") {
+            // special case
+            return candidate.shape;
         }
+
+        const shortNames = SHORT_NAMES[lang];
+        if (shortNames) {
+            return shortNames[candidate.shape];
+        }
+
+        return `${candidate.shape} (no tl for ${lang})`;
     }
 
     getLocalizedFullName(candidate: Candidate, lang: SupportedLanguage): string {
-        switch (lang) {
-            case "en-CA":
-                return EN_CA_FULL_NAMES[candidate.shape];
-            case "fr-FR":
-                return FR_FR_FULL_NAMES[candidate.shape];
-            default:
-                return `${candidate.shape} (no full-name tl for ${lang})`;
+        const fullNames = FULL_NAMES[lang];
+        if (fullNames) {
+            return fullNames[candidate.shape];
         }
+
+        return `${candidate.shape} (no full-name tl for ${lang})`;
     }
 }
