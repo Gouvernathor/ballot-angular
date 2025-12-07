@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Candidate } from '../core/candidate';
+import { Candidate, CandidateShape } from '../core/candidate';
 
-const COLORS: { readonly [k in Candidate["shape"]]: string } = {
+const COLORS: { readonly [k in CandidateShape]: string } = {
     square: "hsl(240, 80%, 70%)",
     triangle: "hsl(45, 80%, 70%)",
     hexagon: "hsl(0, 80%, 70%)",
