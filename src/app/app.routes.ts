@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Index } from './+index';
 import { Sandbox } from './+sandbox/sandbox';
 import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
-import { Index as FrFrIndex } from './tl/fr-FR/+index';
+import { FrFrIndex } from './tl/fr-FR/+index';
 
 export const routes: Routes = [
     {

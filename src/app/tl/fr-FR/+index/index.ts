@@ -8,5 +8,5 @@ import { FrFrPart0 } from "../parts/part0/part0";
     templateUrl: './index.html',
     styleUrl: './index.scss',
 })
-export class Index {
+export class FrFrIndex {
 }
