@@ -1,5 +1,11 @@
 @use "../parts.scss";
 
+h2 {
+    font-size: 2em;
+    margin-block-start: 30px;
+    margin-block-end: 15px;
+}
+
 #sandbox {
     background: #efe9d5;
     margin-block-start: 50px;
