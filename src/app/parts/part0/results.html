@@ -1,10 +1,19 @@
 <p class="small">
     @for (candidate of candidates(); track candidate.shape) {
         <!-- the lines are collapsed (twice) to avoid a space before the comma -->
-        {{candidate.shape}}: {{results().tally.get(candidate)}}@if (verbose()) {
+        {{ getName(candidate) }}: {{ results().tally.get(candidate) }}@if (verbose()) {
             votes} @if ($index < candidates().length-1) {,
         }
     }
 </p>
 
-<p><b [style.color]="candidateDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>
+<p>
+    @switch (lang) {
+        @case ("en-CA") {
+            <b [style.color]="winnerColor()">{{getName(winner()).toUpperCase()}}</b> WINS
+        }
+        @case ("fr-FR") {
+            <b [style.color]="winnerColor()">{{getName(winner()).toUpperCase()}}</b> A GAGNÉ
+        }
+    }
+</p>
