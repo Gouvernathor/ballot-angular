@@ -1,14 +1,14 @@
 @if (splash()) {
     <app-splash/>
 }
-<div class="banner_title">
+<header class="banner_title">
     @if (title1()) {
         <h1 class="title">{{title1()}}</h1>
     }
     @if (title2()) {
-        <h2 class="sub-title">{{title2()}}</h2>
+        <p class="sub-title">{{title2()}}</p>
     }
     @if (comment()) {
         <p class="comment">{{comment()}}</p>
     }
-</div>
+</header>
