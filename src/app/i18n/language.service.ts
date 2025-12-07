@@ -1,6 +1,4 @@
-import { computed, DOCUMENT, inject, Injectable, InjectionToken, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { DOCUMENT, inject, Injectable, InjectionToken, signal } from '@angular/core';
 
 const supportedLanguages = [
     "en-CA",
@@ -10,6 +8,11 @@ const supportedLanguages = [
 ] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
+/**
+ * The current language.
+ * Set for every route by the router.
+ * Injectable only in components (those routed to by the router, and their children).
+ */
 export const LANG = new InjectionToken<SupportedLanguage>("LANG");
 
 @Injectable({
@@ -17,9 +20,6 @@ export const LANG = new InjectionToken<SupportedLanguage>("LANG");
 })
 export class LanguageService {
     private readonly window = inject(DOCUMENT).defaultView;
-    private readonly routeLanguage = inject(LANG); // TODO won't work : a root-level injectable can't get non-root injectables
-
-    readonly supportedLanguages = supportedLanguages;
 
     private browserChosenLanguage(): SupportedLanguage | undefined {
         const nav = this.window?.navigator;
@@ -46,6 +46,4 @@ export class LanguageService {
             this.browserLanguage.set(this.browserChosenLanguage());
         });
     }
-
-    readonly currentLanguage = computed(() => this.routeLanguage ?? this.browserLanguage() ?? supportedLanguages[0]);
 }
