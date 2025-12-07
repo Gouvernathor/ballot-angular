@@ -1,5 +1,15 @@
 <p class="headline">
-    Who's your favorite candidate? (pick only one)
+    @switch (lang) {
+        @case ("en-CA") {
+            Who's your favorite candidate? (pick only one)
+        }
+        @case ("fr-FR") {
+            Quel candidat préférez-vous&nbsp;? (choisissez-en un seul)
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
 </p>
 
 <ul>
