@@ -15,5 +15,8 @@
         @case ("fr-FR") {
             <b [style.color]="winnerColor()">{{getName(winner()).toUpperCase()}}</b> A GAGNÉ
         }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
     }
 </p>
