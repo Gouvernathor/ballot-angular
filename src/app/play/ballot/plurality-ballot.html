@@ -1,7 +1,9 @@
-<p class="headline">Who's your favorite candidate? (pick only one)</p>
+<p class="headline">
+    Who's your favorite candidate? (pick only one)
+</p>
 
 <ul>
-    <li><img [src]="src('square')" /> Steven Square</li>
-    <li><img [src]="src('triangle')" /> Tracy Triangle</li>
-    <li><img [src]="src('hexagon')" /> Henry Hexagon</li>
+    <li><img [src]="src('square')" /> {{ getFullName("square") }}</li>
+    <li><img [src]="src('triangle')" /> {{ getFullName("triangle") }}</li>
+    <li><img [src]="src('hexagon')" /> {{ getFullName("hexagon") }}</li>
 </ul>

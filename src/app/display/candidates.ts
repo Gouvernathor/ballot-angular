@@ -71,12 +71,12 @@ export class CandidatesDisplayService {
         return `${candidate.shape} (no tl for ${lang})`;
     }
 
-    getLocalizedFullName(candidate: Candidate, lang: SupportedLanguage): string {
+    getLocalizedFullName(shape: CandidateShape, lang: SupportedLanguage): string {
         const fullNames = FULL_NAMES[lang];
         if (fullNames) {
-            return fullNames[candidate.shape];
+            return fullNames[shape];
         }
 
-        return `${candidate.shape} (no full-name tl for ${lang})`;
+        return `${shape} (no full-name tl for ${lang})`;
     }
 }
