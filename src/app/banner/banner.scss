@@ -1,4 +1,5 @@
-.banner {
+:host {
+    display: block;
     margin: 0 0 50px 0;
     background: #EFE9D5;
     width: 100%;
@@ -8,13 +9,13 @@
     height: 400px;
 }
 
-.banner > * {
+:host > * {
     margin: 0 auto;
     left: 0;
     right: 0;
     position: absolute;
 }
-.banner .banner_title {
+.banner_title {
     display: block;
     width: 960px;
     height: 200px;
@@ -22,26 +23,26 @@
     top: 0;
     bottom: 0;
     pointer-events: none;
-}
 
-.banner .banner_title * {
-    text-align: center;
-    color: #4f4a45ee;
-}
+    ::ng-deep * {
+        text-align: center;
+        color: #4f4a45ee;
+    }
 
-.banner .banner_title h1 {
-    text-transform: uppercase;
-    font-size: 67px;
-    margin: 0;
-    font-weight: 700;
-}
-.banner .banner_title h2 {
-    font-size: 44px;
-    margin: 0;
-    font-weight: normal;
-}
-.banner .banner_title p {
-    font-size: 25px;
-    margin: 0;
-    margin-top: 50px;
+    ::ng-deep .title {
+        text-transform: uppercase;
+        font-size: 67px;
+        margin: 0;
+        font-weight: 700;
+    }
+    ::ng-deep .sub-title {
+        font-size: 44px;
+        margin: 0;
+        font-weight: normal;
+    }
+    ::ng-deep .comment {
+        font-size: 25px;
+        margin: 0;
+        margin-top: 50px;
+    }
 }
