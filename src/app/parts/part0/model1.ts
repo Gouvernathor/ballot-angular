@@ -5,6 +5,7 @@ import { VotingModel } from "../../play/voting-model/voting-model";
 import { Candidate } from '../../core/candidate';
 import { VotingService } from '../../core/voting';
 import { CandidatesDisplayService } from '../../display/candidates';
+import { LANG } from '../../i18n/language.service';
 
 @Component({
     selector: 'app-model1',
@@ -15,6 +16,7 @@ import { CandidatesDisplayService } from '../../display/candidates';
 export class Model1 {
     readonly votingService = inject(VotingService);
     readonly candidatesDisplayService = inject(CandidatesDisplayService);
+    readonly lang = inject(LANG);
 
     readonly plurality = makePluralityVotingMethod();
     readonly candidates: readonly Candidate[] = [
@@ -32,5 +34,5 @@ export class Model1 {
     readonly winnerColor = computed(() =>
         this.candidatesDisplayService.getColor(this.winner()));
     readonly winnerName = computed(() =>
-        this.candidatesDisplayService.getLocalizedName(this.winner()));
+        this.candidatesDisplayService.getLocalizedName(this.winner(), this.lang));
 }

@@ -10,21 +10,14 @@ const supportedLanguages = [
 ] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
-export const LANG = new InjectionToken<() => SupportedLanguage>("LANG", { factory() {
-    const route = inject(ActivatedRoute);
-    const routeData = toSignal(route.data);
-    return computed(() => {
-        const lang = routeData()?.["lang"] as SupportedLanguage | undefined;
-        return lang ?? "en-CA";
-    });
-}});
+export const LANG = new InjectionToken<SupportedLanguage>("LANG");
 
 @Injectable({
     providedIn: 'root',
 })
 export class LanguageService {
     private readonly window = inject(DOCUMENT).defaultView;
-    private readonly routeLanguage = inject(LANG);
+    private readonly routeLanguage = inject(LANG); // TODO won't work : a root-level injectable can't get non-root injectables
 
     readonly supportedLanguages = supportedLanguages;
 
@@ -54,5 +47,5 @@ export class LanguageService {
         });
     }
 
-    readonly currentLanguage = computed(() => this.routeLanguage() ?? this.browserLanguage() ?? supportedLanguages[0]);
+    readonly currentLanguage = computed(() => this.routeLanguage ?? this.browserLanguage() ?? supportedLanguages[0]);
 }

@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Candidate, CandidateShape } from '../core/candidate';
-import { LANG } from '../i18n/language.service';
+import { SupportedLanguage } from '../i18n/language.service';
 
 const COLORS: { readonly [k in CandidateShape]: string } = {
     square: "hsl(240, 80%, 70%)",
@@ -22,8 +22,6 @@ const FR_FR_NAMES: { readonly [k in CandidateShape]: string } = {
     providedIn: 'root',
 })
 export class CandidatesDisplayService {
-    private readonly lang = inject(LANG);
-
     getColor(candidate: Candidate): string {
         return COLORS[candidate.shape];
     }
@@ -40,14 +38,14 @@ export class CandidatesDisplayService {
         return `play/icon/${candidate.shape}.svg`;
     }
 
-    getLocalizedName(candidate: Candidate): string {
-        switch (this.lang()) {
+    getLocalizedName(candidate: Candidate, lang: SupportedLanguage): string {
+        switch (lang) {
             case "en-CA":
                 return candidate.shape;
             case "fr-FR":
                 return FR_FR_NAMES[candidate.shape];
             default:
-                return `${candidate.shape} (no tl for ${this.lang()})`;
+                return `${candidate.shape} (no tl for ${lang})`;
         }
     }
 }
