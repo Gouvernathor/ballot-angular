@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Index } from '../../../+index';
 import { Banner } from "../../../banner/banner";
 import { FrFrPart0 } from "../parts/part0/part0";
 
@@ -6,7 +7,7 @@ import { FrFrPart0 } from "../parts/part0/part0";
     selector: 'app-fr-fr-index',
     imports: [Banner, FrFrPart0],
     templateUrl: './index.html',
-    styleUrl: './index.scss',
+    styleUrls: [],
 })
-export class FrFrIndex {
+export class FrFrIndex extends Index {
 }
