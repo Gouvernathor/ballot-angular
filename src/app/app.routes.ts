@@ -18,7 +18,7 @@ export const routes: Routes = [
     // other language routes : the structure should be the same as the routes above
     {
         path: "fr-FR",
-        // data: { lang: "fr-FR" },
+        data: { lang: "fr-FR" },
         children: [
             {
                 path: "",
