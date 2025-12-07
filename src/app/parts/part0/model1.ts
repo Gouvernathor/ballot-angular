@@ -27,8 +27,10 @@ export class Model1 {
         () => this.plurality,
         () => this.voterGroups,
     );
-    readonly winner = computed(() =>
+    private readonly winner = computed(() =>
         this.castBallots().values()[Symbol.iterator]().next().value!()[0]);
     readonly winnerColor = computed(() =>
         this.candidatesDisplayService.getColor(this.winner()));
+    readonly winnerName = computed(() =>
+        this.candidatesDisplayService.getLocalizedName(this.winner()));
 }
