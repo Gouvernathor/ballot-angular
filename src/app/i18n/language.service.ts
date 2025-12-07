@@ -1,4 +1,4 @@
-import { computed, DOCUMENT, inject, Injectable, signal } from '@angular/core';
+import { computed, DOCUMENT, inject, Injectable, InjectionToken, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,17 +10,23 @@ const supportedLanguages = [
 ] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
+export const LANG = new InjectionToken<() => SupportedLanguage>("LANG", { factory() {
+    const route = inject(ActivatedRoute);
+    const routeData = toSignal(route.data);
+    return computed(() => {
+        const lang = routeData()?.["lang"] as SupportedLanguage | undefined;
+        return lang ?? "en-CA";
+    });
+}});
+
 @Injectable({
     providedIn: 'root',
 })
 export class LanguageService {
     private readonly window = inject(DOCUMENT).defaultView;
-    private readonly route = inject(ActivatedRoute);
+    private readonly routeLanguage = inject(LANG);
 
     readonly supportedLanguages = supportedLanguages;
-
-    private readonly routeData = toSignal(this.route.data);
-    private readonly routeLanguage = computed(() => this.routeData()?.["lang"] as SupportedLanguage | undefined);
 
     private browserChosenLanguage(): SupportedLanguage | undefined {
         const nav = this.window?.navigator;
