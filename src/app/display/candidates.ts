@@ -10,11 +10,27 @@ const COLORS: { readonly [k in CandidateShape]: string } = {
     bob: "hsl(30, 80%, 70%)",
 };
 
+const EN_CA_FULL_NAMES: { readonly [k in CandidateShape]: string } = {
+    square: "Steven Square",
+    triangle: "Tracy Triangle",
+    hexagon: "Henry Hexagon",
+    pentagon: "Percival Pentagon",
+    bob: "Bob",
+};
+
 const FR_FR_NAMES: { readonly [k in CandidateShape]: string } = {
     square: "Carré",
     triangle: "Triangle",
     hexagon: "Hexagone",
     pentagon: "Pentagone",
+    bob: "Bob",
+};
+
+const FR_FR_FULL_NAMES: { readonly [k in CandidateShape]: string } = {
+    square: "Céline Carré",
+    triangle: "Thomas Triangle",
+    hexagon: "Henri Hexagone",
+    pentagon: "Pascal Pentagone",
     bob: "Bob",
 };
 
@@ -46,6 +62,17 @@ export class CandidatesDisplayService {
                 return FR_FR_NAMES[candidate.shape];
             default:
                 return `${candidate.shape} (no tl for ${lang})`;
+        }
+    }
+
+    getLocalizedFullName(candidate: Candidate, lang: SupportedLanguage): string {
+        switch (lang) {
+            case "en-CA":
+                return EN_CA_FULL_NAMES[candidate.shape];
+            case "fr-FR":
+                return FR_FR_FULL_NAMES[candidate.shape];
+            default:
+                return `${candidate.shape} (no full-name tl for ${lang})`;
         }
     }
 }
