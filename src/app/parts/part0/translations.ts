@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-translations',
+    selector: '[app-translations]',
     imports: [],
     templateUrl: './translations.html',
     styleUrl: './translations.scss',

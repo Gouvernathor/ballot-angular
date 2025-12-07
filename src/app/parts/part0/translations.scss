@@ -1,4 +1,8 @@
 :host {
+    position: absolute;
+    width: 120px;
+    inset-inline-start: calc(50% + 380px);
+
     font-size: 17px;
 }
 
