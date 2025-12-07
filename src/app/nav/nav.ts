@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: '[app-nav]',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
     styleUrl: './nav.scss',
 })
 export class Nav {
+    readonly originalLabel = input("Original");
+    readonly sourceCodeLabel = input("Full source code here!");
 }
