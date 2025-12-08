@@ -51,3 +51,57 @@
         [defaultVoterGroups]="[[257, 240]]"
     />
 </div>
+
+<div class="words">
+    <p>
+        Qu'est-ce qui s'est passé&nbsp;?
+        Au départ, <img src="hexagon.svg" /> est éliminé dès le premier tour,
+        donc <img src="triangle.svg" /> affronte un <img src="square.svg" /> plus faible, et gagne.
+        Mais en rapprochant les électeurs de <img src="triangle.svg" />,
+        le perdant <em>change&nbsp;!</em>
+        Maintenant, <img src="square.svg" /> est éliminé au premier tour,
+        ce qui fait que <img src="triangle.svg" /> affronte un <img src="hexagon.svg" /> plus fort au second tour, et <em>perd</em>.
+    </p>
+    <p>
+        Avec le second tour instantané, il est possible pour un candidat gagnant de perdre,
+        <em>en devenant plus populaire</em>. Quel bug&nbsp;!
+    </p>
+    <p>
+        Est-ce que c'est si fréquent que ça en conditions réelles&nbsp;?
+        <a href="https://en.wikipedia.org/wiki/Non-negative_responsiveness#Specific_examples">Il y a quelques exemples</a>,
+        et <a href="http://www.rangevoting.org/Monotone.html">des mathématiciens estiment que ce bug pourrait se produire environ 14,5% du temps</a>.
+        Malheureusement, on ne peut pas en être sûr, parce que les états ne publient généralement
+        <em>pas assez d'informations sur les bulletins de vote</em>
+        pour reconstituer une élection en second tour instantané et vérifier les résultats.
+    </p>
+    <p>
+        Donc, le bug du second tour instantané est non seulement aussi antidémocratique que celui du scrutin uninominal majoritaire,
+        mais il est potentiellement <em>pire</em> &ndash; parce qu'alors que le décomptage du scrutin uninominal majoritaire est simple et transparent,
+        celui du second tour instantané est tout l'inverse.
+        Et un manque de transparence est un péché encore plus mortel de nos jours, alors que la confiance envers les gouvernements est déjà si basse.
+    </p>
+    <p>
+        (Mais attendez&nbsp;! On va parler du vote stratégique un peu plus loin.
+        Est-ce que le second tour instantané peut faire un retour inattendu&nbsp;? Suspense&hellip;)
+    </p>
+    <p>
+        L'alternative la plus populaire a fait long feu.
+        Qu'en est-il du second plus populaire, la méthode Borda&nbsp;?
+        Dans cette prochaine simulation, vous allez déplacer un candidat perdant vers un <em>autre</em> candidat perdant.
+        Sous le scrutin uninominal majoritaire, le <i lang="en">spoiler effect</i> diviserait leurs voix,
+        ce qui les descendrait tous les deux encore plus bas.
+        Mais regardez ce qui se passe avec la méthode Borda&hellip;
+    </p>
+</div>
+<div class="sim-test" id="borda-count-spoiler">
+    <p class="caption-test">
+        déplacez <img src="hexagon.svg" /> <em>juste à gauche</em> de <img src="square.svg" />&nbsp;:
+    </p>
+
+    <app-election-model id="election3"
+        [features]="1"
+        defaultElectionMethod="Borda"
+        [defaultCandidates]="[[173, 150], [275, 150], [23, 150]]"
+        [defaultVoterGroups]="[[232, 150]]"
+    />
+</div>
