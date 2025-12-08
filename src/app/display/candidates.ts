@@ -58,14 +58,14 @@ export class CandidatesDisplayService {
     }
 
     getLocalizedName(shape: CandidateShape, lang: SupportedLanguage): string {
-        if (lang === "en-CA") {
-            // special case
-            return shape;
-        }
-
         const shortNames = SHORT_NAMES[lang];
         if (shortNames) {
             return shortNames[shape];
+        }
+
+        if (lang === "en-CA") {
+            // special case
+            return shape;
         }
 
         return `${shape} (no tl for ${lang})`;
