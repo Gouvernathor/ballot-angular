@@ -56,19 +56,16 @@ export class ElectionModel {
         "Score",
     ] as const).map(s => ({ name: this.tlService.getElectionMethodName(s, this.lang), value: s }));
     readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
-    readonly candidateNumberOptions: readonly ButtonOption<2|3|4|5>[] = [
-        { name: 'two', value: 2 },
-        { name: 'three', value: 3 },
-        { name: 'four', value: 4 },
-        { name: 'five', value: 5 },
-    ];
+    readonly candidateNumberOptions: readonly ButtonOption<2|3|4|5>[] = ([2,3,4,5] as const).map(n => ({
+        name: this.tlService.getNumberName(n, this.lang),
+        value: n,
+    }));
     readonly candidates = linkedSignal(() => this.electionService.makeCandidates(this.defaultCandidates()));
     readonly candidateCount = computed(() => this.candidates().length as 2|3|4|5);
-    readonly voterGroupNumberOptions: readonly ButtonOption<1|2|3>[] = [
-        { name: 'one', value: 1 },
-        { name: 'two', value: 2 },
-        { name: 'three', value: 3 },
-    ];
+    readonly voterGroupNumberOptions: readonly ButtonOption<1|2|3>[] = ([1,2,3] as const).map(n => ({
+        name: this.tlService.getNumberName(n, this.lang),
+        value: n,
+    }));
     readonly voterGroups = linkedSignal(() => this.electionService.makeVoterGroups(this.defaultVoterGroups()));
     readonly voterGroupCount = computed(() => this.voterGroups().size as 1|2|3);
 

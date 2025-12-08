@@ -34,6 +34,11 @@ const ELECTION_METHOD_NAMES: { [k in SupportedLanguage]?: { [k in ElectionMethod
     },
 };
 
+const NUMBERS: { [k in SupportedLanguage]?: { [n in 1|2|3|4|5]: string } } = {
+    "en-CA": [, "one", "two", "three", "four", "five" ] as const,
+    "fr-FR": [, "un", "deux", "trois", "quatre", "cinq" ] as const,
+};
+
 @Injectable({
     providedIn: 'root',
 })
@@ -61,5 +66,15 @@ export class ElectionModelTlService {
 
         console.error(`Missing translation for ${methodId} in ${lang}`);
         return `${methodId} (no tl for ${lang})`;
+    }
+
+    getNumberName(n: 1|2|3|4|5, lang: SupportedLanguage): string {
+        const numbers = NUMBERS[lang];
+        if (numbers) {
+            return numbers[n];
+        }
+
+        console.error(`Missing translation for number ${n} in ${lang}`);
+        return n.toString();
     }
 }
