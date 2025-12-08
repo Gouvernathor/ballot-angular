@@ -13,6 +13,8 @@ import { ApprovalResult } from "../election-result/approval-result";
 import { ScoreResult } from "../election-result/score-result";
 import { ButtonGroup, ButtonOption } from "./button-group/button-group";
 import { SaveService } from '../../save/save';
+import { LANG } from '../../i18n/language.service';
+import { ElectionModelTlService } from '../../display/election-model-tl.service';
 
 export enum ElectionModelFeatures {
     Basic = 1,
@@ -35,6 +37,8 @@ export class ElectionModel {
     readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
     private readonly saveService = inject(SaveService);
+    private readonly lang = inject(LANG);
+    private readonly tlService = inject(ElectionModelTlService);
 
     readonly description = input("");
     readonly features = input(ElectionModelFeatures.Basic);
