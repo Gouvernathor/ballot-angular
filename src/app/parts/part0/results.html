@@ -10,10 +10,10 @@
 <p>
     @switch (lang) {
         @case ("en-CA") {
-            <b [style.color]="winnerColor()">{{getName(winner()).toUpperCase()}}</b> WINS
+            <b [style.color]="winnerColor()">{{getName(winner()).toLocaleUpperCase(lang)}}</b> WINS
         }
         @case ("fr-FR") {
-            <b [style.color]="winnerColor()">{{getName(winner()).toUpperCase()}}</b> A GAGNÉ
+            <b [style.color]="winnerColor()">{{getName(winner()).toLocaleUpperCase(lang)}}</b> A GAGNÉ
         }
         @default {
             <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>

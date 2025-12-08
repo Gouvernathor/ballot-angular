@@ -16,5 +16,5 @@
             <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
         }
     }
-    <b [style.color]="winnerColor()">{{ winnerName().toUpperCase() }}</b>
+    <b [style.color]="winnerColor()">{{ winnerName().toLocaleUpperCase(lang) }}</b>
 </p>
