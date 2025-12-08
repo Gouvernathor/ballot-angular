@@ -4,8 +4,9 @@ export interface ButtonNameAbbr {
     readonly full: string;
     readonly short: string;
 }
+export type ButtonName = string | ButtonNameAbbr;
 export interface ButtonOption<T> {
-    readonly name: string|ButtonNameAbbr;
+    readonly name: ButtonName;
     readonly value: T;
 }
 
