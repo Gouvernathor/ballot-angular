@@ -87,7 +87,19 @@
 </div>
 
 <div class="buttons-bottom">
-    <button class="reset" (click)="reset()">reset</button>
+    <button class="reset" (click)="reset()">
+        @switch (lang) {
+            @case ("en-CA") {
+                reset
+            }
+            @case ("fr-FR") {
+                remise à zéro
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
+    </button>
 
     @if (features() >= ElectionModelFeatures.FullSandbox) {
         <button class="save" (click)="save()">save:</button>
