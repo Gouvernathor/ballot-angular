@@ -54,7 +54,7 @@ export class ElectionModel {
         "Condorcet",
         "Approval",
         "Score",
-    ] as const).map(s => ({ name: s, value: s }));
+    ] as const).map(s => ({ name: this.tlService.getElectionMethodName(s, this.lang), value: s }));
     readonly electionMethod = linkedSignal(() => this.defaultElectionMethod());
     readonly candidateNumberOptions: readonly ButtonOption<2|3|4|5>[] = [
         { name: 'two', value: 2 },

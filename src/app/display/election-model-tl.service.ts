@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SupportedLanguage } from '../i18n/language.service';
+import { ElectionMethodId } from '../core/election';
+import { ButtonName } from '../play/election-model/button-group/button-group';
 
 type QuestionKey = "election" | "nvoters" | "ncandidates";
 const QUESTIONS: { [k in SupportedLanguage]?: { [k in QuestionKey]: string } } = {
@@ -15,12 +17,49 @@ const QUESTIONS: { [k in SupportedLanguage]?: { [k in QuestionKey]: string } } =
     },
 };
 
+const ELECTION_METHOD_NAMES: { [k in SupportedLanguage]?: { [k in ElectionMethodId]: ButtonName } } = {
+    "fr-FR": {
+        FPTP: {
+            full: "Scrutin uninominal majoritaire à un tour",
+            short: "SUM 1T",
+        },
+        IRV: {
+            full: "Vote à second tour instantané",
+            short: "VSTI/IRV",
+        },
+        Borda: "Borda",
+        Condorcet: "Condorcet",
+        Approval: "Approbation",
+        Score: "Notes",
+    },
+};
+
 @Injectable({
     providedIn: 'root',
 })
 export class ElectionModelTlService {
     getQuestion(key: QuestionKey, lang: SupportedLanguage): string {
-        return QUESTIONS[lang]?.[key]
-            ?? (console.error(`Missing translation for ${key} in ${lang}`), QUESTIONS["en-CA"]![key] + " TL MISSING");
+        const questions = QUESTIONS[lang];
+        if (questions) {
+            return questions[key];
+        }
+
+        console.error(`Missing translation for ${key} in ${lang}`)
+        return QUESTIONS["en-CA"]![key] + " TL MISSING";
+    }
+
+    getElectionMethodName(methodId: ElectionMethodId, lang: SupportedLanguage): ButtonName {
+        const names = ELECTION_METHOD_NAMES[lang];
+        if (names) {
+            return names[methodId];
+        }
+
+        if (lang === "en-CA") {
+            // special case
+            return methodId;
+        }
+
+        console.error(`Missing translation for ${methodId} in ${lang}`);
+        return `${methodId} (no tl for ${lang})`;
     }
 }
