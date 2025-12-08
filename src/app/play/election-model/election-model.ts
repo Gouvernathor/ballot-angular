@@ -37,8 +37,8 @@ export class ElectionModel {
     readonly electionService = inject(ElectionService);
     private readonly candidateDisplayService = inject(CandidatesDisplayService);
     private readonly saveService = inject(SaveService);
-    private readonly lang = inject(LANG);
-    private readonly tlService = inject(ElectionModelTlService);
+    readonly lang = inject(LANG);
+    readonly tlService = inject(ElectionModelTlService);
 
     readonly description = input("");
     readonly features = input(ElectionModelFeatures.Basic);
