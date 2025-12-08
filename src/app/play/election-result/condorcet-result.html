@@ -1,30 +1,92 @@
 <span class="small">
     <p>
-        <b>who wins each one-on-one?</b><br/>
+        <b>@switch (lang) {
+            @case ("en-CA") {
+                who wins each one-on-one?
+            }
+            @case ("fr-FR") {
+                qui gagne chacun des duels&nbsp;?
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }</b><br/>
 
         @for (duel of results().pairwiseDuels; track duel.candidates[0].shape+duel.candidates[1].shape) {
-            <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> vs
-            <img [src]="candidatesDisplayService.getIconImage(duel.candidates[1])" />:
-            <img [src]="candidatesDisplayService.getIconImage(duel.winner)" /> wins
-            by {{duel.winnerVotes}} to {{duel.loserVotes}}<br/>
+            @switch (lang) {
+                @case ("en-CA") {
+                    <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> vs
+                    <img [src]="candidatesDisplayService.getIconImage(duel.candidates[1])" />:
+                    <img [src]="candidatesDisplayService.getIconImage(duel.winner)" /> wins
+                    by {{duel.winnerVotes}} to {{duel.loserVotes}}<br/>
+                }
+                @case ("fr-FR") {
+                    <img [src]="candidatesDisplayService.getIconImage(duel.candidates[0])" /> contre
+                    <img [src]="candidatesDisplayService.getIconImage(duel.candidates[1])" />:
+                    <img [src]="candidatesDisplayService.getIconImage(duel.winner)" /> gagne
+                    {{duel.winnerVotes}} à {{duel.loserVotes}}<br/>
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
         }
     </p>
 
     <p>
     @if (results().winner === null) {
-        NOBODY beats everyone else in one-on-one races.
+        @switch (lang) {
+            @case ("en-CA") {
+                NOBODY beats everyone else in one-on-one races.
+            }
+            @case ("fr-FR") {
+                PERSONNE ne bat tous les autres candidats dans les duels.
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
     } @else {
-        <img [src]="candidatesDisplayService.getIconImage(results().winner!)" />
-        beats all other candidates in one-on-one races.
+        @switch (lang) {
+            @case ("en-CA") {
+                <img [src]="candidatesDisplayService.getIconImage(results().winner!)" />
+                beats all other candidates in one-on-one races.
+            }
+            @case ("fr-FR") {
+                <img [src]="candidatesDisplayService.getIconImage(results().winner!)" />
+                bat tous les autres candidats en duel.
+            }
+        }
     }
     </p>
 </span>
 
 <p>
 @if (results().winner === null) {
-    THERE'S NO WINNER.
-    <b class="ohno">OH NO.</b>
+    @switch (lang) {
+        @case ("en-CA") {
+            THERE'S NO WINNER.
+            <b class="ohno">OH NO.</b>
+        }
+        @case ("fr-FR") {
+            IL N'Y A PAS DE GAGNANT.
+            <b class="ohno">OH NON.</b>
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
 } @else {
-    <b [style.color]="candidatesDisplayService.getColor(results().winner!)">{{results().winner!.shape.toUpperCase()}}</b> WINS
+    @switch (lang) {
+        @case ("en-CA") {
+            <b [style.color]="candidatesDisplayService.getColor(results().winner!)">{{results().winner!.shape.toLocaleUpperCase(lang)}}</b> WINS
+        }
+        @case ("fr-FR") {
+            <b [style.color]="candidatesDisplayService.getColor(results().winner!)">{{results().winner!.shape.toLocaleUpperCase(lang)}}</b> A GAGNÉ
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
 }
 </p>
