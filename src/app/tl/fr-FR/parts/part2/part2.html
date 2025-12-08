@@ -155,3 +155,60 @@
         [defaultVoterGroups]="3"
     />
 </div>
+
+<div class="words">
+    <p>
+        Bon, en conditions réelles &ndash; même si aucun gouvernement n'utilise ce mode de scrutin &ndash; quand Condorcet échoue à désigner un vainqueur,
+        l'élection utilise un système électoral de secours comme la méthode Borda.
+        Mais si on fait ça, on hérite de tous les bugs de la méthode de secours. Et ainsi de suite.
+    </p>
+    <p>
+        Scrutin uninominal majoritaire, second tour instantané, méthode Borda, méthode de Condorcet.
+        Tous ces systèmes sont ceux qui utilisent un <em>classement</em> des candidats &ndash; ceux dont notre matheux,
+        Kenneth Arrow, a prouvé qu'ils seraient <em>toujours</em> injustes ou buggés d'une manière ou d'une autre.
+        Et les systèmes qui n'utilisent <em>pas</em> de classement, comme l'approbation ou les notes ?
+        Eh bien&hellip;
+    </p>
+    <p>
+        &hellip;je n'ai pas trouvé de simulation qui les mette en échec.
+        Parce que, <em>en théorie</em>, ils n'ont pas beaucoup de gros défauts.
+    </p>
+    <p>
+        Mais c'est vraiment un énorme &laquo;&nbsp;en théorie&nbsp;&raquo;&nbsp;!
+        Il est possible qu'<em>en pratique</em>, les électeurs stratégiques utilisent
+        l'approbation ou les notes de la même manière que le scrutin uninominal majoritaire &ndash;
+        en n'approuvant ou ne donnant 5 étoiles qu'à leur candidat préféré,
+        et en désapprouvant ou donnant 1 étoile à tous les autres,
+        même si en réalité, ils <em>aiment</em> les autres candidats.
+        <a href="http://archive3.fairvote.org/research-and-analysis/blog/why-approval-voting-is-unworkable-in-contested-elections/">
+            (Voir la critique que FairVote fait du scrutin par approbation, en défense du second tour instantané.)
+        </a>
+    </p>
+    <p>
+        Mais bon, même si le scrutin par approbation et le vote par notes vous découragent d'exprimer un <em>second</em> choix honnête,
+        le scrutin uninominal majoritaire et le second tour instantané vous punissent quand vous exprimez un <em>premier</em> choix honnête.
+        D'autre part, si l'approbation peut être &laquo;&nbsp;manipulé&nbsp;&raquo;,
+        le problème compte double dans le second tour instantané.
+        <a href="http://www.rangevoting.org/LNH.html">
+            (Voir cette critique de la critique de FaireVote par un mathématicien, en défense du vote par approbation.)</a>
+        Donc, au final&hellip; [bruits de confusion]
+    </p>
+    <p>
+        Il nous faudra un bon paquet d'autres simulations.
+    </p>
+
+    <p>
+        Ci-dessous (et en anglais), un graphique
+        <a href="https://electology.org/tactical-voting-basics">(source)</a>
+        qui montre le résultat de 2,2 <em>millions</em> de simulations.
+        Une <em>énorme</em> variété de scénarios ont été testés.
+        Des électeurs entièrement honnêtes. Mi-honnêtes, mi-stratégiques.
+        Des électeurs qui connaissent les préférences des autres.
+        Des électeurs qui ne connaissent <em>pas</em> les préférences des autres.
+        Des électeurs qui n'ont qu'une vague idée des préférences des autres.
+        Et cetera.
+        On voit bien que c'est un <em>vrai</em> mathématicien qui a fait ce graphique,
+        parce qu'il me fait saigner des yeux&nbsp;:
+    </p>
+    <p><img class="real" src="comparison.png" /></p>
+</div>
