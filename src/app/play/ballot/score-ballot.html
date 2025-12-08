@@ -1,9 +1,19 @@
 <p class="headline">
-    Giver <em>each</em> candidate a score from 1 (hate'em) to 5 (love'em):
+    @switch (lang) {
+        @case ("en-CA") {
+            Give <em>each</em> candidate a score from 1 (hate'em) to 5 (love'em):
+        }
+        @case ("fr-FR") {
+            Donnez à <em>chaque</em> candidat une note de 1 (berk) à 5 (j'adore)&nbsp;:
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
 </p>
 
 <ul>
-    <li>Square <img [src]="src('square')" /></li>
-    <li>Triangle <img [src]="src('triangle')" /></li>
-    <li>Hexagon <img [src]="src('hexagon')" /></li>
+    <li>{{ getName("square") }} <img [src]="src('square')" /></li>
+    <li>{{ getName("triangle") }} <img [src]="src('triangle')" /></li>
+    <li>{{ getName("hexagon") }} <img [src]="src('hexagon')" /></li>
 </ul>
