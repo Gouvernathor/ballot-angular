@@ -2,12 +2,12 @@
     <p>
         <b>most votes win</b><br/>
         @for (candidate of candidates(); track candidate.shape) {
-            <img [src]="candidateDisplayService.getIconImage(candidate)" />
+            <img [src]="candidatesDisplayService.getIconImage(candidate)" />
             got {{results().tally.get(candidate)}} votes<br/>
         }
     </p>
 
-    <p><img [src]="candidateDisplayService.getIconImage(results().winner)" /> has the most votes, so...</p>
+    <p><img [src]="winnerSrc()" /> has the most votes, so...</p>
 </span>
 
-<p><b [style.color]="candidateDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>
+<p><b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> WINS</p>
