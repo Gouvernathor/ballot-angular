@@ -7,7 +7,11 @@
             [class.on]="option.value === currentValue()"
             [style.minWidth]="buttonMinWidth()"
         >
-            {{ option.name }}
+            @if (typeof option.name === "string") {
+                {{ option.name }}
+            } @else {
+                <abbr [title]="option.name.full">{{ option.name.short }}</abbr>
+            }
         </button>
     }
 </div>

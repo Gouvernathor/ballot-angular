@@ -1,7 +1,11 @@
 import { Component, input, output } from '@angular/core';
 
+export interface ButtonNameAbbr {
+    readonly full: string;
+    readonly short: string;
+}
 export interface ButtonOption<T> {
-    readonly name: string;
+    readonly name: string|ButtonNameAbbr;
     readonly value: T;
 }
 
