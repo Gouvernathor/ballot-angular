@@ -1,10 +1,21 @@
 <p class="headline">
-    Rank in order of your choice:<br />
-    <span class="sub">(1=1<sup>st</sup> choice, 2=2<sup>nd</sup> choice, etc&hellip;)</span>
+    @switch (lang) {
+        @case ("en-CA") {
+            Rank in order of your choice:<br />
+            <span class="sub">(1=1<sup>st</sup> choice, 2=2<sup>nd</sup> choice, etc&hellip;)</span>
+        }
+        @case ("fr-FR") {
+            Classez par préférence&nbsp;:<br />
+            <span class="sub">(1=1<sup>er</sup> choix, 2=2<sup>e</sup> choix, etc&hellip;)</span>
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
 </p>
 
 <ul>
-    <li><img [src]="src('square')"/> Steven Square</li>
-    <li><img [src]="src('triangle')"/> Tracy Triangle</li>
-    <li><img [src]="src('hexagon')"/> Henry Hexagon</li>
+    <li><img [src]="src('square')"/> {{ getFullName("square") }}</li>
+    <li><img [src]="src('triangle')"/> {{ getFullName("triangle") }}</li>
+    <li><img [src]="src('hexagon')"/> {{ getFullName("hexagon") }}</li>
 </ul>
