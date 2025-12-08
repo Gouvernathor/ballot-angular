@@ -1,13 +1,59 @@
 <span class="small">
     <p>
-        <b>most votes win</b><br/>
+        <b>
+            @switch (lang) {
+                @case ("en-CA") {
+                    most votes win
+                }
+                @case ("fr-FR") {
+                    le plus de votes gagne
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
+        </b><br/>
         @for (candidate of candidates(); track candidate.shape) {
             <img [src]="candidatesDisplayService.getIconImage(candidate)" />
-            got {{results().tally.get(candidate)}} votes<br/>
+            @switch (lang) {
+                @case ("en-CA") {
+                    got {{results().tally.get(candidate)}} votes
+                }
+                @case ("fr-FR") {
+                    a obtenu {{results().tally.get(candidate)}} voix
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }<br/>
         }
     </p>
 
-    <p><img [src]="winnerSrc()" /> has the most votes, so...</p>
+    <p>
+        @switch (lang) {
+            @case ("en-CA") {
+                <img [src]="winnerSrc()" /> has the most votes, so...
+            }
+            @case ("fr-FR") {
+                <img [src]="winnerSrc()" /> a le plus de voix, donc...
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
+    </p>
 </span>
 
-<p><b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> WINS</p>
+<p>
+    @switch (lang) {
+        @case ("en-CA") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> WINS
+        }
+        @case ("fr-FR") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> A GAGNÉ
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
+</p>
