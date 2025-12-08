@@ -39,6 +39,11 @@ const NUMBERS: { [k in SupportedLanguage]?: { [n in 1|2|3|4|5]: string } } = {
     "fr-FR": [, "un", "deux", "trois", "quatre", "cinq" ] as const,
 };
 
+const PLACEHOLDER: { [k in SupportedLanguage]?: string } = {
+    "en-CA": "[when you save your model, a link you can copy will show up here]",
+    "fr-FR": "[quand vous enregistrez votre modèle, un lien à copier apparaîtra ici]"
+};
+
 @Injectable({
     providedIn: 'root',
 })
@@ -76,5 +81,15 @@ export class ElectionModelTlService {
 
         console.error(`Missing translation for number ${n} in ${lang}`);
         return n.toString();
+    }
+
+    getPlaceholder(lang: SupportedLanguage): string {
+        const placeholder = PLACEHOLDER[lang];
+        if (placeholder) {
+            return placeholder;
+        }
+
+        console.error(`Missing translation for placeholder in ${lang}`);
+        return null!;
     }
 }
