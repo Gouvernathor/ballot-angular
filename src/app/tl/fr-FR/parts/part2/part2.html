@@ -105,3 +105,53 @@
         [defaultVoterGroups]="[[232, 150]]"
     />
 </div>
+
+<div class="words">
+    <p>
+        Eh ouais. La méthode Borda a l'effet <em>inverse</em> du <i lang="en">spoiler effect</i>.
+        Au lieu qu'un bon candidat nuise à un autre bon candidat en se rapprochant,
+        avec la méthode Borda, un candidat perdant peut <em>aider</em> un autre candidat perdant en se rapprochant.
+    </p>
+    <p>
+        Voilà ce qui s'est passé&nbsp;: au départ, quelques électeurs classent
+        <img src="square.svg" />&gt;<img src="triangle.svg" />&gt;<img src="hexagon.svg" />,
+        mais quand vous avez rapproché <img src="hexagon.svg" /> de <img src="square.svg" />,
+        ces électeurs ont <em>basculé</em> vers un classement
+        <img src="square.svg" />&gt;<img src="hexagon.svg" />&gt;<img src="triangle.svg" />,
+        ce qui a suffisamment désavantagé <img src="triangle.svg" /> pour le faire perdre face à <img src="square.svg" />.
+    </p>
+    <p>
+        Ceci étant dit, la méthode Borda n'est pas la pire,
+        et elle a le mérite d'être plus simple et plus transparente que le second tour instantané.
+        Mais qu'en est-il de la méthode de Condorcet&nbsp;?
+        Quand Condorcet choisit un vainqueur, c'est toujours le candidat &laquo;&nbsp;théoriquement meilleur&nbsp;&raquo;
+        &ndash; mais ça, c'est <em>quand</em> il désigne un vainqueur.
+    </p>
+    <p>
+        Pour l'instant, on n'a simulé les électeurs que comme <em>un seul</em> et même groupe,
+        avec un centre de gravité et un écart par rapport à ce centre.
+        Mais vu comment les courants politiques sont polarisés de nos jours,
+        on pourrait imaginer <em>plusieurs</em> groupes d'électeurs, chacun avec son propre centre de gravité.
+        La méthode de Condorcet essaye de désigner le candidat qui bat tous les autres candidats en duel.
+        Mais avec des électeurs <em>polarisés</em>, on peut se retrouver dans une boucle pierre-feuille-ciseaux,
+        où une majorité d'électeurs préfère A à B, B à C, <em>et</em> C à A.
+    </p>
+    <p>
+        Dans certaines situations, les autres systèmes électoraux avaient des bugs.
+        Chez Condorcet, le système électoral <em>plante</em>.
+        Essayez par vous-même&nbsp;:
+    </p>
+</div>
+<div class="sim-test">
+    <p class="caption-test">
+        créez votre propre &laquo;&nbsp;cycle de Condorcet&nbsp;&raquo;&nbsp;!<br/>
+        déplacez les électeurs <img src="voters.svg" /> de manière à ce que PERSONNE ne gagne&nbsp;:
+    </p>
+
+    <app-election-model id="election4"
+        [features]="2"
+        defaultElectionMethod="Condorcet"
+        [defaultCandidates]="3"
+        [defaultVoterGroups]="3"
+    />
+</div>
