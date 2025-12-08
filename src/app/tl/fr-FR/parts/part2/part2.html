@@ -20,3 +20,34 @@
         [defaultVoterGroups]="[[155, 125]]"
     />
 </div>
+
+<div class="words">
+    <p>
+        Comme vous pouvez le voir, <em>chaque</em> système électoral, sauf le scrutin uninominal majoritaire,
+        est immunisé au <i lang="en">spoiler effect</i>.
+        Alors on a fini, on rentre chez nous&nbsp;?
+        On peut prendre n'importe quelle autre méthode et c'est bon&nbsp;?
+    </p>
+    <p>
+        Hélàs, quand on chasse un bug par la porte, un autre entre par la fenêtre.
+        Certains autres systèmes créent <em>d'autres</em> bugs &ndash; et pour certains d'entre eux, le remède est pire que le mal.
+    </p>
+    <p>
+        Prenons par exemple le second tour instantané.
+        Au début, Thomas Triangle <img src="triangle.svg" /> est en tête, et vous allez encore <em>rapprocher</em> les électeurs du candidat.
+        Évidemment, si un candidat est déjà en tête, et qu'il devient encore <em>plus</em> populaire, il devrait <em>toujours</em> gagner, non&nbsp;?
+    </p>
+    <p>Vous pouvez déjà deviner la suite&hellip;</p>
+</div>
+<div class="sim-test" id="drag-voters-towards">
+    <p class="caption-test">
+        déplacez les électeurs <img src="voters.svg" /> <em>lentement</em> vers <img src="triangle.svg" />&nbsp;:
+    </p>
+
+    <app-election-model id="election2"
+        [features]="1"
+        defaultElectionMethod="IRV"
+        [defaultCandidates]="[[41, 271], [257, 27], [159, 65]]"
+        [defaultVoterGroups]="[[257, 240]]"
+    />
+</div>
