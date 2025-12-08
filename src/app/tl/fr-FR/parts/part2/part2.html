@@ -1,1 +1,22 @@
 <hgroup app-banner-fr-fr-part2></hgroup>
+
+<div class="words" id="how-are-the-alternatives">
+    <p>
+        Vous vous souvenez de la simulation du <i lang="en">spoiler effect</i>&nbsp;?
+        Eh bien, la revoilà, mais cette fois-ci, vous pouvez choisir parmi les six différents systèmes électoraux,
+        et voir comment chacun d'eux gère la situation.
+    </p>
+</div>
+<div class="sim-test">
+    <p class="caption-test">
+        déplacez <img src="hexagon.svg" /> vers <img src="triangle.svg" /> pour créer un <i lang="en">spoiler effect</i><br/>
+        puis comparez les résultats des 6 systèmes différents&nbsp;:<br/>
+        <span style="font-weight: bold; font-size: 0.8em;">(note: le vainqueur est tiré au sort dans les rares cas d'égalités)</span>
+    </p>
+
+    <app-election-model id="election1"
+        defaultElectionMethod="FPTP"
+        [defaultCandidates]="[[50, 125], [250, 125], [280, 280]]"
+        [defaultVoterGroups]="[[155, 125]]"
+    />
+</div>
