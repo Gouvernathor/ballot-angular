@@ -25,6 +25,6 @@ export class ResultsComponentPart0 {
         this.candidateDisplayService.getColor(this.winner()));
 
     getName(candidate: Candidate) {
-        return this.candidateDisplayService.getLocalizedName(candidate, this.lang);
+        return this.candidateDisplayService.getLocalizedName(candidate.shape, this.lang);
     }
 }

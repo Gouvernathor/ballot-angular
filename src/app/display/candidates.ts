@@ -57,18 +57,18 @@ export class CandidatesDisplayService {
         return `play/icon/${candidate.shape}.svg`;
     }
 
-    getLocalizedName(candidate: Candidate, lang: SupportedLanguage): string {
+    getLocalizedName(shape: CandidateShape, lang: SupportedLanguage): string {
         if (lang === "en-CA") {
             // special case
-            return candidate.shape;
+            return shape;
         }
 
         const shortNames = SHORT_NAMES[lang];
         if (shortNames) {
-            return shortNames[candidate.shape];
+            return shortNames[shape];
         }
 
-        return `${candidate.shape} (no tl for ${lang})`;
+        return `${shape} (no tl for ${lang})`;
     }
 
     getLocalizedFullName(shape: CandidateShape, lang: SupportedLanguage): string {

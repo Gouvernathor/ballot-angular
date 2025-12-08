@@ -34,5 +34,5 @@ export class Model1 {
     readonly winnerColor = computed(() =>
         this.candidatesDisplayService.getColor(this.winner()));
     readonly winnerName = computed(() =>
-        this.candidatesDisplayService.getLocalizedName(this.winner(), this.lang));
+        this.candidatesDisplayService.getLocalizedName(this.winner().shape, this.lang));
 }
