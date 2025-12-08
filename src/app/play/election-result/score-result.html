@@ -1,18 +1,63 @@
 <span class="small">
     <p>
-        <b>highest average score wins</b><br/>
+        <b>@switch (lang) {
+            @case ("en-CA") {
+                highest average score wins
+            }
+            @case ("fr-FR") {
+                le plus haut score moyen l'emporte
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }</b><br/>
 
         @for (candidate of candidates(); track candidate.shape) {
-            <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s score:
-            {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
-            out of {{results().numScores | number:'1.2-2'}}<br/>
+            @switch (lang) {
+                @case ("en-CA") {
+                    <img [src]="candidatesDisplayService.getIconImage(candidate)" />'s score:
+                    {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
+                    out of {{results().numScores | number:'1.2-2'}}<br/>
+                }
+                @case ("fr-FR") {
+                    score de <img [src]="candidatesDisplayService.getIconImage(candidate)" />&nbsp;:
+                    {{results().processedTally.get(candidate) / results().totalVoters | number:'0.2-2'}}
+                    sur {{results().numScores | number:'1.2-2'}}<br/>
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
         }
     </p>
 
     <p>
-        <img [src]="candidatesDisplayService.getIconImage(results().winner)" />
-        has the highest score, so...
+        @switch (lang) {
+            @case ("en-CA") {
+                <img [src]="candidatesDisplayService.getIconImage(results().winner)" />
+                has the highest score, so...
+            }
+            @case ("fr-FR") {
+                <img [src]="candidatesDisplayService.getIconImage(results().winner)" />
+                a le score le plus élevé, donc...
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
     </p>
 </span>
 
-<p><b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>
+<p>
+    @switch (lang) {
+        @case ("en-CA") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> WINS
+        }
+        @case ("fr-FR") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> A GAGNÉ
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
+</p>
