@@ -211,4 +211,61 @@
         parce qu'il me fait saigner des yeux&nbsp;:
     </p>
     <p><img class="real" src="comparison.png" /></p>
+
+    <p>
+        Les résultats de chaque système électoral sont représentés par une barre bleue moche.
+        Plus un système est vers la droite, plus il &laquo;&nbsp;maximise la satisfaction&nbsp;&raquo; des électeurs.
+        Plus un système est vers le haut, plus il est simple.
+        Et la largeur d'une barre indique le spectre de performance d'un système en fonction du ratio d'électeurs honnêtes/stratégiques.
+    </p>
+    <p>
+        La première chose à remarquer, c'est que le vote stratégique <em>diminue</em> la satisfaction des électeurs
+        &ndash; et ce dans <em>tous</em> les systèmes électoraux&nbsp;!
+        J'étais très surpris quand j'ai découvert ça.
+        (Mais ça fait sens, quand on pense par exemple à une pièce pleine de gens qui veulent parler.
+        Chaque personne peut être &laquo;&nbsp;stratégique&nbsp;&raquo; en criant par-dessus les autres,
+        mais si <em>tout le monde</em> est &laquo;&nbsp;stratégique&nbsp;&raquo;, personne n'arrive à s'entendre,
+        et tout ce qui reste c'est des gorges enrouées et des gens frustrés.)
+    </p>
+    <p>
+        L'autre chose à remarquer, c'est quels systèmes maximisent la satisfaction des électeurs.
+        Si on a principalement des électeurs honnêtes, <em>le vote par note est le meilleur</em> (avec Borda en deuxième, de peu).
+        Et si on a surtout des électeurs stratégiques, <em>les méthodes de l'approbation et des notes sont les meilleurs</em>
+        (et avec des électeurs stratégiques, le second tour instantané est <em>aussi mauvais</em> que l'uninominal majoritaire).
+    </p>
+    <p>
+        Cependant, tout ça, c'est des simulations informatiques.
+        Comment se comporteraient ces systèmes de vote <em>dans la vraie vie</em>&nbsp;?
+        On ne peut pas remonter dans le temps jusqu'aux élections de 2016, changer le système électoral et regarder le résultat&hellip;
+    </p>
+    <p>&hellip;à moins que&nbsp;?!</p>
+    <p>
+        Non, on ne peut pas. Mais le mois dernier, des chercheurs s'en sont approché.
+        <a href="http://www.vox.com/policy-and-politics/2016/11/25/13733322/instant-runoff-ranked-voting-2016">
+            Un sondage a demandé à plus de 1000 électeurs américains de classer et de noter les six candidats de la présidentielle de 2016</a>,
+        pour simuler qui aurait gagné le vote populaire sous différents systèmes électoraux&nbsp;!
+        (Mais gardez en tête qu'avec un système électoral différent dans les primaires,
+        les candidats eux-mêmes auraient été <em>complètement</em> différents.
+        Donc prenez cette étude avec un paquet de sel.)
+        Les résultats&nbsp;: avec le second tour instantané, Condorcet, et l'approbation, le vainqueur aurait été Hillary Clinton.
+        Mais avec le vote par notes, le vainqueur aurait été Donald Trump.
+        Et avec Borda, le vainqueur aurait été&hellip; heu&hellip; <em>Gary Johnson&nbsp;?</em>
+    </p>
+    <p><em>?????</em></p>
+</div>
+<div class="sim-test" id="2016-election">
+    <p class="caption-test">
+        une estimation de l'élection américaine de 2016&nbsp;?&hellip;<br/>
+        <span style="font-weight: 100; font-size: .85em;">
+            Clinton <img src="square.svg" /> gagne le VSTI, Trump <img src="hexagon.svg" /> gagne par notes,
+            et Johnson <img src="triangle.svg" /> gagne par Borda&nbsp;??
+        </span>
+    </p>
+
+    <app-election-model id="election5"
+        [features]="2"
+        defaultElectionMethod="Borda"
+        [defaultCandidates]="[[40, 115+10], [177, 185+10], [224, 118+10]]"
+        [defaultVoterGroups]="[[75, 120+10], [225, 120+10]]"
+    />
 </div>
