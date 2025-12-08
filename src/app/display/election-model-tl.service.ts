@@ -20,6 +20,7 @@ const QUESTIONS: { [k in SupportedLanguage]?: { [k in QuestionKey]: string } } =
 })
 export class ElectionModelTlService {
     getQuestion(key: QuestionKey, lang: SupportedLanguage): string {
-        return QUESTIONS[lang]?.[key] ?? (QUESTIONS["en-CA"]![key] + " TL MISSING");
+        return QUESTIONS[lang]?.[key]
+            ?? (console.error(`Missing translation for ${key} in ${lang}`), QUESTIONS["en-CA"]![key] + " TL MISSING");
     }
 }
