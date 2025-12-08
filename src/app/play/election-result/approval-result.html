@@ -1,12 +1,54 @@
 <span class="small">
     <p>
-        <b>most approvals wins</b><br/>
+        <b>@switch (lang) {
+            @case ("en-CA") {
+                most approvals wins
+            }
+            @case ("fr-FR") {
+                le plus d'approbations gagne
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }</b><br/>
         @for (candidate of candidates(); track candidate.shape) {
-            <img [src]="candidatesDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} approvals<br/>
+            @switch (lang) {
+                @case ("en-CA") {
+                    <img [src]="candidatesDisplayService.getIconImage(candidate)" /> got {{results().tally.get(candidate)}} approvals<br/>
+                }
+                @case ("fr-FR") {
+                    <img [src]="candidatesDisplayService.getIconImage(candidate)" /> a obtenu {{results().tally.get(candidate)}} approbations<br/>
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
         }
     </p>
 
-    <p><img [src]="candidatesDisplayService.getIconImage(results().winner)" /> is most approved, so...</p>
+    <p>@switch (lang) {
+        @case ("en-CA") {
+            <img [src]="winnerSrc()" /> is most approved, so...
+        }
+        @case ("fr-FR") {
+            <img [src]="winnerSrc()" /> est le plus approuvé, donc...
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }</p>
 </span>
 
-<p><b [style.color]="candidatesDisplayService.getColor(results().winner)">{{results().winner.shape.toUpperCase()}}</b> WINS</p>
+<p>
+    @switch (lang) {
+        @case ("en-CA") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> WINS
+        }
+        @case ("fr-FR") {
+            <b [style.color]="winnerColor()">{{winnerName().toLocaleUpperCase(lang)}}</b> A GAGNÉ
+        }
+        @default {
+            <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+        }
+    }
+</p>
