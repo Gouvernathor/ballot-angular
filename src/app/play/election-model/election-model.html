@@ -102,7 +102,19 @@
     </button>
 
     @if (features() >= ElectionModelFeatures.FullSandbox) {
-        <button class="save" (click)="save()">save:</button>
+        <button class="save" (click)="save()">
+            @switch (lang) {
+                @case ("en-CA") {
+                    save:
+                }
+                @case ("fr-FR") {
+                    partage&nbsp;:
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
+        </button>
 
         <input class="savelink"
             [placeholder]="tlService.getPlaceholder(lang)"

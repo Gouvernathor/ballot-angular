@@ -41,7 +41,7 @@ const NUMBERS: { [k in SupportedLanguage]?: { [n in 1|2|3|4|5]: string } } = {
 
 const PLACEHOLDER: { [k in SupportedLanguage]?: string } = {
     "en-CA": "[when you save your model, a link you can copy will show up here]",
-    "fr-FR": "[quand vous enregistrez votre modèle, un lien à copier apparaîtra ici]"
+    "fr-FR": "[quand vous enregistrez votre modèle, un lien apparaît ici]"
 };
 
 @Injectable({
