@@ -4,6 +4,7 @@ import { Sandbox } from './+sandbox/sandbox';
 import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
 import { FrFrIndex } from './tl/fr-FR/+index';
 import { LANG } from './i18n/language.service';
+import { langGuard } from './i18n/lang-guard';
 
 export const routes: Routes = [
     // main language's routes : en-CA
@@ -12,6 +13,7 @@ export const routes: Routes = [
         providers: [
             { provide: LANG, useValue: "en-CA" },
         ],
+        canActivate: [langGuard],
         children: [
             {
                 path: '',
@@ -31,6 +33,7 @@ export const routes: Routes = [
         providers: [
             { provide: LANG, useValue: "fr-FR" },
         ],
+        canActivate: [langGuard],
         children: [
             {
                 path: "",
