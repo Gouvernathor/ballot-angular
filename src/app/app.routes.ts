@@ -17,10 +17,12 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                title: "To Build a Better Ballot",
                 component: Index,
             },
             {
                 path: 'sandbox',
+                title: "Ballot Sandbox",
                 component: Sandbox,
                 resolve: sandboxResolvers,
             },
@@ -37,9 +39,15 @@ export const routes: Routes = [
         children: [
             {
                 path: "",
+                title: "Pour un meilleur scrutin",
                 component: FrFrIndex,
             },
-            // TODO sandbox (same resolvers)
+            /*{ // TODO
+                path: 'sandbox',
+                title: "Meilleur scrutin : Sandbox",
+                component: FrFrSandbox,
+                resolve: sandboxResolvers,
+            },*/
         ],
     },
 ];
