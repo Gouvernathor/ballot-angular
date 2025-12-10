@@ -16,7 +16,7 @@ interface SavePayload {
     /** key: "d" */
     readonly description: string;
 }
-interface Intermediary {
+interface Shorter {
     readonly s: SavePayload['electionMethod'];
     readonly v: SavePayload['voters'];
     readonly c: SavePayload['candidates'];
@@ -32,14 +32,19 @@ export class SaveService {
     readonly window = inject(DOCUMENT).defaultView!;
 
     getUrl(payload: SavePayload): string {
-        const tree = this.router.createUrlTree(["sandbox"], { queryParams: this.shorten(payload) });
+        const snapshotUrl = this.router.routerState.snapshot.url;
+        const treeArray = [snapshotUrl.split('?')[0]];
+        if (!snapshotUrl.includes("sandbox")) {
+            treeArray.push("sandbox");
+        }
+        const tree = this.router.createUrlTree(treeArray, { queryParams: this.shorten(payload) });
         return new URL(
             this.locationStrategy.prepareExternalUrl(this.router.serializeUrl(tree)),
             this.window.location.href,
         ).toString();
     }
 
-    private shorten(source: SavePayload): Intermediary {
+    private shorten(source: SavePayload): Shorter {
         return {
             s: source.electionMethod,
             v: source.voters,
