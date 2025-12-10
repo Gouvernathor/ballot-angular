@@ -3,8 +3,11 @@
 </p>
 <p>
     <b class="lbl">{{ translationsLabel() }}</b><br/>
-    <!-- TODO: manage translations internally -->
-    <!-- <a href="https://pour-un-meilleur-scrutin.fr/">Français</a><br/> -->
+    @for (localTl of localTranslations; track localTl.lang) {
+        @if (lang !== localTl.lang) {
+            <a [routerLink]="localTl.routerLink">{{ localTl.label }}</a><br/>
+        }
+    }
     <a href="https://antoniokov.com/voting/">русский</a><br/>
     <a href="https://pourdamghani.github.io/ballot/">فارسی</a>
 </p>
