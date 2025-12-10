@@ -8,5 +8,6 @@ import { Component, input } from '@angular/core';
 })
 export class Nav {
     readonly originalLabel = input("Original");
+    readonly translationsLabel = input("Translations:");
     readonly sourceCodeLabel = input("Full source code here!");
 }
