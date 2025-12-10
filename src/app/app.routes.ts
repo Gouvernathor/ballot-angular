@@ -26,7 +26,7 @@ export const routes: Routes = [
                 title: "Ballot Sandbox",
                 component: Sandbox,
                 resolve: sandboxResolvers,
-                runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+                runGuardsAndResolvers: 'always', // because you can click on the link of the same scenario
             },
         ],
     },
@@ -49,7 +49,7 @@ export const routes: Routes = [
                 title: "Meilleur scrutin : Sandbox",
                 component: FrFrSandbox,
                 resolve: sandboxResolvers,
-                runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+                runGuardsAndResolvers: 'always',
             },
         ],
     },
