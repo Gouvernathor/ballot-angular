@@ -3,6 +3,7 @@ import { Index } from './+index';
 import { Sandbox } from './+sandbox/sandbox';
 import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
 import { FrFrIndex } from './tl/fr-FR/+index';
+import { FrFrSandbox } from './tl/fr-FR/+sandbox/sandbox';
 import { LANG } from './i18n/language.service';
 import { langGuard } from './i18n/lang-guard';
 
@@ -42,12 +43,12 @@ export const routes: Routes = [
                 title: "Pour un meilleur scrutin",
                 component: FrFrIndex,
             },
-            /*{ // TODO
+            {
                 path: 'sandbox',
                 title: "Meilleur scrutin : Sandbox",
                 component: FrFrSandbox,
                 resolve: sandboxResolvers,
-            },*/
+            },
         ],
     },
 ];

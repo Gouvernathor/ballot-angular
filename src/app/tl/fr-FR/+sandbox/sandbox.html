@@ -1,0 +1,45 @@
+<app-election-model
+    [description]="description() ?? ''"
+    [features]="ElectionModelFeatures.FullSandbox"
+    [defaultElectionMethod]="curatedDefaultElectionMethod()"
+    [defaultCandidates]="defaultCandidates()"
+    [defaultVoterGroups]="defaultVoterGroups()"
+/>
+<div id="content">
+    <div class="words">
+        <p>
+            <b>Voici le mode Sandbox de <i>Pour un meilleur scrutin</i>.</b>
+            Si vous ne l'avez pas encore essayé, <a routerLink="/fr-FR/">découvrez-le ici&nbsp;!</a>
+        </p>
+        <p><b>
+            Faites votre propre simulation électorale avec cet outil&nbsp;!
+            Voici quelques sénarios créés par d'autres&nbsp;:
+        </b></p>
+        <ul>
+            <!-- TODO traduire les liens de l'original -->
+            <li>
+                <a>
+                    Une critique de l'approbation et des notes&nbsp;?</a>
+                par <a href="https://twitter.com/ncasenmare">@ncasenmare</a>
+            </li>
+            <li>
+                <a>
+                    Une autre critique de l'approbation et des notes&nbsp;?</a>
+                par <a href="https://twitter.com/ncasenmare">@ncasenmare</a>
+            </li>
+            <li>
+                <a>
+                    La non-monotonicité absurde de l'IRV</a>
+                par Ben Harvey
+            </li>
+            <li>
+                <a>
+                    Le vote par notes donne un résultat, tous les autres systèmes en donnent un autre</a>
+                par Ben Van R
+            </li>
+            <li>[d'autres à venir...]</li>
+        </ul>
+
+        <!-- comment soumettre des nouveaux scénarios -->
+    </div>
+</div>
