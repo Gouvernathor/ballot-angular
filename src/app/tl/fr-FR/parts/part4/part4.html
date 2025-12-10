@@ -18,7 +18,13 @@ Regardez, c'est toute la bande des formes ! Céline Carré, Thomas Triangle, Hen
             débattre avec moi et entre eux <em>en utilisant</em> cet outil&nbsp;!
             Ne me dites pas que j'ai tort, <em>montrez</em>-le-moi.
             Par exemple &ndash;
-            <a href="todo"> <!-- TODO recreate the link -->
+            <a routerLink="/fr-FR/sandbox" [queryParams]="{
+                s: 'FPTP',
+                v: [[54, 147], [54, 72], [249, 109]],
+                c: [[54, 227], [249, 106]],
+                d: `Voilà la plus grosse opposition à l'approbation et aux notes, à mon avis. Ci-dessous : 2/3 des électeurs n'aiment aucun des deux candidats, mais détestent Carré un peu moins. Cependant, 1/3 des électeurs ADORENT Triangle et DÉTESTENT Carré. Sous SUM, VSTI/IRV et Condorcet, Carré gagne, parce qu'une majorité d'électeurs la préfèrent (de peu). Mais sous l'approbation et les notes, Triangle gagne, parce qu'il est adoré par sa minorité.
+Est-ce que c'est BIEN ? Est-ce que c'est une trahison de la démocratie, ou au contraire c'est le *sauvetage* de la démocratie contre une tyrannie de la majorité ? La question n'est pas que théorique, elle est *philosophique*.`,
+            }">
                 voilà un modèle que j'ai fait en Sandbox, qui montre un argument intéressant
                 <em>contre</em> l'approbation et le vote par notes</a>.
             Certes, cet outil est très limité &ndash; il ne gère pas le vote stratégique
