@@ -3,8 +3,8 @@ import { DOCUMENT, inject, Injectable, InjectionToken, signal } from '@angular/c
 const supportedLanguages = [
     "en-CA",
     "fr-FR",
-    "ar",
-    "ru",
+    // "ar",
+    // "ru",
 ] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
