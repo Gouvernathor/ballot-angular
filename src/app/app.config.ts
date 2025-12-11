@@ -8,6 +8,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes, withComponentInputBinding()), provideClientHydration(withEventReplay())
+    provideRouter(routes, withComponentInputBinding()),
+    provideClientHydration(withEventReplay()),
   ]
 };
