@@ -11,6 +11,13 @@ const COLORS: { readonly [k in CandidateShape]: string } = {
 };
 
 const SHORT_NAMES: { readonly [l in SupportedLanguage]?: { readonly [k in CandidateShape]: string } } = {
+    "en-CA": {
+        square: "Square",
+        triangle: "Triangle",
+        hexagon: "Hexagon",
+        pentagon: "Pentagon",
+        bob: "Bob",
+    },
     "fr-FR": {
         square: "Carré",
         triangle: "Triangle",
@@ -61,11 +68,6 @@ export class CandidatesDisplayService {
         const shortNames = SHORT_NAMES[lang];
         if (shortNames) {
             return shortNames[shape];
-        }
-
-        if (lang === "en-CA") {
-            // special case
-            return shape;
         }
 
         return `${shape} (no tl for ${lang})`;
