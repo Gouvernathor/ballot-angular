@@ -17,3 +17,15 @@ p {
     line-height: inherit;
     margin-top: 0;
 }
+
+
+@keyframes languageBlink {
+    0% {
+    }
+    100% {
+        color: magenta; // deeppink darkviolet
+    }
+}
+.blink {
+    animation: languageBlink ease-in-out 3s infinite alternate;
+}
