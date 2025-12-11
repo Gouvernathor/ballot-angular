@@ -5,7 +5,11 @@
     <b class="lbl">{{ translationsLabel() }}</b><br/>
     @for (localTl of localTranslations; track localTl.lang) {
         @if (lang !== localTl.lang) {
-            <a [routerLink]="localTl.routerLink">{{ localTl.label }}</a><br/>
+            <a
+                [routerLink]="localTl.routerLink"
+                [class.blink]="browserPrefLang() === localTl.lang"
+            >
+                {{ localTl.label }}</a><br/>
         }
     }
     <a href="https://antoniokov.com/voting/">русский</a><br/>

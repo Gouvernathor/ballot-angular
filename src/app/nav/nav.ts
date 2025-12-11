@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { LANG, SupportedLanguage } from '../i18n/language.service';
+import { BROWSER_PREF_LANG, LANG, SupportedLanguage } from '../i18n/language.service';
 import { RouterLink } from "@angular/router";
 
 interface LocalTranslation {
@@ -16,6 +16,7 @@ interface LocalTranslation {
 })
 export class Nav {
     readonly lang = inject(LANG);
+    readonly browserPrefLang = inject(BROWSER_PREF_LANG);
 
     readonly originalLabel = input("Original");
     readonly translationsLabel = input("Translations:");
