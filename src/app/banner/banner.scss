@@ -22,7 +22,6 @@ app-splash {
     flex-direction: column;
     justify-content: center;
     min-height: 400px;
-    pointer-events: none;
 
     ::ng-deep * {
         text-align: center;
