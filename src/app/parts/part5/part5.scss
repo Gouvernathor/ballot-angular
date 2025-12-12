@@ -71,10 +71,12 @@ a:hover {
 
     padding-block-start: 2px;
     color: #888;
-}
-.appendix_title {
-    color: #fff;
-    font-size: 2.85rem;
-    line-height: 3.125rem;
-    font-weight: bold;
+
+    h2 {
+        color: #fff;
+        font-size: 2.85rem;
+        line-height: 3.125rem;
+        font-weight: bold;
+        margin: 0;
+    }
 }
