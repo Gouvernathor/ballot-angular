@@ -115,12 +115,27 @@ export class Splash implements OnInit, OnDestroy {
 
         this.grid.set(grid);
     }
+    private chaotize() {
+        if (!this.inView) return;
+        if (this.mousePos) return;
+
+        // get a random position
+        const rng = new RNG();
+        const x = rng.randRange(0, this.w);;
+        const y = rng.randRange(0, this.h);
+        // randomly scramble it
+        const grid = this.grid().map(row => row.slice() as State[]);
+        grid[y][x] = rng.randRange(0, 3) as State;
+        this.grid.set(grid);
+    }
 
     private intervalIds: ReturnType<typeof setInterval>[] = [];
     private observer?: IntersectionObserver;
     private inView = true;
     ngOnInit(): void {
         this.intervalIds.push(setInterval(() => this.update(), 50));
+        this.intervalIds.push(setInterval(() => this.chaotize(), 3000));
+
         if (typeof IntersectionObserver !== "undefined") {
             this.observer = new IntersectionObserver(entries => {
                 // Take the latest entry
