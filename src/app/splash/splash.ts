@@ -13,6 +13,8 @@ type ReadonlyGrid = readonly (readonly State[])[];
     host: {
         "[style.width.px]": "width",
         "[style.height.px]": "height",
+        "(mousemove)": "onMouseMove($event)",
+        "(mouseleave)": "onMouseLeave()",
     },
 })
 export class Splash implements OnInit, OnDestroy {
