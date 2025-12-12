@@ -65,7 +65,10 @@ a:hover {
 }
 
 #appendix_container {
-    display: flow-root;
+    display: flex;
+    flex-direction: column;
+    row-gap: 17px;
+
     padding-block-start: 2px;
     color: #888;
 }
