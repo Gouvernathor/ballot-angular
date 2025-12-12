@@ -125,7 +125,7 @@ export class Splash implements OnInit, OnDestroy {
         const y = rng.randRange(0, this.h);
         // randomly scramble it
         const grid = this.grid().map(row => row.slice() as State[]);
-        grid[y][x] = rng.randRange(0, 3) as State;
+        grid[y][x] = (grid[y][x] + 2) % 3 as State;
         this.grid.set(grid);
     }
 
