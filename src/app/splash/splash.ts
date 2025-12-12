@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import RNG, {} from "@gouvernathor/rng";
 
 type State = 0 | 1 | 2;
@@ -22,7 +22,7 @@ export class Splash implements OnInit, OnDestroy {
     readonly w = this.width / this.SIZE;
     readonly h = this.height / this.SIZE;
 
-    readonly element = viewChild.required<ElementRef<HTMLCanvasElement>>("element");
+    readonly hostNativeElement = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
     readonly grid = signal<ReadonlyGrid>(this.makeGrid());
     private makeGrid() {
@@ -40,7 +40,7 @@ export class Splash implements OnInit, OnDestroy {
 
     private mousePos: [number, number] | undefined = undefined;
     onMouseMove(event: MouseEvent) {
-        const rect = this.element().nativeElement.getBoundingClientRect();
+        const rect = this.hostNativeElement.getBoundingClientRect();
         this.mousePos = [
             Math.floor((event.pageX - rect.left) / this.SIZE),
             Math.floor((event.pageY - rect.top) / this.SIZE),
@@ -126,7 +126,7 @@ export class Splash implements OnInit, OnDestroy {
                 // Take the latest entry
                 this.inView = entries.sort((a, b) => b.time - a.time)[0].isIntersecting;
             });
-            this.observer.observe(this.element().nativeElement);
+            this.observer.observe(this.hostNativeElement);
         }
     }
     ngOnDestroy(): void {
