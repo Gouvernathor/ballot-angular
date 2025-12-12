@@ -116,12 +116,11 @@ export class Splash implements OnInit, OnDestroy {
         this.grid.set(grid);
     }
 
-    private intervalId?: ReturnType<typeof setInterval>;
+    private intervalIds: ReturnType<typeof setInterval>[] = [];
     private observer?: IntersectionObserver;
     private inView = true;
     ngOnInit(): void {
-        this.intervalId = setInterval(() => this.update(), 50);
-
+        this.intervalIds.push(setInterval(() => this.update(), 50));
         if (typeof IntersectionObserver !== "undefined") {
             this.observer = new IntersectionObserver(entries => {
                 // Take the latest entry
@@ -131,7 +130,7 @@ export class Splash implements OnInit, OnDestroy {
         }
     }
     ngOnDestroy(): void {
-        clearInterval(this.intervalId);
+        this.intervalIds.forEach(intervalId => clearInterval(intervalId));
 
         this.observer?.disconnect();
     }
