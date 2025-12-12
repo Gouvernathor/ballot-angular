@@ -74,7 +74,6 @@ export class Splash implements OnInit, OnDestroy {
 
     private update() {
         if (!this.inView) return;
-        // TODO check that the test does work
 
         const grid: Grid = this.grid().map(row => row.slice() as State[]);
         const rng = new RNG();
