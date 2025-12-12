@@ -1,1 +1,12 @@
 @use "../parts.scss";
+
+p.dear-trudeau {
+    text-align: center;
+
+    strong {
+        font-size: 1.4em;
+    }
+    b {
+        font-size: .8em;
+    }
+}
