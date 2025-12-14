@@ -1,27 +1,35 @@
 :host {
-    display: flex;
+    display: grid;
+    grid-template-areas: "singlearea";
+    grid-template-columns: minmax(0, auto);
     align-items: center;
     justify-content: center;
 
+    > * {
+        grid-area: singlearea;
+    }
+}
+
+:host {
     margin: 0 0 50px 0;
     background: #EFE9D5;
     border-bottom: 5px solid rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    min-height: fit-content;
+    overflow-x: hidden;
 }
 
 app-splash {
-    margin-inline: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
+    // so that absolute-positioned inner elements are relative to it
+    position: relative;
 }
+
 .banner_title {
+    // this puts the title on top of splash, since splash is position relative
+    // but then, the mouse events are intercepted by the title
+    // position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 400px;
 
     ::ng-deep * {
         text-align: center;
