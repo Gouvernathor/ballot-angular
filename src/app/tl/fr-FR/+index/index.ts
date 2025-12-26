@@ -10,7 +10,6 @@ import { FrFrPart4 } from "./parts/part4/part4";
 import { FrFrPart5 } from "./parts/part5/part5";
 
 @Component({
-    selector: 'app-fr-fr-index',
     imports: [Banner, Nav, FrFrPart0, FrFrPart1, FrFrPart2, FrFrPart3, FrFrPart4, FrFrPart5],
     templateUrl: './index.html',
     styleUrls: [],

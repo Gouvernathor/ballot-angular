@@ -9,7 +9,6 @@ import { Part4 } from "./parts/part4/part4";
 import { Part5 } from "./parts/part5/part5";
 
 @Component({
-    selector: 'app-index',
     imports: [Banner, Nav, Part0, Part1, Part2, Part3, Part4, Part5],
     templateUrl: './index.html',
     styleUrl: './index.scss',

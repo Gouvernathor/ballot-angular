@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from "@angular/router";
 import { Sandbox } from '../../../+sandbox/sandbox';
 import { ElectionModel } from "../../../play/election-model/election-model";
-import { RouterLink } from "@angular/router";
 
 @Component({
-    selector: 'app-fr-fr-sandbox',
     imports: [ElectionModel, RouterLink],
     templateUrl: './sandbox.html',
     styleUrls: ['../../../+sandbox/sandbox.scss'],

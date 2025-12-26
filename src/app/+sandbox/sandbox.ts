@@ -5,7 +5,6 @@ import { isElectionMethodId } from '../core/election';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-sandbox',
     imports: [ElectionModel, RouterLink],
     templateUrl: './sandbox.html',
     styleUrl: './sandbox.scss',
