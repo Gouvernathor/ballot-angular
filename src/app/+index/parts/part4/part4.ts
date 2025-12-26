@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ElectionModel } from "../../play/election-model/election-model";
+import { ElectionModel } from "../../../play/election-model/election-model";
 import { RouterLink } from "@angular/router";
 
 @Component({

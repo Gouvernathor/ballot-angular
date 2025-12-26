@@ -1,11 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { makePluralityVotingMethod } from '../../core/voting-method';
-import { SingleVoter } from '../../core/voter-group';
-import { VotingModel } from "../../play/voting-model/voting-model";
-import { Candidate } from '../../core/candidate';
-import { VotingService } from '../../core/voting';
-import { CandidatesDisplayService } from '../../display/candidates';
-import { LANG } from '../../i18n/language.service';
+import { makePluralityVotingMethod } from '../../../core/voting-method';
+import { SingleVoter } from '../../../core/voter-group';
+import { VotingModel } from "../../../play/voting-model/voting-model";
+import { Candidate } from '../../../core/candidate';
+import { VotingService } from '../../../core/voting';
+import { CandidatesDisplayService } from '../../../display/candidates';
+import { LANG } from '../../../i18n/language.service';
 
 @Component({
     selector: 'app-model1',

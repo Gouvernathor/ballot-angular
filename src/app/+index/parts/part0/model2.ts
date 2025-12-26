@@ -1,20 +1,20 @@
 import { Component, computed, inject, signal } from "@angular/core";
-import { VotingModel } from "../../play/voting-model/voting-model";
+import { VotingModel } from "../../../play/voting-model/voting-model";
 import { ResultsComponentPart0 } from "./results";
-import { makePluralityVotingMethod } from "../../core/voting-method";
-import { Candidate } from "../../core/candidate";
-import { GaussianVoters } from "../../core/voter-group";
-import { VotingService } from "../../core/voting";
-import { CandidatesDisplayService } from "../../display/candidates";
-import { ElectionService } from "../../core/election";
+import { VotingService } from "../../../core/voting";
+import { makePluralityVotingMethod } from "../../../core/voting-method";
+import { Candidate } from "../../../core/candidate";
+import { GaussianVoters } from "../../../core/voter-group";
+import { CandidatesDisplayService } from "../../../display/candidates";
+import { ElectionService } from "../../../core/election";
 
 @Component({
-    selector: "app-model3",
+    selector: "app-model2",
     imports: [VotingModel, ResultsComponentPart0],
-    templateUrl: "./model3.html",
-    styleUrls: ["../inserts.scss", "./model3.scss"],
+    templateUrl: "./model2.html",
+    styleUrls: ["../inserts.scss", "./model2.scss"],
 })
-export class Model3 {
+export class Model2 {
     private readonly votingService = inject(VotingService);
     readonly candidatesDisplayService = inject(CandidatesDisplayService);
     private readonly electionService = inject(ElectionService);
@@ -23,10 +23,9 @@ export class Model3 {
     readonly candidates: readonly Candidate[] = [
         { shape: "square", getOpinions: signal([50, 125]) },
         { shape: "triangle", getOpinions: signal([250, 125]) },
-        { shape: "hexagon", getOpinions: signal([280, 280]) },
     ];
     readonly voterGroups = new Set([
-        new GaussianVoters(signal([152, 125])),
+        new GaussianVoters(signal([150, 150])),
     ]);
     readonly castBallots = this.votingService.getComputedCastBallots(
         () => this.candidates,
@@ -35,11 +34,4 @@ export class Model3 {
     );
     readonly results = computed(() =>
         this.electionService.generateFPTPResultInformation(this.castBallots));
-
-    reset() {
-        this.candidates[0].getOpinions.set([50, 125]);
-        this.candidates[1].getOpinions.set([250, 125]);
-        this.candidates[2].getOpinions.set([280, 280]);
-        this.voterGroups.values().next().value!.getReferenceOpinions.set([152, 125]);
-    }
 }

@@ -1,8 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { Candidate } from '../../core/candidate';
-import { FPTPResultInformation } from '../../core/election';
-import { CandidatesDisplayService } from '../../display/candidates';
-import { LANG } from '../../i18n/language.service';
+import { Candidate } from '../../../core/candidate';
+import { FPTPResultInformation } from '../../../core/election';
+import { CandidatesDisplayService } from '../../../display/candidates';
+import { LANG } from '../../../i18n/language.service';
 
 @Component({
     selector: 'app-results-part0',

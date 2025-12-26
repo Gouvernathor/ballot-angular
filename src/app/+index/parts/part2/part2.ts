@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BannerPart2 } from './banner';
-import { ElectionModel } from "../../play/election-model/election-model";
+import { ElectionModel } from "../../../play/election-model/election-model";
 
 @Component({
     selector: 'app-part2',
