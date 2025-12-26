@@ -28,6 +28,19 @@ export const routes: Routes = [
                 resolve: sandboxResolvers,
                 runGuardsAndResolvers: 'always', // because you can click on the link of the same scenario
             },
+            /*{
+                path: 'g',
+                children: [
+                    {
+                        path: '2turnmaj',
+                        component: , // TODO
+                    },
+                    {
+                        path: 'unity-blackmail',
+                        component: , // TODO
+                    },
+                ],
+            },*/
         ],
     },
 
@@ -51,6 +64,19 @@ export const routes: Routes = [
                 resolve: sandboxResolvers,
                 runGuardsAndResolvers: 'always',
             },
+            /*{
+                path: 'g',
+                children: [
+                    {
+                        path: '2turnmaj',
+                        component: , // TODO
+                    },
+                    {
+                        path: 'unity-blackmail',
+                        component: , // TODO
+                    },
+                ],
+            },*/
         ],
     },
 ];
