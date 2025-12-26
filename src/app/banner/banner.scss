@@ -12,7 +12,7 @@
 
 :host {
     margin: 0 0 50px 0;
-    background: #EFE9D5;
+    background: var(--background-beige);
     border-bottom: 5px solid rgba(0, 0, 0, 0.2);
     overflow-x: hidden;
 }

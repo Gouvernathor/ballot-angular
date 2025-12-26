@@ -7,7 +7,7 @@ h2 {
 }
 
 #sandbox {
-    background: #efe9d5;
+    background: var(--background-beige);
     margin-block-start: 50px;
     border-block-end: 5px solid rgb(0, 0, 0, .2);
     padding-block: 30px;
