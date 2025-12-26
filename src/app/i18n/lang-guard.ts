@@ -4,7 +4,7 @@ import { LANG } from './language.service';
 
 /**
  * Not really a guard.
- * This sets the <html> lang attribute to the current language.
+ * This sets the `<html>` lang attribute to the current language.
  */
 export const langGuard: CanActivateFn = () => {
     inject(DOCUMENT).documentElement.lang = inject(LANG);
