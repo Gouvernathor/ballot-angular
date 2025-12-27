@@ -4,6 +4,7 @@ import { langGuard } from './i18n/lang-guard';
 import { Index } from './+index';
 import { Sandbox } from './+sandbox/sandbox';
 import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
+import { Misbehaviors } from './g/+misbehaviors/misbehaviors';
 import { FrFrIndex } from './tl/fr-FR/+index/index';
 import { FrFrSandbox } from './tl/fr-FR/+sandbox/sandbox';
 
@@ -28,6 +29,11 @@ export const routes: Routes = [
                 resolve: sandboxResolvers,
                 runGuardsAndResolvers: 'always', // because you can click on the link of the same scenario
             },
+            {
+                path: 'g/misbehaviors',
+                title: "Ballot misbehaviors",
+                component: Misbehaviors,
+            },
             /*{
                 path: 'g',
                 children: [
@@ -36,7 +42,7 @@ export const routes: Routes = [
                         component: , // TODO
                     },
                     {
-                        path: 'unity-blackmail',
+                        path: 'misbehaviors',
                         component: , // TODO
                     },
                 ],
@@ -72,7 +78,7 @@ export const routes: Routes = [
                         component: , // TODO
                     },
                     {
-                        path: 'unity-blackmail',
+                        path: 'misbehaviors',
                         component: , // TODO
                     },
                 ],

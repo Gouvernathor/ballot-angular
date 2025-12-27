@@ -1,0 +1,19 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .words {
+        max-inline-size: 670px;
+    }
+
+    p {
+        line-height: 1.7em;
+        color: #333;
+        // margin-inline: 0;
+    }
+
+    li {
+        line-height: 1.5em;
+    }
+}
