@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Banner } from "../../banner/banner";
-import { BannerBlackmail } from "./banner-blackmail";
 
 @Component({
-    imports: [Banner, BannerBlackmail],
+    imports: [Banner],
     templateUrl: './misbehaviors.html',
     styleUrl: './misbehaviors.scss',
 })
