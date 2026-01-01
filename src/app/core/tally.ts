@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DefaultMap, NumberCounter } from "@gouvernathor/python/collections";
-import { Order, Scores, Simple } from "ecclesia/election/ballots";
+import { Simple, Order, Scores } from "ecclesia/election/tally";
 import { Candidate } from "./candidate";
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from "./ballot";
 
