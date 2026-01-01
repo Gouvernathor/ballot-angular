@@ -1,31 +1,18 @@
 import { Injectable } from "@angular/core";
-import { DefaultMap, NumberCounter } from "@gouvernathor/python/collections";
-import { Simple, Order, Scores } from "ecclesia/election/tally";
+import { DefaultMap } from "@gouvernathor/python/collections";
+import { Scores } from "ecclesia/election/tally";
+import { tallyApprovalToSimple, tallyRankedToOrder, tallySingleToSimple } from "ecclesia/election/tallying";
 import { Candidate } from "./candidate";
-import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from "./ballot";
+import { ScoreBallot } from "./ballot";
 
 /** Transforms a list of individual ballots into a Ballots object (a tally) for Ecclesia */
 @Injectable({
     providedIn: "root",
 })
 export class TallyService {
-    tallyPluralityToSimple(
-        ballots: Iterable<PluralityBallot>,
-    ): Simple<Candidate> {
-        return NumberCounter.fromKeys(ballots);
-    }
-
-    tallyApprovalToSimple(
-        ballots: Iterable<ApprovalBallot>,
-    ): Simple<Candidate> {
-        return NumberCounter.fromKeys(Array.from(ballots).flatMap(b => Array.from(b)));
-    }
-
-    tallyRankedToOrder(
-        ballots: Iterable<RankedBallot>,
-    ): Order<Candidate> {
-        return Array.from(ballots);
-    }
+    readonly tallyPluralityToSimple = tallySingleToSimple;
+    readonly tallyApprovalToSimple = tallyApprovalToSimple;
+    readonly tallyRankedToOrder = tallyRankedToOrder;
 
     tallyScoreToScores(
         ballots: Iterable<ScoreBallot>,
