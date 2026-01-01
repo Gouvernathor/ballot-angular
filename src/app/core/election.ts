@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { NumberCounter } from '@gouvernathor/python/collections';
 import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
-import { Ballots, Order, Simple } from 'ecclesia/election/ballots';
+import { Order, Simple } from 'ecclesia/election/tally';
 import { Candidate, Opinions } from './candidate';
 import { GaussianVoters } from './voter-group';
 import { TallyService } from './tally';
@@ -135,7 +135,7 @@ export class ElectionService {
         }
     }
 
-    private ecclesiaAttributionToSingleSeatAttribution<T extends Ballots<Candidate>>(
+    private ecclesiaAttributionToSingleSeatAttribution<T>(
         attribution: EcclesiaAttribution<Candidate, T>,
     ): (tally: T) => Candidate {
         return (tally) => {
