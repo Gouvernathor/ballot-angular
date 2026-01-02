@@ -90,7 +90,7 @@ export class ElectionService {
             getOpinions: signal([x, y]),
         }));
     }
-    private candidateShapes = ["square", "triangle", "hexagon", "pentagon", "bob"] as const;
+    private readonly candidateShapes = ["square", "triangle", "hexagon", "pentagon", "bob"] as const;
     private *makeDefaultCandidateOpinions(numCandidates: 2|3|4|5): Iterable<Opinions> {
         const startAngle =
             numCandidates === 3 ?
