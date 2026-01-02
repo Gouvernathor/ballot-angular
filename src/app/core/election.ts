@@ -151,16 +151,14 @@ export class ElectionService {
     generateFPTPResultInformation(
         castBallots: CastBallotSignalType<PluralityBallot>,
     ): FPTPResultInformation {
-        const tally = tallySingleToSimple(
-            this.votingService.extractBallots(castBallots));
+        const tally = tallySingleToSimple(this.votingService.extractBallots(castBallots));
         const winner = this.pluralityAttrib(tally);
         return { tally, winner };
     }
     generateIRVResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
     ): IRVResultInformation {
-        const tally = tallyRankedToOrder(
-            this.votingService.extractBallots(castBallots));
+        const tally = tallyRankedToOrder(this.votingService.extractBallots(castBallots));
         const eliminated = new Set<Candidate>();
         const steps: IRVResultInformation["steps"][0][] = [];
         while (true) {
@@ -192,8 +190,7 @@ export class ElectionService {
     generateBordaResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
     ): BordaResultInformation {
-        const tally = tallyRankedToOrder(
-            this.votingService.extractBallots(castBallots));
+        const tally = tallyRankedToOrder(this.votingService.extractBallots(castBallots));
         const processedTally = NumberCounter.fromEntries<Candidate>();
         for (const ballot of tally) {
             ballot.forEach((candidate, index) => {
@@ -209,8 +206,7 @@ export class ElectionService {
         castBallots: CastBallotSignalType<RankedBallot>,
         candidates: readonly Candidate[],
     ): CondorcetResultInformation {
-        const tally = tallyRankedToOrder(
-            this.votingService.extractBallots(castBallots));
+        const tally = tallyRankedToOrder(this.votingService.extractBallots(castBallots));
         const pairwiseDuels: CondorcetResultInformation["pairwiseDuels"][0][] = [];
         const duelWinsPerCandidate = NumberCounter.fromEntries<Candidate>();
         for (let i = 0; i < candidates.length; i++) {
@@ -248,8 +244,7 @@ export class ElectionService {
     generateApprovalResultInformation(
         castBallots: CastBallotSignalType<ApprovalBallot>,
     ): ApprovalResultInformation {
-        const tally = tallyApprovalToSimple(
-            this.votingService.extractBallots(castBallots));
+        const tally = tallyApprovalToSimple(this.votingService.extractBallots(castBallots));
         const winner = this.pluralityAttrib(tally);
         return { tally, winner };
     }
