@@ -2,9 +2,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { NumberCounter } from '@gouvernathor/python/collections';
 import { Attribution as EcclesiaAttribution, plurality as ecclesiaPlurality } from 'ecclesia/election/attribution';
 import { Order, Simple } from 'ecclesia/election/tally';
+import { tallyApprovalToSimple, tallyRankedToOrder, tallySingleToSimple } from 'ecclesia/election/tallying';
 import { Candidate, Opinions } from './candidate';
 import { GaussianVoters } from './voter-group';
-import { TallyService } from './tally';
 import { CastBallotSignalType, VotingService } from './voting';
 import { ApprovalBallot, PluralityBallot, RankedBallot, ScoreBallot } from './ballot';
 
@@ -73,7 +73,6 @@ export interface ScoreResultInformation {
 })
 export class ElectionService {
     private readonly votingService = inject(VotingService);
-    private readonly tallyService = inject(TallyService);
 
     makeCandidates(
         input: (2|3|4|5)|Iterable<Opinions>|undefined,
@@ -152,7 +151,7 @@ export class ElectionService {
     generateFPTPResultInformation(
         castBallots: CastBallotSignalType<PluralityBallot>,
     ): FPTPResultInformation {
-        const tally = this.tallyService.tallyPluralityToSimple(
+        const tally = tallySingleToSimple(
             this.votingService.extractBallots(castBallots));
         const winner = this.pluralityAttrib(tally);
         return { tally, winner };
@@ -160,7 +159,7 @@ export class ElectionService {
     generateIRVResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
     ): IRVResultInformation {
-        const tally = this.tallyService.tallyRankedToOrder(
+        const tally = tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
         const eliminated = new Set<Candidate>();
         const steps: IRVResultInformation["steps"][0][] = [];
@@ -193,7 +192,7 @@ export class ElectionService {
     generateBordaResultInformation(
         castBallots: CastBallotSignalType<RankedBallot>,
     ): BordaResultInformation {
-        const tally = this.tallyService.tallyRankedToOrder(
+        const tally = tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
         const processedTally = NumberCounter.fromEntries<Candidate>();
         for (const ballot of tally) {
@@ -210,7 +209,7 @@ export class ElectionService {
         castBallots: CastBallotSignalType<RankedBallot>,
         candidates: readonly Candidate[],
     ): CondorcetResultInformation {
-        const tally = this.tallyService.tallyRankedToOrder(
+        const tally = tallyRankedToOrder(
             this.votingService.extractBallots(castBallots));
         const pairwiseDuels: CondorcetResultInformation["pairwiseDuels"][0][] = [];
         const duelWinsPerCandidate = NumberCounter.fromEntries<Candidate>();
@@ -249,7 +248,7 @@ export class ElectionService {
     generateApprovalResultInformation(
         castBallots: CastBallotSignalType<ApprovalBallot>,
     ): ApprovalResultInformation {
-        const tally = this.tallyService.tallyApprovalToSimple(
+        const tally = tallyApprovalToSimple(
             this.votingService.extractBallots(castBallots));
         const winner = this.pluralityAttrib(tally);
         return { tally, winner };
