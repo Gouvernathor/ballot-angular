@@ -19,11 +19,18 @@
         line-height: 1.5em;
     }
 
-    .howtofight h3 {
-        margin-block-end: .3em;
+    .howtofight {
+        p {
+            margin-block: .5em;
+        }
 
-        + p {
-            margin-block-start: 0;
+        h3 {
+            margin-block-start: 1.5em;
+            margin-block-end: .3em;
+
+            + p {
+                margin-block-start: 0;
+            }
         }
     }
 }
