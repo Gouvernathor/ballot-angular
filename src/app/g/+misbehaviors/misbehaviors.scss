@@ -6,7 +6,7 @@
     align-items: center;
 
     .words {
-        max-inline-size: 670px;
+        max-inline-size: min(max(80px, 80vw), 670px);
     }
 
     p {
