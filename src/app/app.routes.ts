@@ -34,19 +34,19 @@ export const routes: Routes = [
                 title: "Ballot misbehaviors",
                 component: Misbehaviors,
             },
-            /*{
+            {
                 path: 'g',
                 children: [
-                    {
+                    /*{
                         path: '2turnmaj',
                         component: , // TODO
-                    },
+                    },*/
                     {
                         path: 'misbehaviors',
-                        component: , // TODO
+                        component: Misbehaviors,
                     },
                 ],
-            },*/
+            },
         ],
     },
 
