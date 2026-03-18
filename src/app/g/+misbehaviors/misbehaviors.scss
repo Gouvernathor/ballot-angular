@@ -39,3 +39,10 @@
     font-family: "Futura Handwritten", cursive;
     font-style: italic;
 }
+
+nav[app-nav] {
+    position: absolute;
+    inset-inline-start: calc(50% + 380px);
+
+    margin-block-start: 50px;
+}
