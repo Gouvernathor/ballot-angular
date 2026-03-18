@@ -1,4 +1,4 @@
-@if (displayOriginalAndExternalTL()) {
+@if (displayAdditionalLinks()) {
     <p>
         <a href="https://ncase.me/ballot/">{{ originalLabel() }}</a>
     </p>
@@ -14,7 +14,7 @@
                 {{ localTl.label }}</a><br/>
         }
     }
-    @if (displayOriginalAndExternalTL()) {
+    @if (displayAdditionalLinks()) {
         <a href="https://antoniokov.com/voting/">русский</a><br/>
         <a href="https://pourdamghani.github.io/ballot/">فارسی</a>
     }

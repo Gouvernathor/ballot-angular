@@ -19,7 +19,7 @@ export class Nav {
     protected readonly browserPrefLang = inject(BROWSER_PREF_LANG);
 
     readonly customPageRoute = input<readonly string[]>([]);
-    protected readonly displayOriginalAndExternalTL = computed(() => !this.customPageRoute().length);
+    protected readonly displayAdditionalLinks = computed(() => !this.customPageRoute().length);
     readonly originalLabel = input("Original");
     readonly translationsLabel = input("Translations:");
     readonly sourceCodeLabel = input("Full source code here!");
