@@ -20,9 +20,6 @@ export class Nav {
 
     readonly customPageRoute = input<readonly string[]>([]);
     protected readonly displayAdditionalLinks = computed(() => !this.customPageRoute().length);
-    readonly originalLabel = input("Original");
-    readonly translationsLabel = input("Translations:");
-    readonly sourceCodeLabel = input("Full source code here!");
 
     protected readonly localTranslations = computed<readonly LocalTranslation[]>(() => [
         { routerLink: [ "" ].concat(this.customPageRoute()), label: "English", lang: "en-CA" },

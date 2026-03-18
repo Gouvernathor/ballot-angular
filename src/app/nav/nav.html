@@ -1,10 +1,37 @@
-@if (displayAdditionalLinks()) {
-    <p>
-        <a href="https://ncase.me/ballot/">{{ originalLabel() }}</a>
-    </p>
-}
 <p>
-    <b class="lbl">{{ translationsLabel() }}</b><br/>
+    @if (displayAdditionalLinks()) {
+        <a href="https://ncase.me/ballot/">
+            @switch (lang) {
+                @case ("en-CA") {
+                    Original
+                }
+                @case ("fr-FR") {
+                    Site original
+                }
+                @default {
+                    <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+                }
+            }
+        </a>
+    } @else {
+        <!-- TODO bring to the correct language, and translate the label -->
+        <a [routerLink]="''">Home</a>
+    }
+</p>
+<p>
+    <b class="lbl">
+        @switch (lang) {
+            @case ("en-CA") {
+                Translations:
+            }
+            @case ("fr-FR") {
+                Traductions&nbsp;:
+            }
+            @default {
+                <span [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</span>
+            }
+        }
+    </b><br/>
     @for (localTl of localTranslations(); track localTl.lang) {
         @if (lang !== localTl.lang) {
             <a
@@ -20,5 +47,17 @@
     }
 </p>
 <p>
-    <a href="https://github.com/Gouvernathor/ballot-angular">{{ sourceCodeLabel() }}</a>
+    <a href="https://github.com/Gouvernathor/ballot-angular">
+        @switch (lang) {
+            @case ("en-CA") {
+                Full source code here!
+            }
+            @case ("fr-FR") {
+                Tout le code source est ici&nbsp;!
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
+    </a>
 </p>
