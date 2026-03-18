@@ -12,7 +12,7 @@ import { FrFrPart5 } from "./parts/part5/part5";
 @Component({
     imports: [Banner, Nav, FrFrPart0, FrFrPart1, FrFrPart2, FrFrPart3, FrFrPart4, FrFrPart5],
     templateUrl: './index.html',
-    styleUrls: [],
+    styleUrls: ['../../../+index/index.scss'],
 })
 export class FrFrIndex extends Index {
 }
