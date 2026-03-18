@@ -2,3 +2,8 @@ app-banner {
     margin: 0;
     margin-block-end: 50px;
 }
+
+nav[app-nav] {
+    position: absolute;
+    inset-inline-start: calc(50% + 380px);
+}
