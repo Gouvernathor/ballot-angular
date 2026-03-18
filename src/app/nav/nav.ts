@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { BROWSER_PREF_LANG, LANG, SupportedLanguage } from '../i18n/language.service';
 import { RouterLink } from "@angular/router";
 
@@ -18,13 +18,14 @@ export class Nav {
     protected readonly lang = inject(LANG);
     protected readonly browserPrefLang = inject(BROWSER_PREF_LANG);
 
-    readonly displayOriginalAndExternalTL = input(true);
+    readonly customPageRoute = input<readonly string[]>([]);
+    protected readonly displayOriginalAndExternalTL = computed(() => !this.customPageRoute().length);
     readonly originalLabel = input("Original");
     readonly translationsLabel = input("Translations:");
     readonly sourceCodeLabel = input("Full source code here!");
 
-    protected readonly localTranslations: readonly LocalTranslation[] = [
-        { routerLink: [ "" ], label: "English", lang: "en-CA" },
-        { routerLink: [ "/fr-FR" ], label: "Français", lang: "fr-FR" },
-    ];
+    protected readonly localTranslations = computed<readonly LocalTranslation[]>(() => [
+        { routerLink: [ "" ].concat(this.customPageRoute()), label: "English", lang: "en-CA" },
+        { routerLink: [ "/fr-FR" ].concat(this.customPageRoute()), label: "Français", lang: "fr-FR" },
+    ]);
 }
