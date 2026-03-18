@@ -7,6 +7,7 @@ import { sandboxResolvers } from './+sandbox/sandbox.resolvers';
 import { Misbehaviors } from './g/+misbehaviors/misbehaviors';
 import { FrFrIndex } from './tl/fr-FR/+index/index';
 import { FrFrSandbox } from './tl/fr-FR/+sandbox/sandbox';
+import { FrFrMisbehaviors } from './tl/fr-FR/g/+misbehaviors/misbehaviors';
 
 export const routes: Routes = [
     // main language's routes : en-CA
@@ -70,19 +71,19 @@ export const routes: Routes = [
                 resolve: sandboxResolvers,
                 runGuardsAndResolvers: 'always',
             },
-            /*{
+            {
                 path: 'g',
                 children: [
-                    {
+                    /*{
                         path: '2turnmaj',
                         component: , // TODO
-                    },
+                    },*/
                     {
                         path: 'misbehaviors',
-                        component: , // TODO
+                        component: FrFrMisbehaviors,
                     },
                 ],
-            },*/
+            },
         ],
     },
 ];
