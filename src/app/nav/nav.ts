@@ -18,6 +18,7 @@ export class Nav {
     readonly lang = inject(LANG);
     readonly browserPrefLang = inject(BROWSER_PREF_LANG);
 
+    readonly displayOriginalAndExternalTL = input(true);
     readonly originalLabel = input("Original");
     readonly translationsLabel = input("Translations:");
     readonly sourceCodeLabel = input("Full source code here!");
