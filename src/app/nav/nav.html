@@ -14,8 +14,17 @@
             }
         </a>
     } @else {
-        <!-- TODO bring to the correct language, and translate the label -->
-        <a [routerLink]="''">Home</a>
+        @switch (lang) {
+            @case ("en-CA") {
+                <a [routerLink]="''">Home page</a>
+            }
+            @case ("fr-FR") {
+                <a [routerLink]="'/fr-FR'">Page principale</a>
+            }
+            @default {
+                <b [style.color]="'red'">TRANSLATION FOR {{lang}} MISSING</b>
+            }
+        }
     }
 </p>
 <p>
