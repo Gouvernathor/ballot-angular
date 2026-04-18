@@ -1,0 +1,36 @@
+TODO
+
+site plan (translations ommitted) :
+- / (main article)
+  - sandbox
+  - g (maybe not a page)
+    - two-turns-majority
+    - union-blackmail
+
+(maybe merge 2-turns and union-blackmail into a more general page about the majority ballot and the spoiler effect)
+
+# Two turns
+
+mention two-turns majority elections
+france, and also georgia's senatorials
+and how they relate to all that's been said
+
+## how it works
+
+(note that in french legislative elections the selection of the second turn is a bit more complex and can have more than 2 finalists,
+but dismiss it as a detail since the presidential election is predominant)
+
+## what its differences are to FPTP
+
+introduce the condorcet loser
+maybe display it as an election method, and find a case where the FPTP elects it (not hard : two left candidates with 31 and 29, one right with 40)
+
+
+# the "stage" expexps
+
+(trust, then crowds)
+
+each numbered slide is its own component
+each has its own inner-slide number, a mutable (signal ?) attribute
+it displays or hide stuff in the template using if/switch based on the inner-slide number
+it can possibly change states or execute stuff based on changes to the number
